@@ -1,52 +1,81 @@
-```markdown
-# Medical Question Bank - Project Rules
+# Medical QBank — Project Rules for Claude Code
 
-## Overview
-Building a medical MCQ platform for students. MVP includes auth, quizzes, progress tracking, and $5/month Stripe subscription.
+## What We're Building
+A UK medical SBA question bank website for MSRA exam preparation.
+All clinical content references NICE, BNF, SIGN, and GMC guidelines only.
+No US guidelines (no UpToDate, no AHA, no USMLE content).
 
 ## Tech Stack
-- Frontend: React + TypeScript + Tailwind CSS
+- Frontend: React + Vite + plain CSS (no TypeScript for now)
 - Backend: Node.js + Express
-- Database: PostgreSQL on Railway
-- Payments: Stripe
-- Hosting: Railway (backend) + Vercel (frontend)
+- Database: PostgreSQL (on Railway cloud - NOT local)
+- Frontend hosting: Vercel
+- Backend hosting: Railway
+- Error monitoring: Sentry
 
-## Database Setup
-Create these tables:
-- users (id, email, password_hash, subscription_status, created_at)
-- subjects (id, name, description)
-- questions (id, subject_id, question_text, option_a, option_b, option_c, option_d, option_e, correct_answer, explanation, difficulty)
-- quiz_sessions (id, user_id, subject_id, score, created_at)
-- user_answers (id, quiz_session_id, question_id, user_answer, is_correct)
+## Exact Database Schema to Use
 
-## API Endpoints (Priority Order)
-1. POST /api/auth/signup - Create account
-2. POST /api/auth/login - Login
-3. GET /api/subjects - List all subjects
-4. GET /api/subjects/:id/questions - Get questions
-5. POST /api/quizzes - Start quiz
-6. POST /api/quizzes/:id/answer - Submit answer
-7. GET /api/quizzes/:id/results - Get results
+### questions table
+- id (SERIAL PRIMARY KEY)
+- question_id (VARCHAR) — e.g. "IHD_001"
+- subject (VARCHAR) — e.g. "Cardiovascular"
+- topic (VARCHAR) — e.g. "Ischaemic Heart Disease"
+- question_type (VARCHAR) — e.g. "SBA"
+- question_text (TEXT)
+- option_a (TEXT)
+- option_b (TEXT)
+- option_c (TEXT)
+- option_d (TEXT)
+- option_e (TEXT) — may be empty
+- option_f (TEXT) — usually empty
+- option_g (TEXT) — usually empty
+- option_h (TEXT) — usually empty
+- correct_answer (VARCHAR(1)) — single letter: A, B, C, D, or E
+- explanation (TEXT)
+- difficulty (VARCHAR) — Easy, Medium, or Hard
+- lna (BOOLEAN) — true if Learning Need Area
+- date_added (DATE)
+
+### users table
+- id (SERIAL PRIMARY KEY)
+- email (VARCHAR UNIQUE NOT NULL)
+- password_hash (VARCHAR NOT NULL)
+- created_at (TIMESTAMP DEFAULT NOW())
+
+### quiz_sessions table
+- id (SERIAL PRIMARY KEY)
+- user_id (INTEGER REFERENCES users)
+- subject (VARCHAR)
+- total_questions (INTEGER)
+- score (INTEGER)
+- completed (BOOLEAN DEFAULT false)
+- started_at (TIMESTAMP DEFAULT NOW())
+- completed_at (TIMESTAMP)
+
+### user_answers table
+- id (SERIAL PRIMARY KEY)
+- session_id (INTEGER REFERENCES quiz_sessions)
+- question_id (INTEGER REFERENCES questions)
+- user_answer (VARCHAR(1))
+- is_correct (BOOLEAN)
+- answered_at (TIMESTAMP DEFAULT NOW())
+
+## API Response Format
+All API responses must follow this format:
+{ "success": true/false, "data": {...}, "error": null/"message" }
+
+## Security Rules
+- Hash passwords with bcrypt (10 salt rounds)
+- Use JWT tokens (expire 24 hours), stored in HttpOnly cookies
+- Validate all user input
+- Use parameterized queries (never string concatenation in SQL)
+- Store secrets in .env file, never hardcode them
 
 ## Code Style
-- Use TypeScript for type safety
-- All responses: { success: boolean, data: any, error: string | null }
-- Use async/await (no callbacks)
-- Password hashing with bcrypt
-- JWT auth with HttpOnly cookies
+- Use async/await throughout
+- All routes in separate files in /routes folder
+- Use dotenv for environment variables
+- Add console.log statements so we can see what's happening
 
-## Security Requirements
-- Hash passwords with bcrypt
-- JWT tokens expire after 24 hours
-- Validate all user input
-- Prevent SQL injection (use parameterized queries)
-- HTTPS only (automatic with Railway/Vercel)
-- Never log passwords or sensitive data
-
-## Next Steps
-1. Build Express server with basic structure
-2. Set up PostgreSQL connection
-3. Build auth endpoints
-4. Build quiz endpoints
-5. Import medical_questions.csv to database
-```
+## CSV File Location
+The question CSV is at: ./data/MSRA_Master_Question_Bank.csv

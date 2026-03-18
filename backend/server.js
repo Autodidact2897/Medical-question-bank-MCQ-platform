@@ -1,4 +1,5 @@
 require('dotenv').config();
+const Sentry = require('@sentry/node');
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
@@ -6,6 +7,12 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./src/routes/auth');
 const questionsRoutes = require('./src/routes/questions');
 const quizRoutes = require('./src/routes/quiz');
+
+// Initialise Sentry before anything else
+Sentry.init({
+  dsn: process.env.SENTRY_DSN,
+  tracesSampleRate: 1.0,
+});
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -45,6 +52,9 @@ app.get('/health', (req, res) => {
   console.log('Health check requested');
   res.json({ success: true, message: 'Server is running' });
 });
+
+// Sentry error handler — must be after all routes
+Sentry.setupExpressErrorHandler(app);
 
 // Start server
 app.listen(PORT, () => {

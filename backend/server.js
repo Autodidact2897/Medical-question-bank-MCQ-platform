@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const authRoutes = require('./src/routes/auth');
 const questionsRoutes = require('./src/routes/questions');
 const quizRoutes = require('./src/routes/quiz');
+const briefsRoutes = require('./src/routes/briefs');
 
 // Initialise Sentry before anything else
 Sentry.init({
@@ -46,6 +47,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api', questionsRoutes);
 app.use('/api/quiz', quizRoutes);
+app.use('/api/briefs', briefsRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

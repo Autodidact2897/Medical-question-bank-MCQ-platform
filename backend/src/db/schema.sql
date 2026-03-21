@@ -50,3 +50,15 @@ CREATE TABLE IF NOT EXISTS user_answers (
   is_correct BOOLEAN,
   answered_at TIMESTAMP DEFAULT NOW()
 );
+
+-- Clinical briefs table
+CREATE TABLE IF NOT EXISTS clinical_briefs (
+  id SERIAL PRIMARY KEY,
+  brief_id VARCHAR UNIQUE,
+  title VARCHAR,
+  subject VARCHAR,
+  topic VARCHAR,
+  content TEXT,
+  guideline_references TEXT,
+  date_added DATE
+);

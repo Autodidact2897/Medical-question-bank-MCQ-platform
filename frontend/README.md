@@ -1,16 +1,81 @@
-# React + Vite
+# DiscoLabs Frontend — Setup Guide
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Quick Start (run these commands in order)
 
-Currently, two official plugins are available:
+```bash
+# 1. Go into the project folder
+cd discolabs-frontend
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+# 2. Install all dependencies
+npm install
 
-## React Compiler
+# 3. Start the development server
+npm run dev
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Then open http://localhost:5173 in your browser.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Project Structure
+
+```
+src/
+├── main.jsx              ← Entry point (don't touch)
+├── App.jsx               ← All routes defined here
+├── index.css             ← Global styles + Tailwind
+├── contexts/
+│   └── AuthContext.jsx   ← Login/logout state for whole app
+├── lib/
+│   └── api.js            ← All backend API calls go through here
+├── components/
+│   └── ProtectedRoute.jsx ← Guards pages that need login
+└── pages/
+    ├── LandingPage.jsx   ← / (public)
+    ├── LnaQuiz.jsx       ← /lna-quiz (public)
+    ├── LnaResults.jsx    ← /lna-results/:sessionId (public)
+    ├── Login.jsx         ← /login (public)
+    ├── Register.jsx      ← /register (public)
+    ├── Dashboard.jsx     ← /dashboard (protected)
+    ├── QuizPage.jsx      ← /quiz/:id (protected)
+    ├── QuizResults.jsx   ← /quiz/:id/results (protected)
+    ├── ClinicalBriefs.jsx ← /briefs (protected)
+    └── SingleBrief.jsx   ← /briefs/:id (protected)
+```
+
+---
+
+## Connecting to Your Backend
+
+Your backend runs on `http://localhost:5000`.
+
+The `vite.config.js` already has a proxy set up so any request to `/api/...`
+in the frontend is forwarded to `http://localhost:5000/api/...` automatically.
+
+**Make sure your backend is running before starting the frontend.**
+
+---
+
+## Building for Production (Vercel)
+
+```bash
+npm run build
+```
+
+Then deploy the `dist/` folder to Vercel. The `vercel.json` file handles
+SPA routing so page refreshes work correctly.
+
+---
+
+## Environment Variables
+
+If you need to change the backend URL for production, create a `.env` file:
+
+```
+VITE_API_URL=https://your-backend.com
+```
+
+Then update `src/lib/api.js`:
+```js
+baseURL: import.meta.env.VITE_API_URL + '/api'
+```

@@ -1,50 +1,48 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import LoginPage from './pages/LoginPage';
-import SignupPage from './pages/SignupPage';
-import DashboardPage from './pages/DashboardPage';
-import QuizPage from './pages/QuizPage';
-import ResultsPage from './pages/ResultsPage';
-import './index.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './contexts/AuthContext'
+import ProtectedRoute from './components/ProtectedRoute'
 
-function ProtectedRoute({ children }) {
-  const { user, loading } = useAuth();
-  if (loading) return <div className="loading-screen">Loading...</div>;
-  if (!user) return <Navigate to="/login" replace />;
-  return children;
-}
-
-function RootRedirect() {
-  const { user, loading } = useAuth();
-  if (loading) return <div className="loading-screen">Loading...</div>;
-  return <Navigate to={user ? '/dashboard' : '/login'} replace />;
-}
-
-function AppRoutes() {
-  return (
-    <Routes>
-      <Route path="/" element={<RootRedirect />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/signup" element={<SignupPage />} />
-      <Route path="/dashboard" element={
-        <ProtectedRoute><DashboardPage /></ProtectedRoute>
-      } />
-      <Route path="/quiz/:sessionId" element={
-        <ProtectedRoute><QuizPage /></ProtectedRoute>
-      } />
-      <Route path="/results/:sessionId" element={
-        <ProtectedRoute><ResultsPage /></ProtectedRoute>
-      } />
-    </Routes>
-  );
-}
+import LandingPage from './pages/LandingPage'
+import LnaQuiz from './pages/LnaQuiz'
+import LnaResults from './pages/LnaResults'
+import Login from './pages/Login'
+import Register from './pages/Register'
+import Dashboard from './pages/Dashboard'
+import QuizPage from './pages/QuizPage'
+import QuizResults from './pages/QuizResults'
+import ClinicalBriefs from './pages/ClinicalBriefs'
+import SingleBrief from './pages/SingleBrief'
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
-    </BrowserRouter>
-  );
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Public routes */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/lna-quiz" element={<LnaQuiz />} />
+          <Route path="/lna-results/:sessionId" element={<LnaResults />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+
+          {/* Protected routes - require login */}
+          <Route path="/dashboard" element={
+            <ProtectedRoute><Dashboard /></ProtectedRoute>
+          } />
+          <Route path="/quiz/:id" element={
+            <ProtectedRoute><QuizPage /></ProtectedRoute>
+          } />
+          <Route path="/quiz/:id/results" element={
+            <ProtectedRoute><QuizResults /></ProtectedRoute>
+          } />
+          <Route path="/briefs" element={
+            <ProtectedRoute><ClinicalBriefs /></ProtectedRoute>
+          } />
+          <Route path="/briefs/:id" element={
+            <ProtectedRoute><SingleBrief /></ProtectedRoute>
+          } />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
+  )
 }

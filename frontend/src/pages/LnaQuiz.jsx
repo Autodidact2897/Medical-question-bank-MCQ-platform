@@ -1,40 +1,42 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import api from '../lib/api'
 
+// Timer helper: converts seconds to MM:SS display
 function formatTime(seconds) {
   const m = Math.floor(seconds / 60)
   const s = seconds % 60
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
 }
 
+// Total quiz time: 30 minutes
 const TOTAL_SECONDS = 30 * 60
 
-export default function QuizPage() {
-  const { id } = useParams()
+export default function LnaQuiz() {
   const navigate = useNavigate()
-  const [sessionId, setSessionId] = useState(null)
   const [questions, setQuestions] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [answers, setAnswers] = useState({})
+  const [answers, setAnswers] = useState({}) // { questionId: 'A' }
   const [timeLeft, setTimeLeft] = useState(TOTAL_SECONDS)
+  const [sessionId, setSessionId] = useState(null)
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
 
+  // Fetch questions on mount
   useEffect(() => {
-    // Start a quiz session
-    api.post('/quiz/start', { quizId: id })
+    api.get('/questions/lna/quiz')
       .then(res => {
-        setSessionId(res.data.sessionId)
         setQuestions(res.data.questions)
+        setSessionId(res.data.sessionId)
         setLoading(false)
       })
       .catch(err => {
-        console.error('Failed to start quiz', err)
+        console.error('Failed to load questions', err)
         setLoading(false)
       })
-  }, [id])
+  }, [])
 
+  // Countdown timer
   useEffect(() => {
     if (loading) return
     const interval = setInterval(() => {
@@ -51,20 +53,22 @@ export default function QuizPage() {
   }, [loading])
 
   const handleSubmit = useCallback(async () => {
-    if (submitting || !sessionId) return
+    if (submitting) return
     setSubmitting(true)
     try {
+      // Submit all answers
       for (const [questionId, answer] of Object.entries(answers)) {
         await api.post(`/quiz/${sessionId}/answer`, { questionId, answer })
       }
       await api.post(`/quiz/${sessionId}/complete`)
-      navigate(`/quiz/${id}/results?session=${sessionId}`)
+      navigate(`/lna-results/${sessionId}`)
     } catch (err) {
       console.error('Submit failed', err)
       setSubmitting(false)
     }
-  }, [answers, sessionId, submitting, navigate, id])
+  }, [answers, sessionId, submitting, navigate])
 
+  // Timer colour logic
   const timerClass = timeLeft < 180
     ? 'text-red-traffic bg-red-traffic-bg'
     : timeLeft < 600
@@ -79,7 +83,7 @@ export default function QuizPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-bg-light">
-        <p className="text-marine font-medium">Loading quiz…</p>
+        <p className="text-marine font-medium">Loading questions…</p>
       </div>
     )
   }
@@ -89,12 +93,15 @@ export default function QuizPage() {
 
       {/* ── Top Bar ── */}
       <div className="bg-white border-b border-border-default px-6 py-3">
+        {/* Progress bar */}
         <div className="h-1.5 bg-grey-light rounded-full mb-3">
           <div
             className="h-full bg-marine rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
+
+        {/* Question count + timer */}
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-body-dark">
             Question {currentIndex + 1} of {questions.length}
@@ -105,18 +112,21 @@ export default function QuizPage() {
         </div>
       </div>
 
-      {/* ── Question ── */}
+      {/* ── Question Area ── */}
       <div className="flex-1 px-6 py-8 max-w-3xl mx-auto w-full">
         {currentQ ? (
           <>
             <h2 className="text-lg font-semibold text-heading mb-6 leading-relaxed">
               {currentQ.question_text}
             </h2>
+
+            {/* Answer Options */}
             <div className="flex flex-col gap-3">
               {['A', 'B', 'C', 'D', 'E'].map(letter => {
                 const optionText = currentQ[`option_${letter.toLowerCase()}`]
                 if (!optionText) return null
                 const isSelected = selectedAnswer === letter
+
                 return (
                   <button
                     key={letter}
@@ -135,7 +145,7 @@ export default function QuizPage() {
             </div>
           </>
         ) : (
-          <p className="text-body-dark">No questions found for this quiz.</p>
+          <p className="text-body-dark">No question found.</p>
         )}
       </div>
 
@@ -149,7 +159,9 @@ export default function QuizPage() {
           >
             ← Previous
           </button>
+
           <p className="text-xs text-body-dark">You can change your answer at any time</p>
+
           {isLast ? (
             <button
               onClick={handleSubmit}

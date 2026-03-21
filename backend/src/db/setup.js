@@ -78,6 +78,21 @@ async function setupDatabase() {
     `);
     console.log('✓ user_answers table ready');
 
+    console.log('Creating table: clinical_briefs');
+    await client.query(`
+      CREATE TABLE IF NOT EXISTS clinical_briefs (
+        id SERIAL PRIMARY KEY,
+        brief_id VARCHAR UNIQUE,
+        title VARCHAR,
+        subject VARCHAR,
+        topic VARCHAR,
+        content TEXT,
+        guideline_references TEXT,
+        date_added DATE
+      )
+    `);
+    console.log('✓ clinical_briefs table ready');
+
     console.log('\nDatabase setup complete. All tables are ready.');
   } catch (err) {
     console.error('Database setup failed:', err.message);

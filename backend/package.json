@@ -8,6 +8,7 @@
     "dev": "node --watch server.js",
     "setup-db": "node src/db/setup.js",
     "import-questions": "node src/db/import-questions.js",
+    "import-briefs": "node src/db/import-briefs.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

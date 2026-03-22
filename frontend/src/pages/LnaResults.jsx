@@ -23,7 +23,26 @@ export default function LnaResults() {
   useEffect(() => {
     api.get(`/quiz/${sessionId}/results`)
       .then(res => {
-        setResults(res.data)
+        const data = res.data.data || res.data
+        // Build weak areas from results if available
+        if (data.results) {
+          const topicMap = {}
+          for (const r of data.results) {
+            const key = r.topic || 'General'
+            if (!topicMap[key]) topicMap[key] = { topic: key, correct: 0, total: 0 }
+            topicMap[key].total++
+            if (r.is_correct) topicMap[key].correct++
+          }
+          const areas = Object.values(topicMap).map(t => {
+            const pct = Math.round((t.correct / t.total) * 100)
+            let level = 'green'
+            if (pct < 40) level = 'red'
+            else if (pct < 70) level = 'amber'
+            return { topic: t.topic, level, percentage: pct }
+          }).sort((a, b) => a.percentage - b.percentage)
+          data.weakAreas = areas
+        }
+        setResults(data)
         setLoading(false)
       })
       .catch(() => setLoading(false))

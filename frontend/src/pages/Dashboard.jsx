@@ -13,15 +13,6 @@ function TrafficBadge({ level }) {
   return <span className={classes[level] || 'traffic-amber'}>{labels[level] || level}</span>
 }
 
-const STUDY_PLAN = [
-  { weeks: 'Week 1-2', topic: 'ACS & Arrhythmias', current: true },
-  { weeks: 'Week 3-4', topic: 'Heart Failure', current: false },
-  { weeks: 'Week 5-6', topic: 'Diabetes', current: false },
-  { weeks: 'Week 7-8', topic: 'Respiratory', current: false },
-  { weeks: 'Week 9-10', topic: 'GI & Renal', current: false },
-  { weeks: 'Week 11-12', topic: 'Full mock & review', current: false },
-]
-
 export default function Dashboard() {
   const navigate = useNavigate()
   const { user, logout } = useAuth()
@@ -29,18 +20,35 @@ export default function Dashboard() {
   const [email, setEmail] = useState(user?.email || '')
   const [briefsEnabled, setBriefsEnabled] = useState(false)
 
+  const [progressData, setProgressData] = useState(null)
+  const [studyHistory, setStudyHistory] = useState(null)
+
   // Load LNA results for the subtopic rankings
   useEffect(() => {
-    api.get('/briefs/weak-areas/recommend')
-      .then(res => setLnaResults(res.data.weakAreas || []))
-      .catch(() => {
-        setLnaResults([
-          { topic: 'Acute Coronary Syndromes', level: 'red' },
-          { topic: 'Heart Failure', level: 'amber' },
-          { topic: 'Diabetes', level: 'amber' },
-          { topic: 'Respiratory Emergencies', level: 'red' },
-        ])
+    api.get('/progress/lna-results')
+      .then(res => {
+        const data = res.data.data
+        if (data && data.topic_scores) {
+          // Convert topic_scores to the format Dashboard expects
+          const areas = data.topic_scores
+            .filter(t => t.level !== 'green')
+            .map(t => ({ topic: t.topic, subject: t.subject, level: t.level, percentage: t.percentage }))
+          setLnaResults(areas.length > 0 ? areas : [])
+        } else {
+          setLnaResults([])
+        }
       })
+      .catch(() => setLnaResults([]))
+
+    // Load overall progress stats
+    api.get('/progress')
+      .then(res => setProgressData(res.data.data))
+      .catch(() => {})
+
+    // Load study history
+    api.get('/progress/study-history')
+      .then(res => setStudyHistory(res.data.data))
+      .catch(() => {})
   }, [])
 
   const handleLogout = async () => {
@@ -105,30 +113,103 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* LNA Results — clickable to start quizzes */}
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-heading mb-1">
-            Your LNA results
-          </h2>
-          <p className="text-sm text-body-dark mb-4">Click any topic to practise questions on it.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-            {lnaResults.slice(0, 8).map((area, i) => (
-              <button
-                key={i}
-                onClick={() => startTopicQuiz(area.topic)}
-                className="card flex items-center justify-between py-3 hover:border-marine transition-colors text-left"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="text-sm font-medium text-heading">{area.topic}</span>
+        {/* Progress Overview */}
+        {progressData && (
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold text-heading mb-4">Your Progress</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              <div className="card text-center py-4">
+                <div className="text-2xl font-bold text-marine">{progressData.overall_percentage}%</div>
+                <div className="text-xs text-body-dark mt-1">Overall Score</div>
+              </div>
+              <div className="card text-center py-4">
+                <div className="text-2xl font-bold text-marine">{progressData.total_attempted}</div>
+                <div className="text-xs text-body-dark mt-1">Questions Done</div>
+              </div>
+              <div className="card text-center py-4">
+                <div className="text-2xl font-bold text-marine">{progressData.unique_questions}</div>
+                <div className="text-xs text-body-dark mt-1">Unique Questions</div>
+              </div>
+              <div className="card text-center py-4">
+                <div className="text-2xl font-bold text-marine">
+                  {progressData.total_in_bank > 0
+                    ? Math.round((progressData.unique_questions / progressData.total_in_bank) * 100)
+                    : 0}%
                 </div>
-                <div className="flex items-center gap-3">
-                  <TrafficBadge level={area.level} />
-                  <span className="text-marine text-xs font-medium">Practise &#x2192;</span>
+                <div className="text-xs text-body-dark mt-1">Bank Coverage</div>
+              </div>
+            </div>
+
+            {/* Subject performance bars */}
+            {progressData.by_subject && progressData.by_subject.length > 0 && (
+              <div className="card mt-4">
+                <h3 className="font-semibold text-heading text-sm mb-3">Performance by Subject</h3>
+                <div className="flex flex-col gap-3">
+                  {progressData.by_subject.map((s, i) => (
+                    <div key={i}>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-xs font-medium text-heading">{s.subject}</span>
+                        <span className="text-xs text-body-dark">{s.correct}/{s.attempted} ({s.percentage}%)</span>
+                      </div>
+                      <div className="h-2 bg-grey-light rounded-full overflow-hidden">
+                        <div
+                          className="h-full rounded-full transition-all duration-500"
+                          style={{
+                            width: `${s.percentage}%`,
+                            backgroundColor: s.percentage >= 70 ? '#059669' : s.percentage >= 40 ? '#d97706' : '#ef4444'
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </button>
-            ))}
+              </div>
+            )}
           </div>
-        </div>
+        )}
+
+        {/* LNA Results — clickable to start quizzes */}
+        {lnaResults.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold text-heading mb-1">
+              Your Weak Areas
+            </h2>
+            <p className="text-sm text-body-dark mb-4">Click any topic to practise questions on it.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              {lnaResults.slice(0, 8).map((area, i) => (
+                <button
+                  key={i}
+                  onClick={() => startTopicQuiz(area.topic)}
+                  className="card flex items-center justify-between py-3 hover:border-marine transition-colors text-left"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-sm font-medium text-heading">{area.topic}</span>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <TrafficBadge level={area.level} />
+                    <span className="text-marine text-xs font-medium">Practise &#x2192;</span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* No LNA yet — prompt to take the assessment */}
+        {lnaResults.length === 0 && !progressData && (
+          <div className="mb-8 card border-2 border-dashed border-marine">
+            <h2 className="text-lg font-semibold text-heading mb-1">Take the LNA Assessment</h2>
+            <p className="text-body-dark text-sm mb-4">
+              Complete the Learning Needs Assessment to identify your weak areas and get a personalised study plan.
+            </p>
+            <button
+              onClick={() => navigate('/lna-quiz')}
+              className="btn-primary text-sm"
+            >
+              Start LNA Assessment
+            </button>
+          </div>
+        )}
 
         {/* Ways to Study Grid */}
         <div className="mb-8">
@@ -155,30 +236,55 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* 12-Week Study Plan */}
-        <div className="mb-8">
-          <h2 className="text-lg font-semibold text-heading mb-4">12-Week Study Plan</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-            {STUDY_PLAN.map((week, i) => (
-              <div
-                key={i}
-                className={`rounded-card p-4 border-2 ${
-                  week.current
-                    ? 'border-marine bg-blue-50'
-                    : 'border-border-default bg-white'
-                }`}
-              >
-                {week.current && (
-                  <span className="text-xs font-bold text-marine bg-blue-100 px-2 py-0.5 rounded mb-2 inline-block">
-                    CURRENT
-                  </span>
-                )}
-                <div className="text-xs font-medium text-body-dark mb-1">{week.weeks}</div>
-                <div className="font-semibold text-heading text-sm">{week.topic}</div>
-              </div>
-            ))}
+        {/* Recent Study History */}
+        {studyHistory && studyHistory.studied && studyHistory.studied.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold text-heading mb-1">Recent Study History</h2>
+            <p className="text-sm text-body-dark mb-4">
+              {studyHistory.total_topics_studied} of {studyHistory.total_topics_available} topics studied
+            </p>
+            <div className="card overflow-hidden p-0">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="bg-grey-light border-b border-border-default">
+                    <th className="px-4 py-2 text-left font-semibold text-heading">Topic</th>
+                    <th className="px-4 py-2 text-left font-semibold text-heading hidden md:table-cell">Subject</th>
+                    <th className="px-4 py-2 text-center font-semibold text-heading">Score</th>
+                    <th className="px-4 py-2 text-center font-semibold text-heading hidden sm:table-cell">Coverage</th>
+                    <th className="px-4 py-2 text-right font-semibold text-heading">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {studyHistory.studied.slice(0, 10).map((item, i) => (
+                    <tr key={i} className="border-b border-border-default last:border-0">
+                      <td className="px-4 py-2.5 text-heading font-medium">{item.topic}</td>
+                      <td className="px-4 py-2.5 text-body-dark hidden md:table-cell">{item.subject}</td>
+                      <td className="px-4 py-2.5 text-center">
+                        <span className={`font-semibold ${
+                          item.percentage >= 70 ? 'text-green-600' :
+                          item.percentage >= 40 ? 'text-amber-600' : 'text-red-600'
+                        }`}>
+                          {item.percentage}%
+                        </span>
+                      </td>
+                      <td className="px-4 py-2.5 text-center text-body-dark hidden sm:table-cell">
+                        {item.coverage}%
+                      </td>
+                      <td className="px-4 py-2.5 text-right">
+                        <button
+                          onClick={() => startTopicQuiz(item.topic)}
+                          className="text-marine text-xs font-medium hover:underline"
+                        >
+                          Practise
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Daily Briefs Email Signup */}
         <div className="card">

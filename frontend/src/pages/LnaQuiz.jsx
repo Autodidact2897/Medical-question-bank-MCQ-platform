@@ -57,10 +57,18 @@ export default function LnaQuiz() {
     setSubmitting(true)
     try {
       // Submit all answers
-      for (const [questionId, answer] of Object.entries(answers)) {
-        await api.post(`/quiz/${sessionId}/answer`, { questionId, answer })
+      for (const [questionId, userAnswer] of Object.entries(answers)) {
+        await api.post(`/quiz/${sessionId}/answer`, { questionId: parseInt(questionId), userAnswer })
       }
       await api.post(`/quiz/${sessionId}/complete`)
+
+      // Save LNA results for logged-in users (best-effort, don't block navigation)
+      try {
+        await api.post('/progress/lna-results', { session_id: parseInt(sessionId) })
+      } catch (lnaErr) {
+        console.log('LNA results save skipped (user may not be logged in)')
+      }
+
       navigate(`/lna-results/${sessionId}`)
     } catch (err) {
       console.error('Submit failed', err)

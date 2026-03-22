@@ -71,8 +71,8 @@ router.get('/metrics', async (req, res) => {
       pool.query(`
         SELECT
           COUNT(*)::int AS total_started,
-          COALESCE(SUM(CASE WHEN completed THEN 1 ELSE 0 END), 0)::int AS total_completed,
-          COALESCE(AVG(CASE WHEN completed THEN score_percentage END), 0)::numeric(5,1) AS avg_score
+          COALESCE(SUM(CASE WHEN completed_at IS NOT NULL THEN 1 ELSE 0 END), 0)::int AS total_completed,
+          COALESCE(AVG(CASE WHEN completed_at IS NOT NULL THEN overall_percentage END), 0)::numeric(5,1) AS avg_score
         FROM rapid_diagnostic_sessions
       `),
 

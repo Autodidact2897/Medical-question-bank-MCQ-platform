@@ -1,7 +1,12 @@
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default function LandingPage() {
   const navigate = useNavigate()
+
+  const scrollToHow = () => {
+    document.getElementById('how-it-works')?.scrollIntoView({ behavior: 'smooth' })
+  }
 
   return (
     <div className="min-h-screen bg-bg-light font-sans">
@@ -9,119 +14,252 @@ export default function LandingPage() {
       {/* ── Header ── */}
       <header className="bg-white border-b border-border-default px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="text-xl">⚕</span>
+          <span className="text-xl">&#x2695;</span>
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
         </div>
-        <button
-          onClick={() => navigate('/rapid-diagnostic')}
-          className="btn-primary text-sm"
-        >
-          Start Free Assessment
-        </button>
+        <div className="flex items-center gap-4">
+          <Link to="/login" className="text-sm text-marine font-medium hover:underline hidden sm:inline">
+            Sign In
+          </Link>
+          <button
+            onClick={() => navigate('/rapid-diagnostic')}
+            className="btn-primary text-sm"
+          >
+            Start Free Assessment
+          </button>
+        </div>
       </header>
 
-      {/* ── Hero ── */}
-      <section className="bg-white px-6 py-16 text-center max-w-3xl mx-auto">
-        <h1 className="text-4xl font-semibold text-heading leading-tight mb-4">
-          One exam. One opportunity.<br />Don't leave it to chance.
+      {/* ── Section 1: Above the Fold ── */}
+      <section className="bg-white px-6 py-20 text-center max-w-3xl mx-auto">
+        <h1 className="text-4xl md:text-5xl font-semibold text-heading leading-tight mb-6">
+          Stop guessing what to revise for the MSRA.
         </h1>
-        <p className="text-body-dark text-lg mb-8">
-          Most candidates revise blindly. Identify your exact weak areas with a free diagnostic assessment.
+        <p className="text-body-dark text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+          Take a free 15-minute diagnostic assessment. Get a personalised, curriculum-mapped report
+          showing your weakest areas — and a targeted plan to fix them.
         </p>
-        <button
-          onClick={() => navigate('/rapid-diagnostic')}
-          className="btn-primary text-base px-8 py-4"
-        >
-          Start Free Assessment
-        </button>
-
-        {/* Credibility box */}
-        <div className="mt-10 bg-bg-light border border-border-default rounded-card px-6 py-4 inline-block">
-          <p className="text-body-dark text-sm">
-            Built by an MSRA scorer in the <strong className="text-marine">top 6%</strong> — Feb 2024 sitting · 591 score
-          </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <button
+            onClick={() => navigate('/rapid-diagnostic')}
+            className="btn-primary text-base px-8 py-4"
+          >
+            Start Free Assessment
+          </button>
+          <button
+            onClick={scrollToHow}
+            className="btn-secondary text-base px-8 py-4"
+          >
+            See How It Works
+          </button>
         </div>
       </section>
 
-      {/* ── Problem Section ── */}
-      <section className="px-6 py-12 max-w-5xl mx-auto">
-        <h2 className="text-2xl font-semibold text-heading text-center mb-8">
-          Why most MSRA candidates underperform
+      {/* ── Section 2: The Problem ── */}
+      <section className="px-6 py-16 max-w-4xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-4">
+          Most candidates revise the wrong way
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <p className="text-body-dark text-center mb-10 max-w-2xl mx-auto leading-relaxed">
+          You do random questions with no structure. You gravitate towards topics you already know.
+          You skip entire areas of the curriculum without realising. You walk into the exam hoping
+          you've covered enough.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {[
-            { title: 'Random practice doesn\'t work', body: 'Doing questions without targeting your weak areas wastes precious revision time.' },
-            { title: 'No clear weaknesses = no focus', body: 'Without knowing where you\'re struggling, you can\'t build a focused study plan.' },
-            { title: 'Curriculum gaps stay hidden', body: 'You don\'t know what you don\'t know — until it appears in the exam.' },
+            {
+              title: 'Random practice wastes time',
+              body: 'You repeat topics you already know while entire curriculum areas go untouched.',
+            },
+            {
+              title: 'No clarity on weaknesses',
+              body: 'Without knowing where you\'re struggling, you can\'t build a focused study plan.',
+            },
+            {
+              title: 'Gaps stay hidden until the exam',
+              body: 'You don\'t know what you don\'t know — until it appears on the paper.',
+            },
           ].map((card, i) => (
             <div key={i} className="card">
               <h3 className="font-semibold text-heading mb-2">{card.title}</h3>
-              <p className="text-body-dark text-sm">{card.body}</p>
+              <p className="text-body-dark text-sm leading-relaxed">{card.body}</p>
             </div>
           ))}
         </div>
+        <p className="text-center mt-8 text-heading font-semibold">
+          That's not a knowledge problem. That's a strategy problem.
+        </p>
       </section>
 
-      {/* ── Solution Section ── */}
-      <section className="bg-white px-6 py-12">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl font-semibold text-heading text-center mb-8">
-            A smarter way to prepare
+      {/* ── Section 3: The Mechanism ── */}
+      <section id="how-it-works" className="bg-white px-6 py-16">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-12">
+            Start with clarity, not guesswork
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { step: '1', title: 'Take LNA Assessment', body: 'Identify your weakest topics in 15 minutes with 20 targeted questions.' },
-              { step: '2', title: 'Get Personal Report', body: 'See exactly what you need to study — all 79 MSRA subtopics ranked.' },
-              { step: '3', title: 'Targeted Question Bank', body: 'Practice what matters most with 1,000+ curriculum-mapped questions.' },
+              {
+                step: '1',
+                title: 'Take the Learning Needs Assessment',
+                body: 'A focused diagnostic that samples the entire MSRA curriculum. Identifies your weak areas rapidly, without requiring hours of your time.',
+              },
+              {
+                step: '2',
+                title: 'Get your personalised report',
+                body: 'A topic-by-topic breakdown of your performance, ranked by clinical importance and exam weighting. You see exactly where you stand.',
+              },
+              {
+                step: '3',
+                title: 'Follow a targeted revision plan',
+                body: 'Questions mapped directly to your weaknesses. No wasted time on topics you already understand. Every session moves you forward.',
+              },
             ].map((item, i) => (
               <div key={i} className="card flex gap-4">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-marine text-white text-sm font-bold flex items-center justify-center">
+                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-marine text-white text-base font-bold flex items-center justify-center">
                   {item.step}
                 </div>
                 <div>
-                  <h3 className="font-semibold text-heading mb-1">{item.title}</h3>
-                  <p className="text-body-dark text-sm">{item.body}</p>
+                  <h3 className="font-semibold text-heading mb-2">{item.title}</h3>
+                  <p className="text-body-dark text-sm leading-relaxed">{item.body}</p>
                 </div>
               </div>
             ))}
           </div>
+          <p className="text-center mt-10 text-marine font-semibold">
+            You don't just practise questions — you systematically eliminate weaknesses.
+          </p>
         </div>
       </section>
 
-      {/* ── Trust Section ── */}
-      <section className="px-6 py-10 max-w-5xl mx-auto">
-        <div className="flex flex-col md:flex-row gap-4 justify-center items-center">
+      {/* ── Section 4: Product Proof ── */}
+      <section className="px-6 py-16 max-w-4xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-10">
+          Built for how the MSRA is actually examined
+        </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           {[
-            '✓ Curriculum-mapped',
-            '✓ NICE-aligned clinical guidance',
-            '✓ Clinically realistic scenarios',
+            'Fully mapped to the official MSRA curriculum blueprint',
+            'All explanations referenced to NICE, BNF, SIGN, and GMC guidance',
+            'Clinically realistic question style reflecting actual exam format',
+            'Content validated by practising UK clinicians',
+            '2,000 curriculum-mapped questions across CPS and Professional Dilemmas',
+            'Continuous content review and updates',
           ].map((item, i) => (
-            <div key={i} className="card text-marine font-semibold text-sm px-6 py-3">
-              {item}
+            <div key={i} className="flex items-start gap-3 bg-white border border-border-default rounded-card px-5 py-4">
+              <span className="text-green-traffic font-bold mt-0.5">&#x2713;</span>
+              <span className="text-body-dark text-sm leading-relaxed">{item}</span>
+            </div>
+          ))}
+        </div>
+        <div className="bg-bg-light border border-border-default rounded-card px-6 py-4 text-center">
+          <p className="text-body-dark text-sm">
+            Built by an MSRA scorer in the <strong className="text-marine">top 6%</strong> — Feb 2024 sitting
+          </p>
+        </div>
+      </section>
+
+      {/* ── Section 5: Differentiation ── */}
+      <section className="bg-white px-6 py-16">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-10">
+            How this is different
+          </h2>
+          <div className="card p-0 overflow-hidden mb-6">
+            <table className="w-full text-sm">
+              <thead>
+                <tr>
+                  <th className="bg-grey-light px-5 py-3 text-left font-semibold text-heading border-b border-border-default">
+                    Traditional question banks
+                  </th>
+                  <th className="bg-marine px-5 py-3 text-left font-semibold text-white border-b border-marine-dark">
+                    DiscoLabs
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {[
+                  ['Random question practice', 'Structured diagnostic first'],
+                  ['Focus on question volume', 'Focus on curriculum coverage'],
+                  ['No clarity on weaknesses', 'Precise gap identification'],
+                  ['Passive, undirected revision', 'Active, targeted preparation'],
+                  ['Generic content', 'Clinician-validated, guideline-referenced'],
+                ].map(([trad, disco], i) => (
+                  <tr key={i} className="border-b border-border-default last:border-0">
+                    <td className="px-5 py-3 text-body-dark">{trad}</td>
+                    <td className="px-5 py-3 text-body-dark font-medium">{disco}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="text-center text-heading font-semibold">
+            More questions &#x2260; better preparation. Better targeting = better results.
+          </p>
+        </div>
+      </section>
+
+      {/* ── Section 6: Objection Handling / FAQ ── */}
+      <section className="px-6 py-16 max-w-3xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-10">
+          Common questions
+        </h2>
+        <div className="flex flex-col gap-4">
+          {[
+            {
+              q: 'Is this content accurate?',
+              a: 'All content is written within strict clinical and guideline-based frameworks, referenced to NICE, BNF, SIGN, and GMC guidance, and validated by practising UK clinicians before publication.',
+            },
+            {
+              q: 'How is the content produced?',
+              a: 'Every question follows a rigorous clinical framework mapped to the official MSRA curriculum. Content is reviewed and validated by real clinicians to ensure accuracy, clinical relevance, and alignment with current UK practice.',
+            },
+            {
+              q: 'What if I just use Passmedicine or PassTest?',
+              a: 'If you already know exactly where your weaknesses are, any question bank will work. If you don\'t — you\'re guessing. DiscoLabs diagnoses your gaps first, then targets them. That\'s a fundamentally different approach.',
+            },
+            {
+              q: 'Is this worth the money?',
+              a: 'The MSRA determines your specialty training allocation for the next two or more years. The question isn\'t whether preparation is worth investing in — it\'s whether you can afford to leave gaps in your revision.',
+            },
+          ].map((faq, i) => (
+            <div key={i} className="card">
+              <h3 className="font-semibold text-heading mb-2">{faq.q}</h3>
+              <p className="text-body-dark text-sm leading-relaxed">{faq.a}</p>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ── CTA Section ── */}
-      <section className="bg-marine px-6 py-16 text-center">
-        <h2 className="text-3xl font-semibold text-white mb-4">
-          Ready to find your weak areas?
+      {/* ── Section 7: Final CTA ── */}
+      <section className="bg-marine px-6 py-20 text-center">
+        <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+          One exam. One opportunity.<br />Don't leave it to chance.
         </h2>
-        <p className="text-blue-200 mb-8">
-          Take the free 20-question diagnostic assessment. No account needed.
+        <p className="text-blue-200 mb-10 max-w-xl mx-auto">
+          The MSRA decides your next two years. Start with a free diagnostic that shows you exactly where to focus.
         </p>
         <button
           onClick={() => navigate('/rapid-diagnostic')}
-          className="bg-white text-marine font-semibold px-8 py-4 rounded-btn hover:bg-bg-light transition-colors duration-200"
+          className="bg-white text-marine font-semibold px-8 py-4 rounded-btn hover:bg-bg-light transition-colors duration-200 text-base"
         >
           Start Free Assessment
         </button>
       </section>
 
       {/* ── Footer ── */}
-      <footer className="bg-white border-t border-border-default px-6 py-6 text-center">
-        <p className="text-body-dark text-sm">© 2024 DiscoLabs. Built for UK doctors preparing for the MSRA.</p>
+      <footer className="bg-white border-t border-border-default px-6 py-8">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">&#x2695;</span>
+            <span className="text-marine font-semibold">DiscoLabs</span>
+          </div>
+          <div className="flex gap-6 text-sm">
+            <Link to="/privacy" className="text-body-dark hover:text-marine">Privacy Policy</Link>
+            <Link to="/terms" className="text-body-dark hover:text-marine">Terms & Conditions</Link>
+          </div>
+          <p className="text-body-dark text-xs">&copy; 2026 DiscoLabs. Built for UK doctors preparing for the MSRA.</p>
+        </div>
       </footer>
 
     </div>

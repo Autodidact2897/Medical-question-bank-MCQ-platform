@@ -12,20 +12,20 @@ export function AuthProvider({ children }) {
   // On first load, check if the user already has a valid session
   useEffect(() => {
     api.get('/auth/me')
-      .then(res => setUser(res.data.user))
+      .then(res => setUser(res.data.data || res.data.user))
       .catch(() => setUser(null))
       .finally(() => setLoading(false))
   }, [])
 
   const login = async (email, password) => {
     const res = await api.post('/auth/login', { email, password })
-    setUser(res.data.user)
+    setUser(res.data.data || res.data.user)
     return res.data
   }
 
   const register = async (name, email, password) => {
     const res = await api.post('/auth/register', { name, email, password })
-    setUser(res.data.user)
+    setUser(res.data.data || res.data.user)
     return res.data
   }
 

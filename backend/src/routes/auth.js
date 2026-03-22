@@ -81,11 +81,11 @@ router.post('/login', async (req, res) => {
       { expiresIn: '24h' }
     );
 
-    // Set HttpOnly cookie
+    // Set HttpOnly cookie — sameSite 'none' required for cross-origin (Vercel → Render)
     res.cookie('authToken', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === 'production',
-      sameSite: 'lax',
+      secure: true,
+      sameSite: 'none',
       maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
     });
 
@@ -100,7 +100,7 @@ router.post('/login', async (req, res) => {
 // POST /api/auth/logout
 router.post('/logout', (req, res) => {
   console.log('Logout request received');
-  res.clearCookie('authToken');
+  res.clearCookie('authToken', { httpOnly: true, secure: true, sameSite: 'none' });
   return res.json({ success: true, data: { message: 'Logged out' }, error: null });
 });
 

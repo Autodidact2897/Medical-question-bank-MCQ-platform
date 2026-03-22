@@ -432,11 +432,14 @@ export default function Dashboard() {
               placeholder="your@email.com"
             />
             <button
-              onClick={() => setBriefsEnabled(true)}
-              className={`btn-secondary text-sm ${briefsEnabled ? 'opacity-60' : ''}`}
-              disabled={briefsEnabled}
+              onClick={() => setBriefsEnabled(!briefsEnabled)}
+              className={`text-sm font-semibold px-4 py-2.5 rounded-btn border transition-colors ${
+                briefsEnabled
+                  ? 'bg-red-50 text-red-600 border-red-300 hover:bg-red-100'
+                  : 'btn-secondary'
+              }`}
             >
-              {briefsEnabled ? 'Enabled' : 'Enable daily briefs'}
+              {briefsEnabled ? 'Disable' : 'Enable daily briefs'}
             </button>
           </div>
         </div>

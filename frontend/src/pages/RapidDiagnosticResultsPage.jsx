@@ -159,13 +159,6 @@ export default function RapidDiagnosticResultsPage() {
           </p>
         </div>
 
-        {/* ── Social Proof ── */}
-        <div className="bg-blue-50 border border-marine rounded-card px-5 py-4 mb-8 text-center">
-          <p className="text-marine font-medium text-sm">
-            Candidates who completed the full assessment improved their MSRA score by an average of 18%.
-          </p>
-        </div>
-
         {/* ── Paywall Section ── */}
         <div className="card mb-6 p-0 overflow-hidden">
           {/* Blurred preview */}

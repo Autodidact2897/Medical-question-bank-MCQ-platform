@@ -15,6 +15,8 @@ import QuizPage from './pages/QuizPage'
 import QuizResults from './pages/QuizResults'
 import ClinicalBriefs from './pages/ClinicalBriefs'
 import SingleBrief from './pages/SingleBrief'
+import Privacy from './pages/Privacy'
+import Terms from './pages/Terms'
 
 export default function App() {
   return (
@@ -29,6 +31,8 @@ export default function App() {
           <Route path="/rapid-diagnostic/results/:sessionToken" element={<RapidDiagnosticResultsPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<Terms />} />
 
           {/* Protected routes - require login */}
           <Route path="/dashboard" element={

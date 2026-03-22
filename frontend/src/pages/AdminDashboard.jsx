@@ -48,7 +48,15 @@ export default function AdminDashboard() {
       })
       .catch(err => {
         console.error('Admin metrics error:', err)
-        setError(err.response?.status === 403 ? 'Admin access required.' : 'Failed to load metrics.')
+        const status = err.response?.status
+        const serverMsg = err.response?.data?.error
+        if (status === 403) {
+          setError('Admin access required.')
+        } else if (status === 401) {
+          setError('Session expired. Please log out and log back in.')
+        } else {
+          setError(`Failed to load metrics (${status || 'network error'}): ${serverMsg || err.message}`)
+        }
         setLoading(false)
       })
   }, [])

@@ -11,7 +11,7 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       const currentPath = window.location.pathname
-      const publicPaths = ['/login', '/signup', '/rapid-diagnostic', '/lna-quiz', '/']
+      const publicPaths = ['/login', '/signup', '/rapid-diagnostic', '/lna-quiz', '/admin', '/']
       const isPublic = publicPaths.some(p => currentPath.startsWith(p))
       if (!isPublic) {
         window.location.href = '/login'

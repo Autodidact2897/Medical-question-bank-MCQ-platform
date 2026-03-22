@@ -17,7 +17,6 @@ export default function RapidDiagnosticPage() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [sessionToken, setSessionToken] = useState(null)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [feedback, setFeedback] = useState(null) // { isCorrect: bool }
   const [submittingAnswer, setSubmittingAnswer] = useState(false)
   const [elapsed, setElapsed] = useState(0)
   const [email, setEmail] = useState('')
@@ -70,7 +69,7 @@ export default function RapidDiagnosticPage() {
   }
 
   const handleSubmitAnswer = async () => {
-    if (submittingAnswer || feedback) return
+    if (submittingAnswer) return
 
     let answer
     if (isSJT) {
@@ -83,26 +82,22 @@ export default function RapidDiagnosticPage() {
 
     setSubmittingAnswer(true)
     try {
-      const res = await api.post('/rapid-diagnostic/answer', {
+      await api.post('/rapid-diagnostic/answer', {
         session_token: sessionToken,
         question_id: currentQ.id,
         user_answer: answer,
       })
-      setFeedback({ isCorrect: res.data.data.is_correct })
 
-      // Auto-advance after 1.5s
-      setTimeout(() => {
-        if (currentIndex < questions.length - 1) {
-          setCurrentIndex(i => i + 1)
-          setSelectedAnswer(null)
-          setSjtRanking({})
-          setFeedback(null)
-        } else {
-          setPhase('email-capture')
-          clearInterval(timerRef.current)
-        }
-        setSubmittingAnswer(false)
-      }, 1500)
+      // Move straight to the next question — no feedback shown
+      if (currentIndex < questions.length - 1) {
+        setCurrentIndex(i => i + 1)
+        setSelectedAnswer(null)
+        setSjtRanking({})
+      } else {
+        setPhase('email-capture')
+        clearInterval(timerRef.current)
+      }
+      setSubmittingAnswer(false)
     } catch (err) {
       console.error('Failed to submit answer:', err)
       setSubmittingAnswer(false)
@@ -290,29 +285,18 @@ export default function RapidDiagnosticPage() {
               /* ── SBA Options ── */
               <div className="flex flex-col gap-3">
                 {options.map(opt => {
-                  let borderClass = 'bg-white border-border-default hover:border-marine-mid'
-                  if (feedback && selectedAnswer === opt.letter) {
-                    borderClass = feedback.isCorrect
-                      ? 'bg-green-traffic-bg border-green-traffic'
-                      : 'bg-red-traffic-bg border-red-traffic'
-                  } else if (selectedAnswer === opt.letter) {
-                    borderClass = 'bg-blue-50 border-marine'
-                  }
+                  const borderClass = selectedAnswer === opt.letter
+                    ? 'bg-blue-50 border-marine'
+                    : 'bg-white border-border-default hover:border-marine-mid'
 
                   return (
                     <button
                       key={opt.letter}
-                      onClick={() => !feedback && setSelectedAnswer(opt.letter)}
-                      disabled={!!feedback}
-                      className={`w-full text-left px-4 py-3 rounded-card border-2 transition-all duration-150 ${borderClass} disabled:cursor-default`}
+                      onClick={() => setSelectedAnswer(opt.letter)}
+                      className={`w-full text-left px-4 py-3 rounded-card border-2 transition-all duration-150 ${borderClass}`}
                     >
                       <span className="font-bold text-marine mr-3">{opt.letter}</span>
                       <span className="text-body-dark text-sm">{opt.text}</span>
-                      {feedback && selectedAnswer === opt.letter && (
-                        <span className="float-right text-lg">
-                          {feedback.isCorrect ? '\u2705' : '\u274C'}
-                        </span>
-                      )}
                     </button>
                   )
                 })}
@@ -325,19 +309,17 @@ export default function RapidDiagnosticPage() {
       </div>
 
       {/* Submit Button */}
-      {!feedback && (
-        <div className="bg-white border-t border-border-default px-6 py-4">
-          <div className="max-w-3xl mx-auto flex justify-end">
-            <button
-              onClick={handleSubmitAnswer}
-              disabled={isSJT ? Object.keys(sjtRanking).length !== options.length : !selectedAnswer}
-              className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
-            >
-              Submit Answer
-            </button>
-          </div>
+      <div className="bg-white border-t border-border-default px-6 py-4">
+        <div className="max-w-3xl mx-auto flex justify-end">
+          <button
+            onClick={handleSubmitAnswer}
+            disabled={submittingAnswer || (isSJT ? Object.keys(sjtRanking).length !== options.length : !selectedAnswer)}
+            className="btn-primary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+          >
+            {currentIndex === questions.length - 1 ? 'Finish' : 'Next'}
+          </button>
         </div>
-      )}
+      </div>
     </div>
   )
 }

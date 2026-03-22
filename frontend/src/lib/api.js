@@ -10,7 +10,9 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       const currentPath = window.location.pathname
-      if (currentPath !== '/login' && currentPath !== '/signup') {
+      const publicPaths = ['/login', '/signup', '/rapid-diagnostic', '/lna-quiz', '/']
+      const isPublic = publicPaths.some(p => currentPath.startsWith(p))
+      if (!isPublic) {
         window.location.href = '/login'
       }
     }

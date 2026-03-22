@@ -82,6 +82,13 @@ export default function Login() {
             Sign up
           </Link>
         </p>
+
+        <p className="text-center text-sm text-body-dark mt-3">
+          Not sure if you need this?{' '}
+          <Link to="/rapid-diagnostic" className="text-marine font-medium hover:underline">
+            Take the free assessment first
+          </Link>
+        </p>
       </div>
 
     </div>

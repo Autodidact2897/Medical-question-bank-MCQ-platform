@@ -28,6 +28,46 @@ router.get('/subjects', async (req, res) => {
   }
 });
 
+// GET /api/questions/lna/quiz (public — no auth required for free diagnostic)
+router.get('/questions/lna/quiz', async (req, res) => {
+  console.log('LNA quiz request received');
+
+  try {
+    // Fetch all 20 LNA questions
+    const questionsResult = await pool.query(`
+      SELECT id, question_id, subject, topic, question_type, question_text,
+             option_a, option_b, option_c, option_d, option_e,
+             option_f, option_g, option_h,
+             difficulty, lna, date_added
+      FROM questions
+      WHERE lna = true
+      ORDER BY RANDOM()
+    `);
+
+    const questions = questionsResult.rows;
+    console.log(`LNA quiz: returning ${questions.length} questions`);
+
+    // Create an anonymous quiz session (no user_id)
+    const sessionResult = await pool.query(`
+      INSERT INTO quiz_sessions (user_id, subject, total_questions, score, completed)
+      VALUES (NULL, 'LNA Diagnostic', $1, 0, false)
+      RETURNING id
+    `, [questions.length]);
+
+    const sessionId = sessionResult.rows[0].id;
+
+    return res.json({
+      success: true,
+      questions,
+      sessionId,
+      error: null,
+    });
+  } catch (err) {
+    console.error('Error fetching LNA questions:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to load LNA quiz', data: null });
+  }
+});
+
 // GET /api/questions (protected)
 router.get('/questions', authMiddleware, async (req, res) => {
   console.log('Questions request received, user:', req.user.email);

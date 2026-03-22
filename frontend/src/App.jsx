@@ -5,6 +5,8 @@ import ProtectedRoute from './components/ProtectedRoute'
 import LandingPage from './pages/LandingPage'
 import LnaQuiz from './pages/LnaQuiz'
 import LnaResults from './pages/LnaResults'
+import RapidDiagnosticPage from './pages/RapidDiagnosticPage'
+import RapidDiagnosticResultsPage from './pages/RapidDiagnosticResultsPage'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
@@ -22,6 +24,8 @@ export default function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/lna-quiz" element={<LnaQuiz />} />
           <Route path="/lna-results/:sessionId" element={<LnaResults />} />
+          <Route path="/rapid-diagnostic" element={<RapidDiagnosticPage />} />
+          <Route path="/rapid-diagnostic/results/:sessionToken" element={<RapidDiagnosticResultsPage />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
 

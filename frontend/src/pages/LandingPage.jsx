@@ -13,7 +13,7 @@ export default function LandingPage() {
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
         </div>
         <button
-          onClick={() => navigate('/lna-quiz')}
+          onClick={() => navigate('/rapid-diagnostic')}
           className="btn-primary text-sm"
         >
           Start Free Assessment
@@ -29,7 +29,7 @@ export default function LandingPage() {
           Most candidates revise blindly. Identify your exact weak areas with a free diagnostic assessment.
         </p>
         <button
-          onClick={() => navigate('/lna-quiz')}
+          onClick={() => navigate('/rapid-diagnostic')}
           className="btn-primary text-base px-8 py-4"
         >
           Start Free Assessment
@@ -112,7 +112,7 @@ export default function LandingPage() {
           Take the free 20-question diagnostic assessment. No account needed.
         </p>
         <button
-          onClick={() => navigate('/lna-quiz')}
+          onClick={() => navigate('/rapid-diagnostic')}
           className="bg-white text-marine font-semibold px-8 py-4 rounded-btn hover:bg-bg-light transition-colors duration-200"
         >
           Start Free Assessment

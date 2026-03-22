@@ -9,7 +9,7 @@ export default function SubjectPicker() {
   const [expandedSubject, setExpandedSubject] = useState(null)
 
   useEffect(() => {
-    api.get('/questions/subjects-topics')
+    api.get('/subjects-topics')
       .then(res => {
         const data = res.data.data || res.data
         setSubjects(data.subjects || {})

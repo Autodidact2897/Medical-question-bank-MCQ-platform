@@ -15,7 +15,7 @@ export default function ClinicalBriefs() {
 
   useEffect(() => {
     api.get('/briefs')
-      .then(res => { setBriefs(res.data.briefs || []); setLoading(false) })
+      .then(res => { setBriefs(res.data.data || res.data.briefs || []); setLoading(false) })
       .catch(() => setLoading(false))
   }, [])
 
@@ -59,7 +59,14 @@ export default function ClinicalBriefs() {
         {loading ? (
           <p className="text-marine font-medium">Loading briefs…</p>
         ) : filtered.length === 0 ? (
-          <p className="text-body-dark">No briefs found.</p>
+          <div className="card text-center py-10">
+            <div className="text-4xl mb-3">&#x1F4DA;</div>
+            <p className="text-heading font-semibold mb-1">Clinical Briefs coming soon</p>
+            <p className="text-body-dark text-sm mb-4">We're building deep-dive learning resources for every MSRA topic. Check back soon.</p>
+            <button onClick={() => navigate('/dashboard')} className="btn-primary text-sm">
+              Back to Dashboard
+            </button>
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filtered.map(brief => (

@@ -100,6 +100,9 @@ export default function AdminDashboard() {
           <span className="text-xs bg-marine text-white px-2 py-0.5 rounded-full ml-2 font-medium">ADMIN</span>
         </div>
         <div className="flex items-center gap-4">
+          <button onClick={() => navigate('/admin/emails')} className="text-body-dark text-sm hover:text-marine">
+            Email Briefs
+          </button>
           <button onClick={() => navigate('/dashboard')} className="text-body-dark text-sm hover:text-marine">
             User Dashboard
           </button>

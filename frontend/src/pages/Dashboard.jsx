@@ -50,6 +50,11 @@ export default function Dashboard() {
     api.get('/progress/study-history')
       .then(res => setStudyHistory(res.data.data))
       .catch(() => {})
+
+    // Load email subscription status
+    api.get('/email/status')
+      .then(res => setBriefsEnabled(res.data.data?.subscribed || false))
+      .catch(() => {})
   }, [])
 
   const handleLogout = async () => {
@@ -421,27 +426,38 @@ export default function Dashboard() {
         <div className="card">
           <h2 className="text-lg font-semibold text-heading mb-1">Get clinical briefs in your inbox</h2>
           <p className="text-body-dark text-sm mb-4">
-            Receive one clinical brief daily on a subtopic you were weak in.
+            Receive clinical briefs on subtopics you were weak in.
           </p>
-          <div className="flex gap-3">
-            <input
-              type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-              className="flex-1 border border-gray-200 rounded-btn px-3 py-2.5 text-sm text-heading focus:outline-none focus:border-marine"
-              placeholder="your@email.com"
-            />
+          <div className="flex items-center gap-3">
+            <div className="flex-1 border border-gray-200 rounded-btn px-3 py-2.5 text-sm text-heading bg-grey-light">
+              {user?.email}
+            </div>
             <button
-              onClick={() => setBriefsEnabled(!briefsEnabled)}
-              className={`text-sm font-semibold px-4 py-2.5 rounded-btn border transition-colors ${
+              onClick={async () => {
+                try {
+                  if (briefsEnabled) {
+                    await api.post('/email/unsubscribe')
+                    setBriefsEnabled(false)
+                  } else {
+                    await api.post('/email/subscribe')
+                    setBriefsEnabled(true)
+                  }
+                } catch (err) {
+                  console.error('Email toggle error:', err)
+                }
+              }}
+              className={`text-sm font-semibold px-4 py-2.5 rounded-btn border transition-colors whitespace-nowrap ${
                 briefsEnabled
                   ? 'bg-red-50 text-red-600 border-red-300 hover:bg-red-100'
                   : 'btn-secondary'
               }`}
             >
-              {briefsEnabled ? 'Disable' : 'Enable daily briefs'}
+              {briefsEnabled ? 'Unsubscribe' : 'Subscribe'}
             </button>
           </div>
+          {briefsEnabled && (
+            <p className="text-xs text-green-600 mt-2">You're subscribed to clinical briefs.</p>
+          )}
         </div>
 
       </div>

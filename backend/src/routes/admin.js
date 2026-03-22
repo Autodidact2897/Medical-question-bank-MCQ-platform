@@ -1,4 +1,5 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
 const pool = require('../db/connection');
 const authMiddleware = require('../middleware/auth');
 
@@ -197,5 +198,272 @@ router.get('/metrics', async (req, res) => {
     res.status(500).json({ success: false, error: 'Failed to load admin metrics', data: null });
   }
 });
+
+// ──────────────────────────────────────────────
+// Email Brief Management
+// ──────────────────────────────────────────────
+
+// GET /api/admin/subscribers — list all email subscribers
+router.get('/subscribers', async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT es.id, es.email, es.subscribed, es.subscribed_at, es.unsubscribed_at, u.created_at AS user_created
+      FROM email_subscribers es
+      JOIN users u ON es.user_id = u.id
+      ORDER BY es.subscribed_at DESC
+    `);
+    const total = result.rows.length;
+    const active = result.rows.filter(r => r.subscribed).length;
+    return res.json({ success: true, data: { subscribers: result.rows, total, active }, error: null });
+  } catch (err) {
+    console.error('Subscribers error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to load subscribers', data: null });
+  }
+});
+
+// GET /api/admin/briefs — list all email briefs
+router.get('/briefs', async (req, res) => {
+  try {
+    const result = await pool.query(
+      'SELECT * FROM email_briefs ORDER BY created_at DESC'
+    );
+    return res.json({ success: true, data: result.rows, error: null });
+  } catch (err) {
+    console.error('Briefs list error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to load briefs', data: null });
+  }
+});
+
+// POST /api/admin/briefs — create a new email brief
+router.post('/briefs', async (req, res) => {
+  const { subject_line, preview_text, body_html, body_text, topic, msra_subject } = req.body;
+  if (!subject_line || !body_html) {
+    return res.status(400).json({ success: false, error: 'subject_line and body_html are required', data: null });
+  }
+  try {
+    const result = await pool.query(`
+      INSERT INTO email_briefs (subject_line, preview_text, body_html, body_text, topic, msra_subject)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING *
+    `, [subject_line, preview_text || '', body_html, body_text || '', topic || '', msra_subject || '']);
+    console.log('Brief created:', result.rows[0].id);
+    return res.json({ success: true, data: result.rows[0], error: null });
+  } catch (err) {
+    console.error('Brief create error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to create brief', data: null });
+  }
+});
+
+// PUT /api/admin/briefs/:id — update an existing brief
+router.put('/briefs/:id', async (req, res) => {
+  const { id } = req.params;
+  const { subject_line, preview_text, body_html, body_text, topic, msra_subject } = req.body;
+  try {
+    const result = await pool.query(`
+      UPDATE email_briefs
+      SET subject_line = $1, preview_text = $2, body_html = $3, body_text = $4,
+          topic = $5, msra_subject = $6, updated_at = NOW()
+      WHERE id = $7
+      RETURNING *
+    `, [subject_line, preview_text || '', body_html, body_text || '', topic || '', msra_subject || '', id]);
+    if (result.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'Brief not found', data: null });
+    }
+    return res.json({ success: true, data: result.rows[0], error: null });
+  } catch (err) {
+    console.error('Brief update error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to update brief', data: null });
+  }
+});
+
+// DELETE /api/admin/briefs/:id — delete a brief
+router.delete('/briefs/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    await pool.query('DELETE FROM email_briefs WHERE id = $1', [id]);
+    return res.json({ success: true, data: { message: 'Brief deleted' }, error: null });
+  } catch (err) {
+    console.error('Brief delete error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to delete brief', data: null });
+  }
+});
+
+// POST /api/admin/briefs/:id/send — send a brief to all active subscribers
+router.post('/briefs/:id/send', async (req, res) => {
+  const { id } = req.params;
+  try {
+    // Get the brief
+    const briefResult = await pool.query('SELECT * FROM email_briefs WHERE id = $1', [id]);
+    if (briefResult.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'Brief not found', data: null });
+    }
+    const brief = briefResult.rows[0];
+
+    // Get active subscribers
+    const subsResult = await pool.query(
+      'SELECT email FROM email_subscribers WHERE subscribed = true'
+    );
+    const subscribers = subsResult.rows;
+
+    if (subscribers.length === 0) {
+      return res.json({ success: true, data: { sent: 0, message: 'No active subscribers' }, error: null });
+    }
+
+    // Configure email transport
+    // Uses SMTP_* env vars — works with Gmail, Outlook, Resend, SendGrid, etc.
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = parseInt(process.env.SMTP_PORT) || 587;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const fromEmail = process.env.EMAIL_FROM || 'hello@discolabs.co.uk';
+    const fromName = process.env.EMAIL_FROM_NAME || 'DiscoLabs';
+
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      console.error('SMTP not configured. Set SMTP_HOST, SMTP_USER, SMTP_PASS in .env');
+      return res.status(500).json({
+        success: false,
+        error: 'Email sending not configured. Add SMTP_HOST, SMTP_USER, SMTP_PASS to your environment variables.',
+        data: null,
+      });
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465,
+      auth: { user: smtpUser, pass: smtpPass },
+    });
+
+    // Send to each subscriber
+    let sentCount = 0;
+    const errors = [];
+
+    for (const sub of subscribers) {
+      try {
+        await transporter.sendMail({
+          from: `"${fromName}" <${fromEmail}>`,
+          to: sub.email,
+          subject: brief.subject_line,
+          text: brief.body_text || brief.subject_line,
+          html: wrapHtmlEmail(brief.subject_line, brief.body_html, brief.preview_text),
+        });
+        sentCount++;
+        console.log('Email sent to:', sub.email);
+      } catch (sendErr) {
+        console.error('Failed to send to', sub.email, sendErr.message);
+        errors.push({ email: sub.email, error: sendErr.message });
+      }
+    }
+
+    // Update brief status
+    await pool.query(`
+      UPDATE email_briefs SET status = 'sent', sent_at = NOW(), sent_count = $1 WHERE id = $2
+    `, [sentCount, id]);
+
+    console.log(`Brief ${id} sent to ${sentCount}/${subscribers.length} subscribers`);
+    return res.json({
+      success: true,
+      data: { sent: sentCount, total: subscribers.length, errors: errors.length > 0 ? errors : undefined },
+      error: null,
+    });
+  } catch (err) {
+    console.error('Send brief error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to send brief', data: null });
+  }
+});
+
+// POST /api/admin/briefs/:id/test — send to admin only (test email)
+router.post('/briefs/:id/test', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const briefResult = await pool.query('SELECT * FROM email_briefs WHERE id = $1', [id]);
+    if (briefResult.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'Brief not found', data: null });
+    }
+    const brief = briefResult.rows[0];
+
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = parseInt(process.env.SMTP_PORT) || 587;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const fromEmail = process.env.EMAIL_FROM || 'hello@discolabs.co.uk';
+    const fromName = process.env.EMAIL_FROM_NAME || 'DiscoLabs';
+
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      return res.status(500).json({
+        success: false,
+        error: 'SMTP not configured. Add SMTP_HOST, SMTP_USER, SMTP_PASS to your environment variables.',
+        data: null,
+      });
+    }
+
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465,
+      auth: { user: smtpUser, pass: smtpPass },
+    });
+
+    await transporter.sendMail({
+      from: `"${fromName}" <${fromEmail}>`,
+      to: req.user.email,
+      subject: `[TEST] ${brief.subject_line}`,
+      text: brief.body_text || brief.subject_line,
+      html: wrapHtmlEmail(brief.subject_line, brief.body_html, brief.preview_text),
+    });
+
+    console.log('Test email sent to:', req.user.email);
+    return res.json({ success: true, data: { sent_to: req.user.email }, error: null });
+  } catch (err) {
+    console.error('Test email error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to send test email', data: null });
+  }
+});
+
+// Wrap brief HTML in a styled email template
+function wrapHtmlEmail(title, bodyHtml, previewText) {
+  return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${title}</title>
+  <style>
+    body { margin: 0; padding: 0; background-color: #f4f5f7; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+    .wrapper { max-width: 600px; margin: 0 auto; background: #ffffff; }
+    .header { background-color: #0c3a5c; padding: 24px 32px; text-align: center; }
+    .header h1 { color: #ffffff; font-size: 20px; margin: 0; font-weight: 600; }
+    .header p { color: #93c5fd; font-size: 12px; margin: 8px 0 0; }
+    .body { padding: 32px; color: #1f2937; font-size: 15px; line-height: 1.6; }
+    .body h2 { color: #0c3a5c; font-size: 18px; margin-top: 24px; }
+    .body h3 { color: #0c3a5c; font-size: 16px; margin-top: 20px; }
+    .body ul, .body ol { padding-left: 20px; }
+    .body li { margin-bottom: 6px; }
+    .footer { background-color: #f4f5f7; padding: 20px 32px; text-align: center; font-size: 12px; color: #6b7280; }
+    .footer a { color: #0c3a5c; text-decoration: none; }
+    .preview { display: none; max-height: 0; overflow: hidden; }
+  </style>
+</head>
+<body>
+  <div class="preview">${previewText || ''}</div>
+  <div class="wrapper">
+    <div class="header">
+      <h1>&#x2695; DiscoLabs</h1>
+      <p>Your daily clinical brief</p>
+    </div>
+    <div class="body">
+      ${bodyHtml}
+    </div>
+    <div class="footer">
+      <p>DiscoLabs &mdash; MSRA Revision, Targeted.</p>
+      <p><a href="https://medical-question-bank-mcq-platform.vercel.app/dashboard">Go to Dashboard</a></p>
+      <p style="margin-top: 12px; font-size: 11px; color: #9ca3af;">
+        You received this because you subscribed to clinical briefs on DiscoLabs.
+      </p>
+    </div>
+  </div>
+</body>
+</html>`;
+}
 
 module.exports = router;

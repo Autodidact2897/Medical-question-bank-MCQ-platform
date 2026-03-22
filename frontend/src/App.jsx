@@ -18,6 +18,7 @@ import SingleBrief from './pages/SingleBrief'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
 import AdminDashboard from './pages/AdminDashboard'
+import AdminEmails from './pages/AdminEmails'
 import Account from './pages/Account'
 
 export default function App() {
@@ -57,6 +58,9 @@ export default function App() {
           } />
           <Route path="/admin" element={
             <ProtectedRoute><AdminDashboard /></ProtectedRoute>
+          } />
+          <Route path="/admin/emails" element={
+            <ProtectedRoute><AdminEmails /></ProtectedRoute>
           } />
           <Route path="/account" element={
             <ProtectedRoute><Account /></ProtectedRoute>

@@ -75,6 +75,14 @@ export default function Dashboard() {
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
         </div>
         <div className="flex items-center gap-4">
+          {user?.email === 'benpopham43@sky.com' && (
+            <button
+              onClick={() => navigate('/admin')}
+              className="text-xs bg-marine text-white px-2 py-0.5 rounded-full font-medium hover:opacity-90"
+            >
+              Admin
+            </button>
+          )}
           <span className="text-body-dark text-sm font-medium">{user?.email}</span>
           <button
             onClick={handleLogout}

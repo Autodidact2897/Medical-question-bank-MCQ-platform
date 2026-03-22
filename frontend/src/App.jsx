@@ -17,6 +17,7 @@ import ClinicalBriefs from './pages/ClinicalBriefs'
 import SingleBrief from './pages/SingleBrief'
 import Privacy from './pages/Privacy'
 import Terms from './pages/Terms'
+import AdminDashboard from './pages/AdminDashboard'
 
 export default function App() {
   return (
@@ -52,6 +53,9 @@ export default function App() {
           } />
           <Route path="/briefs/:id" element={
             <ProtectedRoute><SingleBrief /></ProtectedRoute>
+          } />
+          <Route path="/admin" element={
+            <ProtectedRoute><AdminDashboard /></ProtectedRoute>
           } />
         </Routes>
       </BrowserRouter>

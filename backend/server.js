@@ -10,6 +10,7 @@ const quizRoutes = require('./src/routes/quiz');
 const briefsRoutes = require('./src/routes/briefs');
 const progressRoutes = require('./src/routes/progress');
 const rapidDiagnosticRoutes = require('./src/routes/rapidDiagnostic');
+const adminRoutes = require('./src/routes/admin');
 
 // Initialise Sentry before anything else
 Sentry.init({
@@ -52,6 +53,7 @@ app.use('/api/quiz', quizRoutes);
 app.use('/api/briefs', briefsRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/rapid-diagnostic', rapidDiagnosticRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

@@ -26,8 +26,9 @@ export default function LnaQuiz() {
   useEffect(() => {
     api.get('/questions/lna/quiz')
       .then(res => {
-        setQuestions(res.data.questions)
-        setSessionId(res.data.sessionId)
+        const data = res.data.data || res.data
+        setQuestions(data.questions)
+        setSessionId(data.sessionId)
         setLoading(false)
       })
       .catch(err => {

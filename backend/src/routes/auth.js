@@ -8,7 +8,7 @@ const router = express.Router();
 
 // POST /api/auth/signup
 router.post('/signup', async (req, res) => {
-  console.log('Signup request received:', req.body.email);
+  console.log('Signup request received');
   const { email, password } = req.body;
 
   // Validate email
@@ -26,7 +26,7 @@ router.post('/signup', async (req, res) => {
     // Check if email already exists
     const existing = await pool.query('SELECT id FROM users WHERE email = $1', [email]);
     if (existing.rows.length > 0) {
-      console.log('Signup failed - email already exists:', email);
+      console.log('Signup failed - email already exists');
       return res.status(409).json({ success: false, error: 'An account with this email already exists', data: null });
     }
 
@@ -40,7 +40,7 @@ router.post('/signup', async (req, res) => {
     );
 
     const user = result.rows[0];
-    console.log('User created successfully:', user.email);
+    console.log('User created successfully');
     return res.status(201).json({ success: true, data: { id: user.id, email: user.email }, error: null });
   } catch (err) {
     console.error('Signup error:', err.message);
@@ -50,7 +50,7 @@ router.post('/signup', async (req, res) => {
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
-  console.log('Login request received:', req.body.email);
+  console.log('Login request received');
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
     // Find user by email
     const result = await pool.query('SELECT id, email, password_hash FROM users WHERE email = $1', [email]);
     if (result.rows.length === 0) {
-      console.log('Login failed - email not found:', email);
+      console.log('Login failed - email not found');
       return res.status(401).json({ success: false, error: 'Invalid email or password', data: null });
     }
 
@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
     // Compare password
     const passwordMatch = await bcrypt.compare(password, user.password_hash);
     if (!passwordMatch) {
-      console.log('Login failed - wrong password for:', email);
+      console.log('Login failed - wrong password');
       return res.status(401).json({ success: false, error: 'Invalid email or password', data: null });
     }
 
@@ -89,8 +89,8 @@ router.post('/login', async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
     });
 
-    console.log('Login successful:', user.email);
-    return res.json({ success: true, data: { id: user.id, email: user.email, token }, error: null });
+    console.log('Login successful');
+    return res.json({ success: true, data: { id: user.id, email: user.email }, error: null });
   } catch (err) {
     console.error('Login error:', err.message);
     return res.status(500).json({ success: false, error: 'Server error during login', data: null });
@@ -106,7 +106,7 @@ router.post('/logout', (req, res) => {
 
 // GET /api/auth/me (protected)
 router.get('/me', authMiddleware, async (req, res) => {
-  console.log('Me request for user:', req.user.email);
+  console.log('Me request');
   try {
     const result = await pool.query(
       'SELECT id, email, created_at FROM users WHERE id = $1',
@@ -116,7 +116,9 @@ router.get('/me', authMiddleware, async (req, res) => {
       return res.status(404).json({ success: false, error: 'User not found', data: null });
     }
     const user = result.rows[0];
-    return res.json({ success: true, data: { id: user.id, email: user.email, created_at: user.created_at }, error: null });
+    const adminEmails = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim());
+    const is_admin = adminEmails.includes(user.email);
+    return res.json({ success: true, data: { id: user.id, email: user.email, created_at: user.created_at, is_admin }, error: null });
   } catch (err) {
     console.error('Me endpoint error:', err.message);
     return res.json({ success: true, data: { id: req.user.id, email: req.user.email }, error: null });
@@ -126,7 +128,7 @@ router.get('/me', authMiddleware, async (req, res) => {
 // DELETE /api/auth/account (protected) — permanently delete user and all their data
 router.delete('/account', authMiddleware, async (req, res) => {
   const userId = req.user.id;
-  console.log('Account deletion requested by:', req.user.email);
+  console.log('Account deletion requested');
 
   try {
     // Delete in order: user_answers → quiz_sessions → user_lna_results → user
@@ -140,7 +142,7 @@ router.delete('/account', authMiddleware, async (req, res) => {
     await pool.query('DELETE FROM user_lna_results WHERE user_id = $1', [userId]);
     await pool.query('DELETE FROM users WHERE id = $1', [userId]);
 
-    console.log('Account deleted for user:', req.user.email);
+    console.log('Account deleted');
     res.clearCookie('authToken', { httpOnly: true, secure: true, sameSite: 'none' });
     return res.json({ success: true, data: { message: 'Account deleted' }, error: null });
   } catch (err) {

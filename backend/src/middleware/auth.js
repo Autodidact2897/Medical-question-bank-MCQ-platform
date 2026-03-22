@@ -24,7 +24,7 @@ function authMiddleware(req, res, next) {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = { id: decoded.userId, email: decoded.email };
-    console.log('Token valid for user:', req.user.email);
+    console.log('Token valid for user id:', req.user.id);
     next();
   } catch (err) {
     console.log('Token invalid:', err.message);

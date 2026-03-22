@@ -9,7 +9,7 @@ router.use(authMiddleware);
 
 // POST /api/quiz/start
 router.post('/start', async (req, res) => {
-  console.log('Quiz start request, user:', req.user.email);
+  console.log('Quiz start request');
   let { subject, topic, questionCount } = req.body;
 
   questionCount = parseInt(questionCount) || 10;
@@ -163,7 +163,7 @@ router.post('/:sessionId/complete', async (req, res) => {
 // GET /api/quiz/:sessionId/results
 router.get('/:sessionId/results', async (req, res) => {
   const { sessionId } = req.params;
-  console.log(`Results requested for session: ${sessionId}, user: ${req.user.email}`);
+  console.log(`Results requested for session: ${sessionId}`);
 
   try {
     // Validate session belongs to this user

@@ -5,8 +5,8 @@ const authMiddleware = require('../middleware/auth');
 
 const router = express.Router();
 
-// Admin emails — only these users can access admin routes
-const ADMIN_EMAILS = ['benpopham43@sky.com'];
+// Admin emails — read from ADMIN_EMAILS env var (comma-separated)
+const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim()).filter(Boolean);
 
 // Admin guard middleware
 function adminOnly(req, res, next) {
@@ -19,9 +19,27 @@ function adminOnly(req, res, next) {
 router.use(authMiddleware);
 router.use(adminOnly);
 
+// Shared mail transport factory — returns { transporter, fromAddress } or { transporter: null }
+function getMailTransport() {
+  const host = process.env.SMTP_HOST;
+  const port = parseInt(process.env.SMTP_PORT) || 587;
+  const user = process.env.SMTP_USER;
+  const pass = process.env.SMTP_PASS;
+  const fromEmail = process.env.EMAIL_FROM || 'hello@discolabs.co.uk';
+  const fromName = process.env.EMAIL_FROM_NAME || 'DiscoLabs';
+
+  if (!host || !user || !pass) return { transporter: null, fromAddress: null };
+
+  const transporter = nodemailer.createTransport({
+    host, port, secure: port === 465,
+    auth: { user, pass },
+  });
+  return { transporter, fromAddress: `"${fromName}" <${fromEmail}>` };
+}
+
 // GET /api/admin/metrics — full site metrics dashboard
 router.get('/metrics', async (req, res) => {
-  console.log('Admin metrics requested by:', req.user.email);
+  console.log('Admin metrics requested');
 
   try {
     // Run all queries in parallel
@@ -309,30 +327,10 @@ router.post('/briefs/:id/send', async (req, res) => {
       return res.json({ success: true, data: { sent: 0, message: 'No active subscribers' }, error: null });
     }
 
-    // Configure email transport
-    // Uses SMTP_* env vars — works with Gmail, Outlook, Resend, SendGrid, etc.
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = parseInt(process.env.SMTP_PORT) || 587;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const fromEmail = process.env.EMAIL_FROM || 'hello@discolabs.co.uk';
-    const fromName = process.env.EMAIL_FROM_NAME || 'DiscoLabs';
-
-    if (!smtpHost || !smtpUser || !smtpPass) {
-      console.error('SMTP not configured. Set SMTP_HOST, SMTP_USER, SMTP_PASS in .env');
-      return res.status(500).json({
-        success: false,
-        error: 'Email sending not configured. Add SMTP_HOST, SMTP_USER, SMTP_PASS to your environment variables.',
-        data: null,
-      });
+    const { transporter, fromAddress } = getMailTransport();
+    if (!transporter) {
+      return res.status(500).json({ success: false, error: 'Email not configured. Set SMTP_HOST, SMTP_USER, SMTP_PASS.', data: null });
     }
-
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: { user: smtpUser, pass: smtpPass },
-    });
 
     // Send to each subscriber
     let sentCount = 0;
@@ -341,17 +339,16 @@ router.post('/briefs/:id/send', async (req, res) => {
     for (const sub of subscribers) {
       try {
         await transporter.sendMail({
-          from: `"${fromName}" <${fromEmail}>`,
+          from: fromAddress,
           to: sub.email,
           subject: brief.subject_line,
           text: brief.body_text || brief.subject_line,
           html: wrapHtmlEmail(brief.subject_line, brief.body_html, brief.preview_text),
         });
         sentCount++;
-        console.log('Email sent to:', sub.email);
       } catch (sendErr) {
-        console.error('Failed to send to', sub.email, sendErr.message);
-        errors.push({ email: sub.email, error: sendErr.message });
+        console.error('Failed to send email:', sendErr.message);
+        errors.push({ error: sendErr.message });
       }
     }
 
@@ -382,37 +379,20 @@ router.post('/briefs/:id/test', async (req, res) => {
     }
     const brief = briefResult.rows[0];
 
-    const smtpHost = process.env.SMTP_HOST;
-    const smtpPort = parseInt(process.env.SMTP_PORT) || 587;
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
-    const fromEmail = process.env.EMAIL_FROM || 'hello@discolabs.co.uk';
-    const fromName = process.env.EMAIL_FROM_NAME || 'DiscoLabs';
-
-    if (!smtpHost || !smtpUser || !smtpPass) {
-      return res.status(500).json({
-        success: false,
-        error: 'SMTP not configured. Add SMTP_HOST, SMTP_USER, SMTP_PASS to your environment variables.',
-        data: null,
-      });
+    const { transporter, fromAddress } = getMailTransport();
+    if (!transporter) {
+      return res.status(500).json({ success: false, error: 'Email not configured. Set SMTP_HOST, SMTP_USER, SMTP_PASS.', data: null });
     }
 
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpPort === 465,
-      auth: { user: smtpUser, pass: smtpPass },
-    });
-
     await transporter.sendMail({
-      from: `"${fromName}" <${fromEmail}>`,
+      from: fromAddress,
       to: req.user.email,
       subject: `[TEST] ${brief.subject_line}`,
       text: brief.body_text || brief.subject_line,
       html: wrapHtmlEmail(brief.subject_line, brief.body_html, brief.preview_text),
     });
 
-    console.log('Test email sent to:', req.user.email);
+    console.log('Test email sent');
     return res.json({ success: true, data: { sent_to: req.user.email }, error: null });
   } catch (err) {
     console.error('Test email error:', err.message);

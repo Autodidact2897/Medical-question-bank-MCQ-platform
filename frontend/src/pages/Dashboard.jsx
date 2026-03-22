@@ -44,17 +44,17 @@ export default function Dashboard() {
     // Load overall progress stats
     api.get('/progress')
       .then(res => setProgressData(res.data.data))
-      .catch(() => {})
+      .catch(err => console.error('Progress load failed:', err.message))
 
     // Load study history
     api.get('/progress/study-history')
       .then(res => setStudyHistory(res.data.data))
-      .catch(() => {})
+      .catch(err => console.error('Study history load failed:', err.message))
 
     // Load email subscription status
     api.get('/email/status')
       .then(res => setBriefsEnabled(res.data.data?.subscribed || false))
-      .catch(() => {})
+      .catch(err => console.error('Email status load failed:', err.message))
   }, [])
 
   const handleLogout = async () => {
@@ -81,7 +81,7 @@ export default function Dashboard() {
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
         </div>
         <div className="flex items-center gap-4 relative">
-          {user?.email === 'benpopham43@sky.com' && (
+          {user?.is_admin && (
             <button
               onClick={() => navigate('/admin')}
               className="text-xs bg-marine text-white px-2 py-0.5 rounded-full font-medium hover:opacity-90"

@@ -30,7 +30,7 @@ router.post('/subscribe', async (req, res) => {
       ON CONFLICT (user_id) DO UPDATE SET subscribed = true, subscribed_at = NOW(), unsubscribed_at = NULL
     `, [req.user.id, req.user.email]);
 
-    console.log('User subscribed:', req.user.email);
+    console.log('User subscribed');
     return res.json({ success: true, data: { subscribed: true }, error: null });
   } catch (err) {
     console.error('Subscribe error:', err.message);
@@ -46,7 +46,7 @@ router.post('/unsubscribe', async (req, res) => {
       WHERE user_id = $1
     `, [req.user.id]);
 
-    console.log('User unsubscribed:', req.user.email);
+    console.log('User unsubscribed');
     return res.json({ success: true, data: { subscribed: false }, error: null });
   } catch (err) {
     console.error('Unsubscribe error:', err.message);

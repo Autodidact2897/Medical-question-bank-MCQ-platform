@@ -83,8 +83,7 @@ router.get('/questions/lna/quiz', async (req, res) => {
 
     return res.json({
       success: true,
-      questions,
-      sessionId,
+      data: { questions, sessionId },
       error: null,
     });
   } catch (err) {
@@ -95,7 +94,7 @@ router.get('/questions/lna/quiz', async (req, res) => {
 
 // GET /api/questions (protected)
 router.get('/questions', authMiddleware, async (req, res) => {
-  console.log('Questions request received, user:', req.user.email);
+  console.log('Questions request received');
 
   let { subject, difficulty, limit } = req.query;
 

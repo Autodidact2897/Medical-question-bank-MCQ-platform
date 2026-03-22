@@ -9,7 +9,7 @@ router.use(authMiddleware);
 // GET /api/progress — overall stats, subject/difficulty/topic breakdowns, recent sessions
 router.get('/', async (req, res) => {
   const userId = req.user.id;
-  console.log('Progress requested for user:', req.user.email);
+  console.log('Progress requested');
 
   try {
     // 1. Overall stats
@@ -163,7 +163,7 @@ router.get('/wrong-answers', async (req, res) => {
   const limit = parseInt(req.query.limit) || 50;
   const topic = req.query.topic || null;
 
-  console.log('Wrong answers requested for user:', req.user.email);
+  console.log('Wrong answers requested');
 
   try {
     // Get the most recent answer for each question, only where incorrect
@@ -236,7 +236,7 @@ router.post('/lna-results', async (req, res) => {
   const userId = req.user.id;
   const { session_id } = req.body;
 
-  console.log('Saving LNA results for user:', req.user.email);
+  console.log('Saving LNA results');
 
   try {
     // Get all answers from this quiz session with topic data
@@ -316,7 +316,7 @@ router.post('/lna-results', async (req, res) => {
 // GET /api/progress/lna-results — get the user's most recent LNA results
 router.get('/lna-results', async (req, res) => {
   const userId = req.user.id;
-  console.log('LNA results requested for user:', req.user.email);
+  console.log('LNA results requested');
 
   try {
     const result = await pool.query(`
@@ -358,7 +358,7 @@ router.get('/lna-results', async (req, res) => {
 // GET /api/progress/study-history — what topics the user has studied and when
 router.get('/study-history', async (req, res) => {
   const userId = req.user.id;
-  console.log('Study history requested for user:', req.user.email);
+  console.log('Study history requested');
 
   try {
     // Topics studied with latest session date and performance

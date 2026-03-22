@@ -105,9 +105,48 @@ router.post('/logout', (req, res) => {
 });
 
 // GET /api/auth/me (protected)
-router.get('/me', authMiddleware, (req, res) => {
+router.get('/me', authMiddleware, async (req, res) => {
   console.log('Me request for user:', req.user.email);
-  return res.json({ success: true, data: { id: req.user.id, email: req.user.email }, error: null });
+  try {
+    const result = await pool.query(
+      'SELECT id, email, created_at FROM users WHERE id = $1',
+      [req.user.id]
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'User not found', data: null });
+    }
+    const user = result.rows[0];
+    return res.json({ success: true, data: { id: user.id, email: user.email, created_at: user.created_at }, error: null });
+  } catch (err) {
+    console.error('Me endpoint error:', err.message);
+    return res.json({ success: true, data: { id: req.user.id, email: req.user.email }, error: null });
+  }
+});
+
+// DELETE /api/auth/account (protected) — permanently delete user and all their data
+router.delete('/account', authMiddleware, async (req, res) => {
+  const userId = req.user.id;
+  console.log('Account deletion requested by:', req.user.email);
+
+  try {
+    // Delete in order: user_answers → quiz_sessions → user_lna_results → user
+    await pool.query(`
+      DELETE FROM user_answers WHERE session_id IN (
+        SELECT id FROM quiz_sessions WHERE user_id = $1
+      )
+    `, [userId]);
+
+    await pool.query('DELETE FROM quiz_sessions WHERE user_id = $1', [userId]);
+    await pool.query('DELETE FROM user_lna_results WHERE user_id = $1', [userId]);
+    await pool.query('DELETE FROM users WHERE id = $1', [userId]);
+
+    console.log('Account deleted for user:', req.user.email);
+    res.clearCookie('authToken', { httpOnly: true, secure: true, sameSite: 'none' });
+    return res.json({ success: true, data: { message: 'Account deleted' }, error: null });
+  } catch (err) {
+    console.error('Account deletion error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to delete account', data: null });
+  }
 });
 
 module.exports = router;

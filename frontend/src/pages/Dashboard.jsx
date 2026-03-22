@@ -19,6 +19,7 @@ export default function Dashboard() {
   const [lnaResults, setLnaResults] = useState([])
   const [email, setEmail] = useState(user?.email || '')
   const [briefsEnabled, setBriefsEnabled] = useState(false)
+  const [memberMenuOpen, setMemberMenuOpen] = useState(false)
 
   const [progressData, setProgressData] = useState(null)
   const [studyHistory, setStudyHistory] = useState(null)
@@ -74,7 +75,7 @@ export default function Dashboard() {
           <span className="text-xl">&#x2695;</span>
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 relative">
           {user?.email === 'benpopham43@sky.com' && (
             <button
               onClick={() => navigate('/admin')}
@@ -83,13 +84,72 @@ export default function Dashboard() {
               Admin
             </button>
           )}
-          <span className="text-body-dark text-sm font-medium">{user?.email}</span>
+
+          {/* Member avatar button */}
           <button
-            onClick={handleLogout}
-            className="text-body-dark font-semibold text-sm hover:text-marine transition-colors"
+            onClick={() => setMemberMenuOpen(!memberMenuOpen)}
+            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
           >
-            Logout
+            <div className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
+              style={{ backgroundColor: '#0c3a5c' }}>
+              {(user?.email || '?')[0].toUpperCase()}
+            </div>
+            <span className="text-body-dark text-sm font-medium hidden sm:inline">{user?.email}</span>
+            <svg className="w-3.5 h-3.5 text-body-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
           </button>
+
+          {/* Dropdown menu */}
+          {memberMenuOpen && (
+            <>
+              <div className="fixed inset-0 z-40" onClick={() => setMemberMenuOpen(false)} />
+              <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-card border border-border-default shadow-lg z-50 py-1">
+                <div className="px-4 py-3 border-b border-border-default">
+                  <div className="text-sm font-semibold text-heading truncate">{user?.email}</div>
+                  <div className="text-xs text-body-dark mt-0.5">Free Plan</div>
+                </div>
+                <button
+                  onClick={() => { setMemberMenuOpen(false); navigate('/account') }}
+                  className="w-full text-left px-4 py-2.5 text-sm text-heading hover:bg-bg-light transition-colors flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4 text-body-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  My Account
+                </button>
+                <button
+                  onClick={() => { setMemberMenuOpen(false); navigate('/privacy') }}
+                  className="w-full text-left px-4 py-2.5 text-sm text-heading hover:bg-bg-light transition-colors flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4 text-body-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                  Privacy Policy
+                </button>
+                <button
+                  onClick={() => { setMemberMenuOpen(false); navigate('/terms') }}
+                  className="w-full text-left px-4 py-2.5 text-sm text-heading hover:bg-bg-light transition-colors flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4 text-body-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Terms &amp; Conditions
+                </button>
+                <div className="border-t border-border-default mt-1 pt-1">
+                  <button
+                    onClick={() => { setMemberMenuOpen(false); handleLogout() }}
+                    className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors flex items-center gap-2"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    Sign Out
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </header>
 

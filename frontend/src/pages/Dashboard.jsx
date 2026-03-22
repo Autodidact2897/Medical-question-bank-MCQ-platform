@@ -116,7 +116,17 @@ export default function Dashboard() {
         {/* Progress Overview */}
         {progressData && (
           <div className="mb-8">
-            <h2 className="text-lg font-semibold text-heading mb-4">Your Progress</h2>
+            <h2 className="text-lg font-semibold text-heading mb-1">Your Progress</h2>
+
+            {/* Summary bar */}
+            <p className="text-body-dark text-sm mb-4">
+              {progressData.total_attempted} questions attempted, {progressData.overall_percentage}% correct
+              {progressData.unique_questions > 0 && (
+                <span> &middot; {progressData.unique_questions} unique out of {progressData.total_in_bank} in the bank</span>
+              )}
+            </p>
+
+            {/* Stat cards */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div className="card text-center py-4">
                 <div className="text-2xl font-bold text-marine">{progressData.overall_percentage}%</div>
@@ -148,20 +158,73 @@ export default function Dashboard() {
                   {progressData.by_subject.map((s, i) => (
                     <div key={i}>
                       <div className="flex items-center justify-between mb-1">
-                        <span className="text-xs font-medium text-heading">{s.subject}</span>
+                        <span className={`text-xs font-medium ${s.percentage < 60 ? 'text-red-600' : 'text-heading'}`}>
+                          {s.subject}{s.percentage < 60 ? ' — needs work' : ''}
+                        </span>
                         <span className="text-xs text-body-dark">{s.correct}/{s.attempted} ({s.percentage}%)</span>
                       </div>
-                      <div className="h-2 bg-grey-light rounded-full overflow-hidden">
+                      <div className="h-2.5 bg-grey-light rounded-full overflow-hidden">
                         <div
                           className="h-full rounded-full transition-all duration-500"
                           style={{
                             width: `${s.percentage}%`,
-                            backgroundColor: s.percentage >= 70 ? '#059669' : s.percentage >= 40 ? '#d97706' : '#ef4444'
+                            backgroundColor: s.percentage >= 60 ? '#059669' : '#ef4444'
                           }}
                         />
                       </div>
                     </div>
                   ))}
+                </div>
+              </div>
+            )}
+
+            {/* Difficulty breakdown */}
+            {progressData.by_difficulty && progressData.by_difficulty.length > 0 && (
+              <div className="card mt-4">
+                <h3 className="font-semibold text-heading text-sm mb-3">Performance by Difficulty</h3>
+                <div className="grid grid-cols-3 gap-3">
+                  {progressData.by_difficulty.map((d, i) => (
+                    <div key={i} className="text-center py-3 rounded-card" style={{
+                      backgroundColor: d.percentage >= 60 ? '#ecfdf5' : '#fef2f2',
+                      border: `1px solid ${d.percentage >= 60 ? '#059669' : '#ef4444'}20`
+                    }}>
+                      <div className={`text-lg font-bold ${d.percentage >= 60 ? 'text-green-600' : 'text-red-600'}`}>
+                        {d.percentage}%
+                      </div>
+                      <div className="text-xs text-body-dark mt-0.5">{d.difficulty}</div>
+                      <div className="text-xs text-body-dark">{d.correct}/{d.attempted}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Recent Activity — last 5 quizzes */}
+            {progressData.recent_sessions && progressData.recent_sessions.length > 0 && (
+              <div className="card mt-4">
+                <h3 className="font-semibold text-heading text-sm mb-3">Recent Activity</h3>
+                <div className="flex flex-col gap-2">
+                  {progressData.recent_sessions.map((session, i) => {
+                    const date = session.completed_at
+                      ? new Date(session.completed_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })
+                      : '—'
+                    return (
+                      <div key={i} className="flex items-center justify-between py-2 border-b border-border-default last:border-0">
+                        <div className="flex items-center gap-3">
+                          <span className="text-xs text-body-dark w-16">{date}</span>
+                          <span className="text-sm font-medium text-heading">{session.subject || 'Mixed'}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs text-body-dark">{session.total_questions} Qs</span>
+                          <span className={`text-sm font-semibold ${
+                            session.score >= 60 ? 'text-green-600' : 'text-red-600'
+                          }`}>
+                            {session.score}%
+                          </span>
+                        </div>
+                      </div>
+                    )
+                  })}
                 </div>
               </div>
             )}

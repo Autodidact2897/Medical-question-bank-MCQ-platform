@@ -10,21 +10,29 @@ router.use(authMiddleware);
 // POST /api/quiz/start
 router.post('/start', async (req, res) => {
   console.log('Quiz start request, user:', req.user.email);
-  let { subject, questionCount } = req.body;
+  let { subject, topic, questionCount } = req.body;
 
   questionCount = parseInt(questionCount) || 10;
   if (questionCount > 50) questionCount = 50;
 
   try {
-    // Fetch random questions for the subject
-    const values = [questionCount];
-    let whereClause = '';
+    // Build WHERE clause based on subject and/or topic
+    const conditions = [];
+    const values = [];
+    let paramIndex = 1;
 
-    if (subject) {
-      values.unshift(subject);
-      whereClause = 'WHERE subject = $1';
-      values[1] = questionCount; // shift limit to $2
+    if (topic) {
+      conditions.push(`topic = $${paramIndex}`);
+      values.push(topic);
+      paramIndex++;
+    } else if (subject) {
+      conditions.push(`subject = $${paramIndex}`);
+      values.push(subject);
+      paramIndex++;
     }
+
+    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+    values.push(questionCount);
 
     const questionsResult = await pool.query(`
       SELECT id, question_id, subject, topic, question_type, question_text,
@@ -32,20 +40,21 @@ router.post('/start', async (req, res) => {
              option_f, option_g, option_h,
              difficulty, lna, date_added
       FROM questions
-      ${subject ? 'WHERE subject = $1' : ''}
+      ${whereClause}
       ORDER BY RANDOM()
-      LIMIT ${subject ? '$2' : '$1'}
-    `, subject ? [subject, questionCount] : [questionCount]);
+      LIMIT $${paramIndex}
+    `, values);
 
     const questions = questionsResult.rows;
-    console.log(`Fetched ${questions.length} questions for subject: ${subject || 'all'}`);
+    const label = topic || subject || 'all';
+    console.log(`Fetched ${questions.length} questions for: ${label}`);
 
     // Create quiz session
     const sessionResult = await pool.query(`
       INSERT INTO quiz_sessions (user_id, subject, total_questions, score, completed)
       VALUES ($1, $2, $3, 0, false)
       RETURNING id
-    `, [req.user.id, subject || null, questions.length]);
+    `, [req.user.id, topic || subject || null, questions.length]);
 
     const sessionId = sessionResult.rows[0].id;
     console.log('Quiz session created, id:', sessionId);
@@ -117,6 +126,37 @@ router.post('/:sessionId/answer', async (req, res) => {
   } catch (err) {
     console.error('Error submitting answer:', err.message);
     return res.status(500).json({ success: false, error: 'Failed to submit answer', data: null });
+  }
+});
+
+// POST /api/quiz/:sessionId/complete — marks session as done (called before results)
+router.post('/:sessionId/complete', async (req, res) => {
+  const { sessionId } = req.params;
+  console.log(`Complete requested for session: ${sessionId}`);
+
+  try {
+    const sessionResult = await pool.query(
+      'SELECT id, user_id FROM quiz_sessions WHERE id = $1',
+      [sessionId]
+    );
+
+    if (sessionResult.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'Session not found', data: null });
+    }
+
+    if (sessionResult.rows[0].user_id !== req.user.id) {
+      return res.status(403).json({ success: false, error: 'Not authorised', data: null });
+    }
+
+    await pool.query(
+      'UPDATE quiz_sessions SET completed = true, completed_at = NOW() WHERE id = $1',
+      [sessionId]
+    );
+
+    return res.json({ success: true, data: { message: 'Session completed' }, error: null });
+  } catch (err) {
+    console.error('Error completing quiz:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to complete quiz', data: null });
   }
 });
 

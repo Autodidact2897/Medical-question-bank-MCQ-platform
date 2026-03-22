@@ -28,6 +28,31 @@ router.get('/subjects', async (req, res) => {
   }
 });
 
+// GET /api/subjects-topics (public) — returns subjects grouped with their topics
+router.get('/subjects-topics', async (req, res) => {
+  console.log('Subjects-topics request received');
+  try {
+    const result = await pool.query(`
+      SELECT subject, topic, COUNT(*) AS count
+      FROM questions
+      GROUP BY subject, topic
+      ORDER BY subject, topic
+    `);
+
+    // Group by subject
+    const subjects = {};
+    for (const row of result.rows) {
+      if (!subjects[row.subject]) subjects[row.subject] = [];
+      subjects[row.subject].push({ topic: row.topic, count: parseInt(row.count) });
+    }
+
+    return res.json({ success: true, data: { subjects }, error: null });
+  } catch (err) {
+    console.error('Error fetching subjects-topics:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to fetch subjects', data: null });
+  }
+});
+
 // GET /api/questions/lna/quiz (public — no auth required for free diagnostic)
 router.get('/questions/lna/quiz', async (req, res) => {
   console.log('LNA quiz request received');

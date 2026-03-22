@@ -10,6 +10,7 @@ import RapidDiagnosticResultsPage from './pages/RapidDiagnosticResultsPage'
 import Login from './pages/Login'
 import Register from './pages/Register'
 import Dashboard from './pages/Dashboard'
+import SubjectPicker from './pages/SubjectPicker'
 import QuizPage from './pages/QuizPage'
 import QuizResults from './pages/QuizResults'
 import ClinicalBriefs from './pages/ClinicalBriefs'
@@ -32,6 +33,9 @@ export default function App() {
           {/* Protected routes - require login */}
           <Route path="/dashboard" element={
             <ProtectedRoute><Dashboard /></ProtectedRoute>
+          } />
+          <Route path="/subjects" element={
+            <ProtectedRoute><SubjectPicker /></ProtectedRoute>
           } />
           <Route path="/quiz/:id" element={
             <ProtectedRoute><QuizPage /></ProtectedRoute>

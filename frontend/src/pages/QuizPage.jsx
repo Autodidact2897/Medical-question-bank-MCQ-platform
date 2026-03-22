@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import api from '../lib/api'
 
 function formatTime(seconds) {
@@ -12,6 +12,7 @@ const TOTAL_SECONDS = 30 * 60
 
 export default function QuizPage() {
   const { id } = useParams()
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
   const [sessionId, setSessionId] = useState(null)
   const [questions, setQuestions] = useState([])
@@ -20,23 +21,38 @@ export default function QuizPage() {
   const [timeLeft, setTimeLeft] = useState(TOTAL_SECONDS)
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
+
+  // Support both /quiz/subtopic?subject=X&topic=Y and /quiz/:id (legacy)
+  const subject = searchParams.get('subject') || null
+  const topic = searchParams.get('topic') || null
+  const count = parseInt(searchParams.get('count')) || 10
+  const quizLabel = topic || subject || decodeURIComponent(id || 'Quiz')
 
   useEffect(() => {
-    // Start a quiz session
-    api.post('/quiz/start', { quizId: id })
+    const body = { questionCount: count }
+    if (subject) body.subject = subject
+    if (topic) body.topic = topic
+
+    api.post('/quiz/start', body)
       .then(res => {
-        setSessionId(res.data.sessionId)
-        setQuestions(res.data.questions)
+        const data = res.data.data || res.data
+        setSessionId(data.sessionId)
+        setQuestions(data.questions || [])
+        if (!data.questions || data.questions.length === 0) {
+          setError('No questions found for this topic.')
+        }
         setLoading(false)
       })
       .catch(err => {
         console.error('Failed to start quiz', err)
+        setError('Failed to load quiz. Please try again.')
         setLoading(false)
       })
-  }, [id])
+  }, [id, subject, topic, count])
 
   useEffect(() => {
-    if (loading) return
+    if (loading || questions.length === 0) return
     const interval = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
@@ -48,14 +64,14 @@ export default function QuizPage() {
       })
     }, 1000)
     return () => clearInterval(interval)
-  }, [loading])
+  }, [loading, questions.length])
 
   const handleSubmit = useCallback(async () => {
     if (submitting || !sessionId) return
     setSubmitting(true)
     try {
-      for (const [questionId, answer] of Object.entries(answers)) {
-        await api.post(`/quiz/${sessionId}/answer`, { questionId, answer })
+      for (const [questionId, userAnswer] of Object.entries(answers)) {
+        await api.post(`/quiz/${sessionId}/answer`, { questionId: parseInt(questionId), userAnswer })
       }
       await api.post(`/quiz/${sessionId}/complete`)
       navigate(`/quiz/${id}/results?session=${sessionId}`)
@@ -79,7 +95,20 @@ export default function QuizPage() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-bg-light">
-        <p className="text-marine font-medium">Loading quiz…</p>
+        <p className="text-marine font-medium">Loading quiz...</p>
+      </div>
+    )
+  }
+
+  if (error || questions.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-bg-light">
+        <div className="card text-center max-w-md">
+          <p className="text-heading font-semibold mb-2">{error || 'No questions found'}</p>
+          <button onClick={() => navigate('/dashboard')} className="btn-primary text-sm mt-4">
+            Back to Dashboard
+          </button>
+        </div>
       </div>
     )
   }
@@ -87,7 +116,7 @@ export default function QuizPage() {
   return (
     <div className="min-h-screen bg-bg-light flex flex-col">
 
-      {/* ── Top Bar ── */}
+      {/* Top Bar */}
       <div className="bg-white border-b border-border-default px-6 py-3">
         <div className="h-1.5 bg-grey-light rounded-full mb-3">
           <div
@@ -97,15 +126,15 @@ export default function QuizPage() {
         </div>
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium text-body-dark">
-            Question {currentIndex + 1} of {questions.length}
+            {quizLabel} — Question {currentIndex + 1} of {questions.length}
           </span>
           <span className={`text-sm font-semibold px-3 py-1 rounded ${timerClass}`}>
-            ⏱ {formatTime(timeLeft)}
+            {formatTime(timeLeft)}
           </span>
         </div>
       </div>
 
-      {/* ── Question ── */}
+      {/* Question */}
       <div className="flex-1 px-6 py-8 max-w-3xl mx-auto w-full">
         {currentQ ? (
           <>
@@ -113,7 +142,7 @@ export default function QuizPage() {
               {currentQ.question_text}
             </h2>
             <div className="flex flex-col gap-3">
-              {['A', 'B', 'C', 'D', 'E'].map(letter => {
+              {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(letter => {
                 const optionText = currentQ[`option_${letter.toLowerCase()}`]
                 if (!optionText) return null
                 const isSelected = selectedAnswer === letter
@@ -139,7 +168,7 @@ export default function QuizPage() {
         )}
       </div>
 
-      {/* ── Navigation ── */}
+      {/* Navigation */}
       <div className="bg-white border-t border-border-default px-6 py-4">
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <button
@@ -147,7 +176,7 @@ export default function QuizPage() {
             disabled={currentIndex === 0}
             className="btn-secondary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
           >
-            ← Previous
+            Previous
           </button>
           <p className="text-xs text-body-dark">You can change your answer at any time</p>
           {isLast ? (
@@ -156,14 +185,14 @@ export default function QuizPage() {
               disabled={submitting}
               className="btn-primary text-sm disabled:opacity-60"
             >
-              {submitting ? 'Submitting…' : 'Submit'}
+              {submitting ? 'Submitting...' : 'Submit'}
             </button>
           ) : (
             <button
               onClick={() => setCurrentIndex(i => Math.min(questions.length - 1, i + 1))}
               className="btn-primary text-sm"
             >
-              Next →
+              Next
             </button>
           )}
         </div>

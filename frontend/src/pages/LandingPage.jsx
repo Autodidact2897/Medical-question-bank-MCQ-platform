@@ -170,7 +170,7 @@ export default function LandingPage() {
               <thead>
                 <tr>
                   <th className="bg-grey-light px-5 py-3 text-left font-semibold text-heading border-b border-border-default">
-                    Traditional question banks
+                    Typical revision approach
                   </th>
                   <th className="bg-marine px-5 py-3 text-left font-semibold text-white border-b border-marine-dark">
                     DiscoLabs
@@ -215,8 +215,8 @@ export default function LandingPage() {
               a: 'Every question follows a rigorous clinical framework mapped to the official MSRA curriculum. Content is reviewed and validated by real clinicians to ensure accuracy, clinical relevance, and alignment with current UK practice.',
             },
             {
-              q: 'What if I just use Passmedicine or PassTest?',
-              a: 'If you already know exactly where your weaknesses are, any question bank will work. If you don\'t — you\'re guessing. DiscoLabs diagnoses your gaps first, then targets them. That\'s a fundamentally different approach.',
+              q: 'What makes this better than just doing random questions?',
+              a: 'If you already know exactly where your weaknesses are, any practice will help. If you don\'t — you\'re guessing. DiscoLabs diagnoses your gaps first, then targets them. That\'s a fundamentally different approach.',
             },
             {
               q: 'Is this worth the money?',

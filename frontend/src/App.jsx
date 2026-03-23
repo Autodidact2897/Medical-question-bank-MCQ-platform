@@ -20,6 +20,7 @@ import Terms from './pages/Terms'
 import AdminDashboard from './pages/AdminDashboard'
 import AdminEmails from './pages/AdminEmails'
 import Account from './pages/Account'
+import NotFound from './pages/NotFound'
 
 export default function App() {
   return (
@@ -65,6 +66,9 @@ export default function App() {
           <Route path="/account" element={
             <ProtectedRoute><Account /></ProtectedRoute>
           } />
+
+          {/* 404 catch-all */}
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

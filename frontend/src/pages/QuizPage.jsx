@@ -77,6 +77,11 @@ export default function QuizPage() {
       navigate(`/quiz/${id}/results?session=${sessionId}`)
     } catch (err) {
       console.error('Submit failed', err)
+      if (err.response?.status === 401) {
+        setError('Your session has expired. Please log in again to continue. Your answers for this quiz could not be saved.')
+      } else {
+        setError('Failed to submit quiz. Please try again.')
+      }
       setSubmitting(false)
     }
   }, [answers, sessionId, submitting, navigate, id])

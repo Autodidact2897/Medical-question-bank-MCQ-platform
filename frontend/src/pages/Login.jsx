@@ -1,14 +1,18 @@
 import { useState } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate, Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 
 export default function Login() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { login } = useAuth()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
+
+  // If they were redirected here from a protected page, go back there after login
+  const returnTo = location.state?.returnTo || '/dashboard'
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -16,7 +20,7 @@ export default function Login() {
     setLoading(true)
     try {
       await login(email, password)
-      navigate('/dashboard')
+      navigate(returnTo)
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed. Please check your details.')
     } finally {

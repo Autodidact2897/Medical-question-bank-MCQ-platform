@@ -15,6 +15,7 @@ const emailRoutes = require('./src/routes/email');
 const commentsRoutes = require('./src/routes/comments');
 const analyticsRoutes = require('./src/routes/analytics');
 const lnaRoutes = require('./src/routes/lna');
+const aiRoutes = require('./src/routes/ai');
 
 // Initialise Sentry before anything else
 Sentry.init({
@@ -79,6 +80,7 @@ app.use('/api/email', emailRoutes);
 app.use('/api/questions', commentsRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/lna', lnaRoutes);
+app.use('/api/ai', aiRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

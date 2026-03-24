@@ -103,45 +103,52 @@ export default function LnaResults() {
 
         {/* ── Insight Callout ── */}
         <div className="bg-blue-50 border border-marine rounded-card px-5 py-4 mb-8">
-          <h3 className="font-semibold text-marine mb-1">Here's what your results mean</h3>
-          <p className="text-body-dark text-sm mb-3">
-            Your results show gaps in high-yield MSRA topics. Targeted practice in these areas
-            can meaningfully improve your score.
+          <h3 className="text-xl font-semibold text-marine mb-2">Want the full picture?</h3>
+          <p className="text-body-dark text-sm mb-4 leading-relaxed">
+            Your Rapid Diagnostic has given you an early signal of where to focus. To get a complete, evidence-based breakdown of your readiness, unlock our Curriculum-Wide Assessment — systematically mapped across the entire Foundation curriculum:
           </p>
-          <p className="text-body-dark text-sm font-medium">
-            Unlock your full assessment to see all 79 subtopics ranked and get your 12-week personalised study plan.
-          </p>
-        </div>
+          <ul className="text-sm text-heading font-medium space-y-1.5 mb-5 pl-1">
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-marine flex-shrink-0" />
+              15 clinical domains
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-marine flex-shrink-0" />
+              98 subtopics
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-marine flex-shrink-0" />
+              698 clinical briefs
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-marine flex-shrink-0" />
+              2,000-question practice bank
+            </li>
+          </ul>
 
-        {/* ── Comparison Table ── */}
-        <div className="card mb-8 overflow-hidden p-0">
-          <table className="w-full text-sm">
-            <thead>
-              <tr>
-                <th className="bg-grey-light px-5 py-3 text-left font-semibold text-heading border-b border-border-default">
-                  FREE ASSESSMENT
-                </th>
-                <th className="bg-marine px-5 py-3 text-left font-semibold text-white border-b border-marine-dark">
-                  COMPREHENSIVE DIAGNOSTIC ASSESSMENT
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                ['20 sampler questions', '94 comprehensive questions'],
-                ['Top 3 weak areas', 'All 79 subtopics ranked'],
-                ['Traffic lights only', 'Ranked & detailed breakdown'],
-                ['—', '12-week study plan'],
-                ['—', '1,000+ question bank'],
-                ['—', 'Progress tracking'],
-              ].map(([free, paid], i) => (
-                <tr key={i} className="border-b border-border-default last:border-0">
-                  <td className="px-5 py-3 text-body-dark">{free}</td>
-                  <td className="px-5 py-3 text-body-dark font-medium">{paid}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <h4 className="text-sm font-semibold text-marine mb-2">What you unlock:</h4>
+          <ul className="text-sm text-body-dark space-y-1.5 pl-1">
+            <li className="flex items-start gap-2">
+              <svg className="w-4 h-4 text-marine flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              Full subtopic-level performance breakdown
+            </li>
+            <li className="flex items-start gap-2">
+              <svg className="w-4 h-4 text-marine flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              Ranked weakness list across 60 subtopics
+            </li>
+            <li className="flex items-start gap-2">
+              <svg className="w-4 h-4 text-marine flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              Personalised revision pathway
+            </li>
+            <li className="flex items-start gap-2">
+              <svg className="w-4 h-4 text-marine flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              Teaching explanations for every question
+            </li>
+            <li className="flex items-start gap-2">
+              <svg className="w-4 h-4 text-marine flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+              Access to the complete 2,000-question bank
+            </li>
+          </ul>
         </div>
 
         {/* ── Pricing Selector ── */}

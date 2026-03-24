@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { useParams, useSearchParams, useNavigate } from 'react-router-dom'
 import api from '../lib/api'
 
@@ -25,9 +25,14 @@ export default function QuizPage() {
   const [flagged, setFlagged] = useState(new Set())
   const [showEndEarly, setShowEndEarly] = useState(false)
 
-  // Support both /quiz/subtopic?subject=X&topic=Y and /quiz/:id (legacy)
+  // Live score tracking
+  const [submitted, setSubmitted] = useState({}) // questionId -> { isCorrect }
+  const submittingAnswer = useRef(false)
+
   const subject = searchParams.get('subject') || null
   const topic = searchParams.get('topic') || null
+  const subtopics = searchParams.get('subtopics') || null
+  const difficulty = searchParams.get('difficulty') || null
   const count = parseInt(searchParams.get('count')) || 10
   const quizLabel = topic || subject || decodeURIComponent(id || 'Assessment')
 
@@ -35,6 +40,8 @@ export default function QuizPage() {
     const body = { questionCount: count }
     if (subject) body.subject = subject
     if (topic) body.topic = topic
+    if (subtopics) body.subtopics = subtopics.split(',')
+    if (difficulty) body.difficulty = difficulty.split(',')
 
     api.post('/quiz/start', body)
       .then(res => {
@@ -51,7 +58,7 @@ export default function QuizPage() {
         setError('Failed to load assessment. Please try again.')
         setLoading(false)
       })
-  }, [id, subject, topic, count])
+  }, [id, subject, topic, subtopics, difficulty, count])
 
   useEffect(() => {
     if (loading || questions.length === 0) return
@@ -68,12 +75,46 @@ export default function QuizPage() {
     return () => clearInterval(interval)
   }, [loading, questions.length])
 
+  // Submit a single answer to the backend and track result
+  const submitAnswer = useCallback(async (questionId, userAnswer) => {
+    if (!sessionId || submitted[questionId] || submittingAnswer.current) return
+    submittingAnswer.current = true
+    try {
+      const res = await api.post(`/quiz/${sessionId}/answer`, {
+        questionId: parseInt(questionId),
+        userAnswer,
+      })
+      const data = res.data.data || res.data
+      setSubmitted(prev => ({ ...prev, [questionId]: { isCorrect: data.isCorrect } }))
+    } catch (err) {
+      console.error('Answer submit failed:', err)
+    } finally {
+      submittingAnswer.current = false
+    }
+  }, [sessionId, submitted])
+
+  // When moving to next question, submit the current answer if not yet submitted
+  const goToNext = useCallback(() => {
+    const q = questions[currentIndex]
+    if (q && answers[q.id] && !submitted[q.id]) {
+      submitAnswer(q.id, answers[q.id])
+    }
+    setCurrentIndex(i => Math.min(questions.length - 1, i + 1))
+  }, [currentIndex, questions, answers, submitted, submitAnswer])
+
+  const goToPrev = useCallback(() => {
+    setCurrentIndex(i => Math.max(0, i - 1))
+  }, [])
+
   const handleSubmit = useCallback(async () => {
     if (submitting || !sessionId) return
     setSubmitting(true)
     try {
+      // Submit any answers that haven't been submitted yet
       for (const [questionId, userAnswer] of Object.entries(answers)) {
-        await api.post(`/quiz/${sessionId}/answer`, { questionId: parseInt(questionId), userAnswer })
+        if (!submitted[questionId]) {
+          await api.post(`/quiz/${sessionId}/answer`, { questionId: parseInt(questionId), userAnswer })
+        }
       }
       await api.post(`/quiz/${sessionId}/complete`)
       navigate(`/quiz/${id}/results?session=${sessionId}`)
@@ -86,7 +127,7 @@ export default function QuizPage() {
       }
       setSubmitting(false)
     }
-  }, [answers, sessionId, submitting, navigate, id])
+  }, [answers, sessionId, submitting, submitted, navigate, id])
 
   const toggleFlag = async (questionId) => {
     if (!sessionId) return
@@ -103,6 +144,15 @@ export default function QuizPage() {
       console.error('Flag toggle failed:', err)
     }
   }
+
+  // Compute live score stats
+  const answeredCount = Object.keys(answers).length
+  const submittedEntries = Object.values(submitted)
+  const correctCount = submittedEntries.filter(s => s.isCorrect).length
+  const incorrectCount = submittedEntries.filter(s => !s.isCorrect).length
+  const livePercentage = submittedEntries.length > 0
+    ? Math.round((correctCount / submittedEntries.length) * 100)
+    : 0
 
   const timerClass = timeLeft < 180
     ? 'text-red-traffic bg-red-traffic-bg'
@@ -151,60 +201,142 @@ export default function QuizPage() {
           <span className="text-sm font-medium text-body-dark">
             {quizLabel} — Question {currentIndex + 1} of {questions.length}
           </span>
-          <span className={`text-sm font-semibold px-3 py-1 rounded ${timerClass}`}>
-            {formatTime(timeLeft)}
-          </span>
+          <div className="flex items-center gap-3">
+            {/* Mobile-compact live score */}
+            <div className="flex items-center gap-2 sm:hidden">
+              <span className="text-xs font-semibold text-green-600">{correctCount}&#10003;</span>
+              <span className="text-xs font-semibold text-red-600">{incorrectCount}&#10007;</span>
+              {submittedEntries.length > 0 && (
+                <span className="text-xs font-bold text-marine">{livePercentage}%</span>
+              )}
+            </div>
+            <span className={`text-sm font-semibold px-3 py-1 rounded ${timerClass}`}>
+              {formatTime(timeLeft)}
+            </span>
+          </div>
         </div>
       </div>
 
-      {/* Question */}
-      <div className="flex-1 px-6 py-8 max-w-3xl mx-auto w-full">
-        {currentQ ? (
-          <>
-            <div className="flex items-start justify-between gap-4 mb-6">
-              <h2 className="text-lg font-semibold text-heading leading-relaxed">
-                {currentQ.question_text}
-              </h2>
-              <button
-                onClick={() => toggleFlag(currentQ.id)}
-                className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-btn text-xs font-medium border transition-all ${
-                  flagged.has(currentQ.id)
-                    ? 'bg-amber-50 border-amber-400 text-amber-700'
-                    : 'bg-white border-border-default text-body-dark hover:border-amber-400'
-                }`}
-                title={flagged.has(currentQ.id) ? 'Unflag this question' : 'Flag for revision'}
-              >
-                <svg className="w-4 h-4" fill={flagged.has(currentQ.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
-                </svg>
-                {flagged.has(currentQ.id) ? 'Flagged' : 'Flag'}
-              </button>
+      {/* Main content area with optional side panel */}
+      <div className="flex-1 flex">
+
+        {/* Question area */}
+        <div className="flex-1 px-6 py-8 max-w-3xl mx-auto w-full">
+          {currentQ ? (
+            <>
+              <div className="flex items-start justify-between gap-4 mb-6">
+                <h2 className="text-lg font-semibold text-heading leading-relaxed">
+                  {currentQ.question_text}
+                </h2>
+                <button
+                  onClick={() => toggleFlag(currentQ.id)}
+                  className={`flex-shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-btn text-xs font-medium border transition-all ${
+                    flagged.has(currentQ.id)
+                      ? 'bg-amber-50 border-amber-400 text-amber-700'
+                      : 'bg-white border-border-default text-body-dark hover:border-amber-400'
+                  }`}
+                  title={flagged.has(currentQ.id) ? 'Unflag this question' : 'Flag for revision'}
+                >
+                  <svg className="w-4 h-4" fill={flagged.has(currentQ.id) ? 'currentColor' : 'none'} stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 5a2 2 0 012-2h10a2 2 0 012 2v16l-7-3.5L5 21V5z" />
+                  </svg>
+                  {flagged.has(currentQ.id) ? 'Flagged' : 'Flag'}
+                </button>
+              </div>
+              <div className="flex flex-col gap-3">
+                {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(letter => {
+                  const optionText = currentQ[`option_${letter.toLowerCase()}`]
+                  if (!optionText) return null
+                  const isSelected = selectedAnswer === letter
+                  return (
+                    <button
+                      key={letter}
+                      onClick={() => setAnswers(prev => ({ ...prev, [currentQ.id]: letter }))}
+                      className={`w-full text-left px-4 py-3 rounded-card border-2 transition-all duration-150 ${
+                        isSelected
+                          ? 'bg-blue-50 border-marine'
+                          : 'bg-white border-border-default hover:border-marine-mid'
+                      }`}
+                    >
+                      <span className="font-bold text-marine mr-3">{letter}</span>
+                      <span className="text-body-dark text-sm">{optionText}</span>
+                    </button>
+                  )
+                })}
+              </div>
+            </>
+          ) : (
+            <p className="text-body-dark">No questions found for this assessment.</p>
+          )}
+        </div>
+
+        {/* Desktop side panel — live score tracker */}
+        <div className="hidden sm:flex flex-col w-48 border-l border-border-default bg-white px-4 py-6 flex-shrink-0">
+          <h3 className="text-xs font-semibold text-body-dark uppercase tracking-wide mb-4">Live Score</h3>
+
+          <div className="text-center mb-4">
+            <div className="text-3xl font-bold text-marine">
+              {submittedEntries.length > 0 ? `${livePercentage}%` : '—'}
             </div>
-            <div className="flex flex-col gap-3">
-              {['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].map(letter => {
-                const optionText = currentQ[`option_${letter.toLowerCase()}`]
-                if (!optionText) return null
-                const isSelected = selectedAnswer === letter
-                return (
-                  <button
-                    key={letter}
-                    onClick={() => setAnswers(prev => ({ ...prev, [currentQ.id]: letter }))}
-                    className={`w-full text-left px-4 py-3 rounded-card border-2 transition-all duration-150 ${
-                      isSelected
-                        ? 'bg-blue-50 border-marine'
-                        : 'bg-white border-border-default hover:border-marine-mid'
-                    }`}
-                  >
-                    <span className="font-bold text-marine mr-3">{letter}</span>
-                    <span className="text-body-dark text-sm">{optionText}</span>
-                  </button>
-                )
-              })}
+            <div className="text-[10px] text-body-dark mt-1">
+              {answeredCount} of {questions.length} answered
             </div>
-          </>
-        ) : (
-          <p className="text-body-dark">No questions found for this assessment.</p>
-        )}
+          </div>
+
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-6 flex items-center justify-center rounded-full bg-green-50 text-green-600 text-xs font-bold">&#10003;</span>
+              <span className="text-sm font-semibold text-green-700">{correctCount}</span>
+              <span className="text-xs text-body-dark">correct</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-6 h-6 flex items-center justify-center rounded-full bg-red-50 text-red-600 text-xs font-bold">&#10007;</span>
+              <span className="text-sm font-semibold text-red-700">{incorrectCount}</span>
+              <span className="text-xs text-body-dark">incorrect</span>
+            </div>
+          </div>
+
+          {/* Mini progress bar */}
+          {submittedEntries.length > 0 && (
+            <div className="mt-4">
+              <div className="h-2 bg-grey-light rounded-full overflow-hidden">
+                <div
+                  className="h-full rounded-full transition-all duration-300"
+                  style={{
+                    width: `${livePercentage}%`,
+                    backgroundColor: livePercentage >= 70 ? '#059669' : livePercentage >= 50 ? '#d97706' : '#ef4444'
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Question dots */}
+          <div className="mt-5 flex flex-wrap gap-1.5">
+            {questions.map((q, i) => {
+              const sub = submitted[q.id]
+              const isAnswered = !!answers[q.id]
+              const isCurrent = i === currentIndex
+              let dotClass = 'bg-grey-light'
+              if (sub) {
+                dotClass = sub.isCorrect ? 'bg-green-500' : 'bg-red-500'
+              } else if (isAnswered) {
+                dotClass = 'bg-blue-300'
+              }
+              return (
+                <button
+                  key={q.id}
+                  onClick={() => setCurrentIndex(i)}
+                  className={`w-5 h-5 rounded-full text-[9px] font-bold flex items-center justify-center transition-all ${dotClass} ${
+                    isCurrent ? 'ring-2 ring-marine ring-offset-1' : ''
+                  } ${sub ? 'text-white' : isAnswered ? 'text-white' : 'text-body-dark'}`}
+                >
+                  {i + 1}
+                </button>
+              )
+            })}
+          </div>
+        </div>
       </div>
 
       {/* End Early confirmation dialog */}
@@ -229,7 +361,7 @@ export default function QuizPage() {
         <div className="max-w-3xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-3">
             <button
-              onClick={() => setCurrentIndex(i => Math.max(0, i - 1))}
+              onClick={goToPrev}
               disabled={currentIndex === 0}
               className="btn-secondary text-sm disabled:opacity-40 disabled:cursor-not-allowed"
             >
@@ -244,7 +376,7 @@ export default function QuizPage() {
               </button>
             )}
           </div>
-          <p className="text-xs text-body-dark hidden sm:block">{Object.keys(answers).length} of {questions.length} answered</p>
+          <p className="text-xs text-body-dark hidden sm:block">{answeredCount} of {questions.length} answered</p>
           {isLast ? (
             <button
               onClick={handleSubmit}
@@ -255,7 +387,7 @@ export default function QuizPage() {
             </button>
           ) : (
             <button
-              onClick={() => setCurrentIndex(i => Math.min(questions.length - 1, i + 1))}
+              onClick={goToNext}
               className="btn-primary text-sm"
             >
               Next

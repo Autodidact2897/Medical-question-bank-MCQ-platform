@@ -41,6 +41,14 @@ export default function Dashboard() {
   const [comparison, setComparison] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  // AI Study Suggestion state
+  const [aiMinutes, setAiMinutes] = useState(null)
+  const [aiLoading, setAiLoading] = useState(false)
+  const [aiResult, setAiResult] = useState(() => {
+    try { return JSON.parse(sessionStorage.getItem('ai_study_suggestion')) } catch { return null }
+  })
+  const [aiError, setAiError] = useState('')
+
   // Load LNA results for the subtopic rankings
   useEffect(() => {
     Promise.all([
@@ -92,6 +100,32 @@ export default function Dashboard() {
     params.set('topic', topicName)
     params.set('count', 10)
     navAway(`/quiz/practice?${params.toString()}`)
+  }
+
+  const fetchAiSuggestion = async (minutes) => {
+    setAiMinutes(minutes)
+    setAiLoading(true)
+    setAiError('')
+    setAiResult(null)
+    try {
+      const res = await api.post('/ai/study-suggestion', { available_minutes: minutes })
+      const data = res.data.data
+      setAiResult(data)
+      sessionStorage.setItem('ai_study_suggestion', JSON.stringify(data))
+    } catch (err) {
+      const msg = err.response?.data?.error || 'Failed to generate suggestion'
+      setAiError(msg)
+    } finally {
+      setAiLoading(false)
+    }
+  }
+
+  const startAiSession = () => {
+    if (!aiResult) return
+    const params = new URLSearchParams()
+    params.set('subtopics', aiResult.subtopics.join(','))
+    params.set('count', aiResult.question_count)
+    navAway(`/quiz/ai-session?${params.toString()}`)
   }
 
   const firstName = user?.name?.split(' ')[0] || 'Doctor'
@@ -390,6 +424,99 @@ export default function Dashboard() {
             </div>
           </div>
         )}
+
+        {/* AI Suggested Study Session */}
+        <div className="mb-8">
+          <h2 className="text-lg font-semibold text-heading mb-1">Suggested Study Session</h2>
+          <p className="text-sm text-body-dark mb-4">AI-powered personalised revision based on your performance data.</p>
+
+          {!progressData && lnaResults.length === 0 ? (
+            <div className="card border-2 border-dashed border-border-default text-center py-6">
+              <p className="text-sm text-body-dark">Complete your Rapid Diagnostic Assessment first to unlock personalised study suggestions.</p>
+            </div>
+          ) : (
+            <div className="card">
+              {/* Time selector */}
+              {!aiResult && !aiLoading && (
+                <>
+                  <p className="text-sm text-heading font-medium mb-3">How much time do you have?</p>
+                  <div className="flex flex-wrap gap-2">
+                    {[15, 30, 45, 60].map(mins => (
+                      <button
+                        key={mins}
+                        onClick={() => fetchAiSuggestion(mins)}
+                        className="px-4 py-2.5 rounded-btn border-2 border-border-default text-sm font-semibold text-heading hover:border-marine hover:bg-blue-50 transition-all"
+                      >
+                        {mins} min
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {/* Loading state */}
+              {aiLoading && (
+                <div className="text-center py-6">
+                  <div className="inline-block w-6 h-6 border-2 border-marine border-t-transparent rounded-full animate-spin mb-2" />
+                  <p className="text-sm text-marine font-medium">Generating your personalised session...</p>
+                </div>
+              )}
+
+              {/* Error state */}
+              {aiError && (
+                <div className="text-center py-4">
+                  <p className="text-sm text-red-600 mb-2">{aiError}</p>
+                  <button onClick={() => { setAiError(''); setAiMinutes(null) }} className="text-xs text-marine underline">Try again</button>
+                </div>
+              )}
+
+              {/* Result */}
+              {aiResult && !aiLoading && (
+                <div>
+                  <p className="text-sm text-heading leading-relaxed mb-4">{aiResult.summary}</p>
+
+                  <div className="flex flex-col gap-2 mb-4">
+                    {aiResult.subtopics.map((topic, i) => (
+                      <div key={i} className="flex items-start gap-3 bg-blue-50 rounded-card px-3 py-2.5">
+                        <span className="w-5 h-5 rounded-full bg-marine text-white text-[10px] font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                          {i + 1}
+                        </span>
+                        <div>
+                          <span className="text-sm font-medium text-heading">{topic}</span>
+                          {aiResult.reasoning?.[i] && (
+                            <p className="text-xs text-body-dark mt-0.5">{aiResult.reasoning[i]}</p>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <p className="text-xs text-body-dark mb-3">
+                    {aiResult.question_count} questions &middot; ~{aiMinutes} minutes
+                  </p>
+
+                  <div className="flex items-center gap-3">
+                    <button onClick={startAiSession} className="btn-primary text-sm">
+                      Begin This Session
+                    </button>
+                    <button
+                      onClick={() => fetchAiSuggestion(aiMinutes || 30)}
+                      className="btn-secondary text-sm"
+                    >
+                      Regenerate
+                    </button>
+                    <button
+                      onClick={() => { setAiResult(null); setAiMinutes(null); sessionStorage.removeItem('ai_study_suggestion') }}
+                      className="text-xs text-body-dark hover:text-heading ml-auto"
+                    >
+                      Clear
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
 
         {/* LNA Results — clickable to start quizzes */}
         {lnaResults.length > 0 && (

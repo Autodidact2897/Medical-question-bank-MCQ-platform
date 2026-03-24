@@ -89,8 +89,10 @@ router.post('/login', async (req, res) => {
       maxAge: 24 * 60 * 60 * 1000, // 24 hours in milliseconds
     });
 
+    const adminEmails = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim());
+    const is_admin = adminEmails.includes(user.email);
     console.log('Login successful');
-    return res.json({ success: true, data: { id: user.id, email: user.email }, error: null });
+    return res.json({ success: true, data: { id: user.id, email: user.email, is_admin }, error: null });
   } catch (err) {
     console.error('Login error:', err.message);
     return res.status(500).json({ success: false, error: 'Server error during login', data: null });

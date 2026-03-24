@@ -20,6 +20,7 @@ import Terms from './pages/Terms'
 import AdminDashboard from './pages/AdminDashboard'
 import AdminEmails from './pages/AdminEmails'
 import Account from './pages/Account'
+import About from './pages/About'
 import NotFound from './pages/NotFound'
 import LnaResultsPage from './pages/LnaResultsPage'
 import StudyByDifficultyPage from './pages/StudyByDifficultyPage'
@@ -40,6 +41,7 @@ export default function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<Terms />} />
+          <Route path="/about" element={<About />} />
 
           {/* Protected routes - require login */}
           <Route path="/dashboard" element={

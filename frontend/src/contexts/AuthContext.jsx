@@ -1,8 +1,6 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import api from '../lib/api'
 
-// Think of AuthContext like a noticeboard in the centre of the building —
-// every room (page) can check it to know if the user is logged in.
 const AuthContext = createContext(null)
 
 export function AuthProvider({ children }) {
@@ -11,26 +9,43 @@ export function AuthProvider({ children }) {
 
   // On first load, check if the user already has a valid session
   useEffect(() => {
+    const token = localStorage.getItem('authToken')
+    if (!token) {
+      setLoading(false)
+      return
+    }
     api.get('/auth/me')
       .then(res => setUser(res.data.data || res.data.user))
-      .catch(() => setUser(null))
+      .catch(() => {
+        localStorage.removeItem('authToken')
+        setUser(null)
+      })
       .finally(() => setLoading(false))
   }, [])
 
   const login = async (email, password) => {
     const res = await api.post('/auth/login', { email, password })
-    setUser(res.data.data || res.data.user)
+    const data = res.data.data || res.data.user
+    if (res.data.token) {
+      localStorage.setItem('authToken', res.data.token)
+    }
+    setUser(data)
     return res.data
   }
 
   const register = async (name, email, password) => {
     const res = await api.post('/auth/register', { name, email, password })
-    setUser(res.data.data || res.data.user)
+    const data = res.data.data || res.data.user
+    if (res.data.token) {
+      localStorage.setItem('authToken', res.data.token)
+    }
+    setUser(data)
     return res.data
   }
 
   const logout = async () => {
-    await api.post('/auth/logout')
+    await api.post('/auth/logout').catch(() => {})
+    localStorage.removeItem('authToken')
     setUser(null)
   }
 
@@ -41,7 +56,6 @@ export function AuthProvider({ children }) {
   )
 }
 
-// Custom hook — any page can call useAuth() to get user info
 export function useAuth() {
   return useContext(AuthContext)
 }

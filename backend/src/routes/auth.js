@@ -6,8 +6,8 @@ const authMiddleware = require('../middleware/auth');
 
 const router = express.Router();
 
-// POST /api/auth/signup
-router.post('/signup', async (req, res) => {
+// POST /api/auth/signup and /api/auth/register (alias)
+async function handleSignup(req, res) {
   console.log('Signup request received');
   const { email, password } = req.body;
 
@@ -40,13 +40,29 @@ router.post('/signup', async (req, res) => {
     );
 
     const user = result.rows[0];
+
+    // Create JWT so user is logged in immediately after registration
+    const token = jwt.sign(
+      { userId: user.id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: '24h' }
+    );
+    res.cookie('authToken', token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      maxAge: 24 * 60 * 60 * 1000,
+    });
+
     console.log('User created successfully');
-    return res.status(201).json({ success: true, data: { id: user.id, email: user.email }, error: null });
+    return res.status(201).json({ success: true, token, data: { id: user.id, email: user.email }, error: null });
   } catch (err) {
     console.error('Signup error:', err.message);
     return res.status(500).json({ success: false, error: 'Server error during signup', data: null });
   }
-});
+}
+router.post('/signup', handleSignup);
+router.post('/register', handleSignup);
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
@@ -92,7 +108,7 @@ router.post('/login', async (req, res) => {
     const adminEmails = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim());
     const is_admin = adminEmails.includes(user.email);
     console.log('Login successful');
-    return res.json({ success: true, data: { id: user.id, email: user.email, is_admin }, error: null });
+    return res.json({ success: true, token, data: { id: user.id, email: user.email, is_admin }, error: null });
   } catch (err) {
     console.error('Login error:', err.message);
     return res.status(500).json({ success: false, error: 'Server error during login', data: null });

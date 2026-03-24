@@ -6,13 +6,13 @@ const api = axios.create({
   withCredentials: true,
 })
 
-// Auth state is managed ONLY by AuthContext:
-//   - On page load: /auth/me determines if user is logged in
-//   - On login/register: setUser is called with the response
-//   - On logout: setUser(null) is called
-//
-// The 401 interceptor DOES NOT clear auth state.
-// This prevents cross-origin cookie timing issues from logging users out
-// mid-session. Individual pages handle 401 errors in their own catch blocks.
+// Attach JWT from localStorage on every request
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem('authToken')
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`
+  }
+  return config
+})
 
 export default api

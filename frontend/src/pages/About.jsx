@@ -18,7 +18,7 @@ export default function About() {
       <div className="max-w-2xl mx-auto px-6 py-10">
         <div className="flex flex-col items-center text-center mb-8">
           <img
-            src="/images/3BF488F0-5446-421A-9E46-059E06BE732D.jpg"
+            src="/images/founder.jpg"
             alt="Ben Popham"
             className="w-28 h-28 rounded-full object-cover mb-4 shadow-md"
             onError={(e) => {

@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db/connection');
 
-// GET /api/briefs — list all briefs (summary only)
+// GET /api/briefs — list all briefs (summary only), optional subject filter
 router.get('/', async (req, res) => {
   try {
     const { subject } = req.query;
-    let query = 'SELECT brief_id, title, subject, topic FROM clinical_briefs';
+    let query = 'SELECT id, brief_id, title, subject, topic, brief_number, source, brief_type FROM clinical_briefs';
     const params = [];
 
     if (subject) {
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
       params.push(subject);
     }
 
-    query += ' ORDER BY subject, topic, brief_id';
+    query += ' ORDER BY brief_number ASC NULLS LAST, subject, title';
 
     const result = await pool.query(query, params);
     console.log(`Briefs list: returning ${result.rows.length} briefs`);
@@ -22,6 +22,22 @@ router.get('/', async (req, res) => {
   } catch (err) {
     console.error('Error fetching briefs:', err.message);
     res.status(500).json({ success: false, data: null, error: 'Failed to fetch briefs' });
+  }
+});
+
+// GET /api/briefs/subjects — list all distinct subjects with counts
+router.get('/subjects', async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT subject, COUNT(*)::int AS count
+      FROM clinical_briefs
+      GROUP BY subject
+      ORDER BY subject
+    `);
+    res.json({ success: true, data: result.rows, error: null });
+  } catch (err) {
+    console.error('Error fetching brief subjects:', err.message);
+    res.status(500).json({ success: false, data: null, error: 'Failed to fetch subjects' });
   }
 });
 
@@ -34,8 +50,8 @@ router.get('/by-topic', async (req, res) => {
     }
 
     const result = await pool.query(
-      'SELECT brief_id, title, subject, topic FROM clinical_briefs WHERE topic = $1 LIMIT 1',
-      [topic]
+      'SELECT id, brief_id, title, subject, topic FROM clinical_briefs WHERE topic ILIKE $1 LIMIT 1',
+      [`%${topic}%`]
     );
 
     if (result.rows.length === 0) {
@@ -54,10 +70,14 @@ router.get('/by-topic', async (req, res) => {
 router.get('/:briefId', async (req, res) => {
   try {
     const { briefId } = req.params;
-    const result = await pool.query(
-      'SELECT * FROM clinical_briefs WHERE brief_id = $1',
-      [briefId]
-    );
+
+    // Support lookup by brief_id (e.g. CB_001) or by numeric id
+    let result;
+    if (/^\d+$/.test(briefId)) {
+      result = await pool.query('SELECT * FROM clinical_briefs WHERE id = $1', [briefId]);
+    } else {
+      result = await pool.query('SELECT * FROM clinical_briefs WHERE brief_id = $1', [briefId]);
+    }
 
     if (result.rows.length === 0) {
       return res.status(404).json({ success: false, data: null, error: 'Brief not found' });

@@ -10,7 +10,7 @@ export default function SingleBrief() {
 
   useEffect(() => {
     api.get(`/briefs/${id}`)
-      .then(res => { setBrief(res.data.brief); setLoading(false) })
+      .then(res => { setBrief(res.data.data || res.data.brief); setLoading(false) })
       .catch(() => setLoading(false))
   }, [id])
 

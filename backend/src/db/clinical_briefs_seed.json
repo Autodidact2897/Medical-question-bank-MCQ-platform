@@ -1,0 +1,4811 @@
+[
+  {
+    "number": 1,
+    "title": "Acute Coronary Syndromes: STEMI vs NSTEMI vs Unstable Angina",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 13,
+    "title": "Atrial Flutter: Recognition and Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 14,
+    "title": "Supraventricular Tachycardia: Recognition and Adenosine Protocol",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 15,
+    "title": "Broad Complex Tachycardia: Approach and Differential",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 16,
+    "title": "Bradycardia and Heart Block: 1st, 2nd and 3rd Degree",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 17,
+    "title": "Cardiac Arrest Rhythms: Shockable vs Non-Shockable",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 18,
+    "title": "Hypertension: NICE Stepped Management Approach",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 19,
+    "title": "Blood Pressure Targets by Age and Ethnicity",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 20,
+    "title": "Ambulatory and Home Blood Pressure Monitoring",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 21,
+    "title": "Hypertensive Emergencies and End-Organ Damage",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 22,
+    "title": "Secondary Causes of Hypertension: When to Screen",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 23,
+    "title": "Heart Murmurs: Characteristics and Identification",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 24,
+    "title": "Aortic Stenosis: Symptoms, Investigation and Referral",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 25,
+    "title": "Mitral Regurgitation: Acute vs Chronic",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 26,
+    "title": "Infective Endocarditis: Duke Criteria, Blood Cultures and Antibiotics",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 27,
+    "title": "Prosthetic Heart Valves: Management and Anticoagulation",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 28,
+    "title": "Aortic Aneurysm: Screening and Emergency Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 29,
+    "title": "Peripheral Arterial Disease: ABPI, Claudication and Critical Limb Ischaemia",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 30,
+    "title": "Deep Vein Thrombosis: Wells Score, D-dimer and Anticoagulation",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 31,
+    "title": "Pulmonary Embolism: Wells Score, CTPA and Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 32,
+    "title": "Pericarditis and Pericardial Effusion",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 33,
+    "title": "Cardiomyopathies: Dilated and Hypertrophic",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 34,
+    "title": "Syncope: Assessment and Risk Stratification",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 35,
+    "title": "Cardiovascular Risk Scoring: QRISK3 and Lipid Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 412,
+    "title": "Stable Angina: CTCA Pathway, Anti-Anginal Drugs and Referral",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 413,
+    "title": "Post-MI Complications: Dressler Syndrome, VSD and Free Wall Rupture",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 414,
+    "title": "Right Heart Failure and Cor Pulmonale",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 415,
+    "title": "Palliative Care in End-Stage Heart Failure",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 416,
+    "title": "Long QT Syndrome: Causes, ECG Features and Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 417,
+    "title": "Pacemaker Indications and Basic Troubleshooting",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 418,
+    "title": "12-Lead ECG: Systematic Interpretation Method",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 419,
+    "title": "Resistant Hypertension: Investigation and Fourth-Line Treatment",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 420,
+    "title": "Hypertension in Pregnancy: Chronic, Gestational and Pre-Eclampsia",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 421,
+    "title": "White Coat Hypertension: Diagnosis and Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 422,
+    "title": "Rheumatic Heart Disease: Pathophysiology and Sequelae",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 423,
+    "title": "Valvular Heart Disease in Pregnancy: Risk Assessment and Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 424,
+    "title": "Aortic Dissection: Stanford/DeBakey Classification and Emergency Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 425,
+    "title": "Carotid Artery Disease and Endarterectomy Indications",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 426,
+    "title": "Mesenteric Ischaemia: Recognition and Urgent Management",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 427,
+    "title": "Cardiac Tamponade: Recognition, Beck Triad and Pericardiocentesis",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 428,
+    "title": "Cardiac Tumours and Masses: Atrial Myxoma and Others",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 429,
+    "title": "Cardiac Rehabilitation: Programme Structure and Exercise Prescription \u2605 NEW SUBTOPIC",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 430,
+    "title": "DVLA Driving Restrictions After Cardiac Events and Procedures \u2605 NEW SUBTOPIC",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 431,
+    "title": "Dietary and Lifestyle Advice for Cardiovascular Risk Reduction \u2605 NEW SUBTOPIC",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 432,
+    "title": "Psychological Support and Adjustment After Cardiac Events \u2605 NEW SUBTOPIC",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 433,
+    "title": "Smoking Cessation: NRT, Varenicline and Bupropion in Cardiac Patients \u2605 NEW SUBTOPIC",
+    "section": "CARDIOVASCULAR",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 36,
+    "title": "Asthma: Stepwise Management (SABA, ICS, LABA, LTRA)",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 37,
+    "title": "Acute Asthma: Severity Classification and Emergency Management",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 38,
+    "title": "Peak Flow: Interpretation and Monitoring",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 39,
+    "title": "COPD: Spirometry Interpretation and GOLD Classification",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 40,
+    "title": "COPD: Stepwise Inhaler Therapy",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 41,
+    "title": "COPD: Acute Exacerbation Management",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 42,
+    "title": "Long-Term Oxygen Therapy: Criteria and Prescribing",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 43,
+    "title": "Community-Acquired Pneumonia: CURB-65 and Management",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 44,
+    "title": "Hospital-Acquired and Aspiration Pneumonia",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 45,
+    "title": "Atypical Pneumonia: Organisms and Features",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 46,
+    "title": "Lung Cancer: Red Flags and 2-Week Wait Referral",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 47,
+    "title": "Pleural Effusion: Light's Criteria (Exudate vs Transudate)",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 48,
+    "title": "Pneumothorax: Primary vs Secondary and Management Algorithm",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 49,
+    "title": "Tension Pneumothorax: Emergency Recognition and Management",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 50,
+    "title": "Pulmonary Embolism: Risk Factors, Wells Score and D-dimer",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 51,
+    "title": "Pulmonary Embolism: CTPA and Anticoagulation (DOAC vs LMWH)",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 52,
+    "title": "Massive PE and Thrombolysis Indications",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 53,
+    "title": "Pulmonary Fibrosis: Idiopathic and Secondary Causes",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 54,
+    "title": "Sarcoidosis: Multisystem Features and Bilateral Hilar Lymphadenopathy",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 55,
+    "title": "Obstructive Sleep Apnoea: Screening and CPAP",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 56,
+    "title": "Tuberculosis: Diagnosis, Notification and RIPE Therapy",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 57,
+    "title": "Respiratory Failure: Type 1 vs Type 2 and Oxygen Prescribing",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 58,
+    "title": "Arterial Blood Gas: Interpretation and Compensation",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 59,
+    "title": "Spirometry: Obstructive vs Restrictive Patterns",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 60,
+    "title": "Chest X-Ray: Systematic Interpretation",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 61,
+    "title": "Non-Invasive Ventilation: CPAP vs BiPAP Indications",
+    "section": "RESPIRATORY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 434,
+    "title": "Difficult-to-Treat and Severe Asthma: Referral Criteria and Biologics",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 435,
+    "title": "Occupational Asthma: Diagnosis, Serial PEF and Management",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 436,
+    "title": "Asthma in Pregnancy: Management and Medication Safety",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 437,
+    "title": "Asthma-COPD Overlap Syndrome: Recognition and Treatment",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 438,
+    "title": "COPD: End-of-Life Care Considerations and Advance Planning",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 439,
+    "title": "Pulmonary Rehabilitation: Evidence, Referral and Programme Structure",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 440,
+    "title": "Empyema: Recognition, Diagnosis and Chest Drain Management",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 441,
+    "title": "Lung Abscess: Cavitation, Anaerobic Organisms and Prolonged Antibiotics",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 442,
+    "title": "Pneumonia in Immunocompromised Patients: Differential and Investigation",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 443,
+    "title": "Superior Vena Cava Obstruction: Emergency Recognition and Management",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 444,
+    "title": "Chest Drain Insertion: Indications, Technique and Complications",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 445,
+    "title": "Lung Cancer Staging: TNM Basics and MDT Referral",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 446,
+    "title": "Pulmonary Embolism in Pregnancy: Investigation and LMWH Management",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 447,
+    "title": "Chronic Thromboembolic Pulmonary Hypertension: Recognition and Referral",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 448,
+    "title": "Bronchiectasis: Causes, Pseudomonas Management and Physiotherapy",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 449,
+    "title": "Transfer Factor (DLCO): Interpretation and Clinical Significance",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 450,
+    "title": "Flow-Volume Loop Patterns: Fixed and Variable Obstruction",
+    "section": "RESPIRATORY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 451,
+    "title": "Idiopathic Pulmonary Fibrosis: UIP Pattern, Pirfenidone and Nintedanib \u2605 NEW SUBTOPIC",
+    "section": "RESPIRATORY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 452,
+    "title": "Drug-Induced Interstitial Lung Disease: Amiodarone, Methotrexate and Nitrofurantoin \u2605 NEW SUBTOPIC",
+    "section": "RESPIRATORY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 453,
+    "title": "Hypersensitivity Pneumonitis: Acute vs Chronic and Antigen Avoidance \u2605 NEW SUBTOPIC",
+    "section": "RESPIRATORY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 454,
+    "title": "Asbestosis and Occupational Interstitial Lung Disease \u2605 NEW SUBTOPIC",
+    "section": "RESPIRATORY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 455,
+    "title": "HRCT Patterns in Interstitial Lung Disease: UIP, NSIP and Organising Pneumonia \u2605 NEW SUBTOPIC",
+    "section": "RESPIRATORY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 62,
+    "title": "GORD: Diagnosis, PPI Therapy and Alarm Symptoms",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 63,
+    "title": "Peptic Ulcer Disease: H. pylori Testing, Eradication and NSAID-Related Ulcers",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 64,
+    "title": "Upper GI Bleed: Glasgow-Blatchford Score, Resuscitation and OGD",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 65,
+    "title": "Oesophageal Varices: Management with Terlipressin and Band Ligation",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 66,
+    "title": "Dysphagia: Red Flags and Investigation Pathway",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 67,
+    "title": "Coeliac Disease: Anti-tTG Antibodies and Duodenal Biopsy",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 68,
+    "title": "Inflammatory Bowel Disease: Crohn's Disease vs Ulcerative Colitis",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 69,
+    "title": "IBD Flare Management: 5-ASA, Steroids, Immunomodulators and Biologics",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 70,
+    "title": "Irritable Bowel Syndrome: Rome IV Criteria and Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 71,
+    "title": "Colorectal Cancer: 2-Week Wait Referral and FIT Testing",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 72,
+    "title": "Diverticular Disease and Acute Diverticulitis",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 73,
+    "title": "Lower GI Bleeding: Causes and Initial Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 74,
+    "title": "Liver Function Tests: Hepatic vs Cholestatic Pattern Interpretation",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 75,
+    "title": "Acute Liver Failure: Paracetamol Overdose and NAC Protocol",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 76,
+    "title": "Chronic Liver Disease: Compensated vs Decompensated Cirrhosis",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 77,
+    "title": "Ascites: Management with Spironolactone and Therapeutic Drainage",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 78,
+    "title": "Hepatic Encephalopathy: Lactulose and Rifaximin",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 79,
+    "title": "Hepatitis B and C: Serology Interpretation and Antiviral Therapy",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 80,
+    "title": "Alcohol-Related Liver Disease: AUDIT-C Screening and Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 81,
+    "title": "Acute Pancreatitis: Severity Scoring and Supportive Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 82,
+    "title": "Gallstone Disease: Biliary Colic, Cholecystitis and Cholangitis",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 83,
+    "title": "Obstructive Jaundice: Investigation Pathway (USS, MRCP, ERCP)",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 84,
+    "title": "Malnutrition Screening: MUST Tool and Refeeding Syndrome",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 85,
+    "title": "Enteral vs Parenteral Nutrition: Indications",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 86,
+    "title": "Vitamin and Mineral Deficiencies: B12, Folate, Iron and Vitamin D",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 87,
+    "title": "Bowel Obstruction: Small vs Large Bowel Recognition and Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 88,
+    "title": "Mesenteric Ischaemia: Recognition and Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 456,
+    "title": "Barrett Oesophagus: Surveillance, Dysplasia Management and Ablation",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 457,
+    "title": "Achalasia: Presentation, Barium Swallow and Management Options",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 458,
+    "title": "Oesophageal Cancer: Staging, Referral Criteria and Palliative Stenting",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 459,
+    "title": "Eosinophilic Oesophagitis: Recognition in Young Adults with Dysphagia",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 460,
+    "title": "Microscopic Colitis: Collagenous and Lymphocytic Types, Budesonide",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 461,
+    "title": "Bowel Cancer Screening Programme: FIT Testing and Colonoscopy",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 462,
+    "title": "Stoma Types, Common Complications and Community Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 463,
+    "title": "Autoimmune Hepatitis: ANA, SMA, IgG and Steroid/Azathioprine Induction",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 464,
+    "title": "Primary Biliary Cholangitis: AMA, Ursodeoxycholic Acid and Pruritus",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 465,
+    "title": "Primary Sclerosing Cholangitis: MRCP, IBD Association and Cholangiocarcinoma Risk",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 466,
+    "title": "Non-Alcoholic Fatty Liver Disease: FIB-4 Scoring, ELF Test and Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 467,
+    "title": "Liver Transplantation: Indications, Contraindications and Basic Post-Transplant Care",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 468,
+    "title": "Chronic Pancreatitis: Faecal Elastase, PERT and Pain Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 469,
+    "title": "Sphincter of Oddi Dysfunction: Recognition and Investigation",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 470,
+    "title": "Obesity: Lifestyle, Pharmacotherapy (Orlistat, GLP-1 RA) and Bariatric Referral",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 471,
+    "title": "Coeliac Disease in Depth: Complications, Follow-Up and Refractory Disease",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 472,
+    "title": "Food Allergy vs Food Intolerance: Investigation and Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 473,
+    "title": "Ischaemic Colitis: Recognition, Imaging and Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 474,
+    "title": "Perforated Viscus: Recognition, Free Air and Surgical Management",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 475,
+    "title": "Toxic Megacolon in IBD: Recognition and Colectomy Threshold",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 476,
+    "title": "Acute Liver Failure: Escalation Criteria and King's College Criteria",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 477,
+    "title": "Functional Dyspepsia: Diagnosis of Exclusion and Management Approach \u2605 NEW SUBTOPIC",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 478,
+    "title": "Chronic Nausea and Vomiting: Differential Diagnosis and Stepwise Investigation \u2605 NEW SUBTOPIC",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 479,
+    "title": "Gut-Brain Axis: Psychological Therapies for Functional GI Disorders \u2605 NEW SUBTOPIC",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 480,
+    "title": "IBS: Positive Diagnosis Approach, Low FODMAP Diet and Tricyclic Antidepressants \u2605 NEW SUBTOPIC",
+    "section": "GASTROENTEROLOGY / NUTRITION",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 89,
+    "title": "Diabetes Mellitus: Type 1 vs Type 2 Differentiation",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 90,
+    "title": "HbA1c: Targets and Monitoring in Diabetes",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 91,
+    "title": "Type 2 Diabetes: Stepwise Management (Metformin, SGLT2i, GLP-1 RA, Insulin)",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 92,
+    "title": "Insulin Regimens: Basal-Bolus, Biphasic, Initiation and Titration",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 93,
+    "title": "Diabetic Ketoacidosis: Diagnosis, Fluid Resuscitation and Insulin Infusion",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 94,
+    "title": "Hyperosmolar Hyperglycaemic State: Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 95,
+    "title": "Hypoglycaemia: Recognition, Treatment and Driving Rules",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 96,
+    "title": "Diabetic Complications Screening: Retinopathy, Nephropathy, Neuropathy and Foot Care",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 97,
+    "title": "Hypothyroidism: Diagnosis, Levothyroxine Initiation and Monitoring",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 98,
+    "title": "Hyperthyroidism: Graves Disease, Toxic Nodule and de Quervain Thyroiditis",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 99,
+    "title": "Thyroid Function Test Interpretation",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 100,
+    "title": "Thyroid Storm: Emergency Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 101,
+    "title": "Thyroid Disease in Pregnancy",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 102,
+    "title": "Addison Disease: Presentation, Short Synacthen Test and Steroid Replacement",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 103,
+    "title": "Cushing Syndrome: Screening Tests, Causes and Features",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 104,
+    "title": "Adrenal Crisis: Emergency Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 105,
+    "title": "Phaeochromocytoma: Features, Investigation and Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 106,
+    "title": "Steroid Sick Day Rules",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 107,
+    "title": "Hypercalcaemia: PTH-Dependent vs Independent Causes and Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 108,
+    "title": "Hypocalcaemia: Causes, Signs and Replacement",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 109,
+    "title": "Osteoporosis: FRAX, DEXA Scanning and Bisphosphonates",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 110,
+    "title": "Vitamin D Deficiency: Diagnosis and Replacement Regimens",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 111,
+    "title": "Pituitary Adenomas: Prolactinoma, Acromegaly and Cushing Disease",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 112,
+    "title": "Diabetes Insipidus: Cranial vs Nephrogenic and Water Deprivation Test",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 113,
+    "title": "SIADH: Causes, Diagnosis and Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 114,
+    "title": "Hyponatraemia: Assessment and Management Algorithm",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 115,
+    "title": "Hyperkalaemia: ECG Changes and Emergency Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 116,
+    "title": "Cardiovascular Risk Assessment: QRISK3 and Statin Therapy",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 117,
+    "title": "Familial Hypercholesterolaemia: Recognition and Referral",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 118,
+    "title": "Gout: Acute Management and Allopurinol Prophylaxis",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 481,
+    "title": "SGLT2 Inhibitor Euglycaemic DKA: Recognition and Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 482,
+    "title": "Sick Day Rules for Diabetes Medications: Patient Education",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 483,
+    "title": "Diabetes Technology: CGM and Insulin Pump Basics for Non-Specialists",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 484,
+    "title": "Gestational Diabetes: OGTT Thresholds, Management and Postpartum Follow-Up",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 485,
+    "title": "Amiodarone-Induced Thyroid Disease: Type 1 vs Type 2 and Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 486,
+    "title": "Subclinical Thyroid Disease: When to Treat and When to Monitor",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 487,
+    "title": "Adrenal Incidentaloma: Investigation Algorithm and Functional Assessment",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 488,
+    "title": "Congenital Adrenal Hyperplasia: 21-Hydroxylase Deficiency Basics",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 489,
+    "title": "Steroid Withdrawal and HPA Axis Suppression: Recognition and Management",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 490,
+    "title": "Hyperparathyroidism: Primary vs Secondary vs Tertiary and CKD Context",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 491,
+    "title": "Osteomalacia: Vitamin D Deficiency, Raised ALP and Looser Zones",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 492,
+    "title": "Pituitary Apoplexy: Recognition, Emergency Hydrocortisone and Neurosurgical Referral",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 493,
+    "title": "Hypopituitarism: Causes, Investigation and Sequential Hormone Replacement",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 494,
+    "title": "Ezetimibe and PCSK9 Inhibitors: Indications Beyond Statins",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 495,
+    "title": "Lipid Management in CKD and Diabetes: Specific Considerations",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 496,
+    "title": "Phosphate Disturbances: Hypophosphataemia in Refeeding and Hyperphosphataemia in CKD",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 497,
+    "title": "Magnesium: Deficiency Causes, Clinical Features and Replacement",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 498,
+    "title": "BMI Classification, Waist Circumference and Metabolic Risk Assessment \u2605 NEW SUBTOPIC",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 499,
+    "title": "Tier 2/3/4 Weight Management Pathways in the NHS \u2605 NEW SUBTOPIC",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 500,
+    "title": "GLP-1 Receptor Agonists for Obesity: Semaglutide and NICE Criteria \u2605 NEW SUBTOPIC",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 501,
+    "title": "Bariatric Surgery: Types, NICE Indications and Post-Surgical Complications \u2605 NEW SUBTOPIC",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 502,
+    "title": "Obesity-Related Comorbidity Screening and Psychological Aspects of Weight Management \u2605 NEW SUBTOPIC",
+    "section": "ENDOCRINOLOGY / METABOLIC",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 119,
+    "title": "Depression Screening: PHQ-9 and GAD-7",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 120,
+    "title": "Depression: Stepped Care Model and SSRI Prescribing",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 121,
+    "title": "SSRI Prescribing: Initiation, Side Effects and Discontinuation Syndrome",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 122,
+    "title": "Suicide Risk Assessment and Safety Planning",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 123,
+    "title": "Generalised Anxiety Disorder: Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 124,
+    "title": "First-Episode Psychosis: Assessment and Referral",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 125,
+    "title": "Schizophrenia: Positive and Negative Symptoms",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 126,
+    "title": "Antipsychotic Prescribing: Side Effects and Metabolic Monitoring",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 127,
+    "title": "Bipolar Disorder: Mania Recognition and Mood Stabilisers",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 128,
+    "title": "Lithium: Monitoring, Toxicity and Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 129,
+    "title": "Alcohol Dependence: CIWA Scoring, Pabrinex and Chlordiazepoxide Detox",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 130,
+    "title": "Wernicke Encephalopathy: Recognition and Treatment",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 131,
+    "title": "Opioid Overdose and Naloxone",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 132,
+    "title": "Eating Disorders: Recognition, Medical Complications and MARSIPAN",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 133,
+    "title": "Mental Health Act: Sections 2, 3, 5(2) and 136",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 134,
+    "title": "Mental Capacity Act: Two-Stage Test and Best Interests Decisions",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 135,
+    "title": "Deprivation of Liberty Safeguards (DoLS/LPS)",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 136,
+    "title": "Migraine: Diagnosis, Triptans and Prophylaxis",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 137,
+    "title": "Tension-Type Headache and Medication Overuse Headache",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 138,
+    "title": "Cluster Headache: Features, Oxygen and Sumatriptan",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 139,
+    "title": "Red Flag Headaches: Causes and Urgent Investigation",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 140,
+    "title": "Stroke: FAST Recognition, CT Head, Thrombolysis and Thrombectomy",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 141,
+    "title": "TIA: ABCD2 Score and Secondary Prevention",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 142,
+    "title": "Subarachnoid Haemorrhage: Thunderclap Headache, CT and LP",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 143,
+    "title": "Seizure Classification: Focal vs Generalised",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 144,
+    "title": "Status Epilepticus: Management Protocol",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 145,
+    "title": "Epilepsy: Antiepileptic Drug Choices by Seizure Type",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 146,
+    "title": "Epilepsy: Driving Regulations and Valproate in Women of Childbearing Age",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 147,
+    "title": "Multiple Sclerosis: Presentation, MRI and Disease-Modifying Therapies",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 148,
+    "title": "Parkinson Disease: Diagnosis and Medical Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 149,
+    "title": "Guillain-Barr\u00e9 Syndrome: Ascending Weakness, Spirometry and IVIg",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 150,
+    "title": "Bacterial Meningitis: Recognition, Lumbar Puncture and Antibiotics",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 151,
+    "title": "Peripheral Neuropathy: Causes and Nerve Conduction Studies",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 152,
+    "title": "Dementia Types: Alzheimer, Vascular, Lewy Body and Frontotemporal",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 153,
+    "title": "Cognitive Assessment Tools: AMT, MMSE, ACE-III and MoCA",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 154,
+    "title": "Delirium: CAM Criteria, 4AT Screening and Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 155,
+    "title": "Delirium vs Dementia: Key Differentiating Features",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 503,
+    "title": "Postnatal Depression: Edinburgh Scale, Screening and Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 504,
+    "title": "Treatment-Resistant Depression: Augmentation Strategies (Lithium, Quetiapine)",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 505,
+    "title": "Panic Disorder and Phobias: Diagnosis and CBT/SSRI Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 506,
+    "title": "Clozapine: Indications, CPMS Monitoring and Side Effects",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 507,
+    "title": "Depot Antipsychotic Injections: Indications and Monitoring",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 508,
+    "title": "Drug-Induced Psychosis: Cannabis, Stimulants and Novel Psychoactive Substances",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 509,
+    "title": "Alcohol-Related Brain Damage: Korsakoff Syndrome and Cerebellar Degeneration",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 510,
+    "title": "Opioid Substitution Therapy: Methadone and Buprenorphine Prescribing",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 511,
+    "title": "Novel Psychoactive Substances: Clinical Presentations and Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 512,
+    "title": "Smoking Cessation: NRT, Varenicline, Behavioural Support (NICE NG209)",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 513,
+    "title": "Community Treatment Orders: Criteria and Recall to Hospital",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 514,
+    "title": "Independent Mental Health Advocates: Role and Patient Rights",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 515,
+    "title": "Nearest Relative Rights Under the Mental Health Act",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 516,
+    "title": "Intracerebral Haemorrhage: CT Findings, Reversal of Anticoagulation and Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 517,
+    "title": "Stroke Rehabilitation: MDT Approach and Early Supported Discharge",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 518,
+    "title": "Non-Epileptic Attack Disorder: Recognition and Positive Clinical Signs",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 519,
+    "title": "Epilepsy in Pregnancy: Pre-Conception Counselling and Valproate PREVENT Programme",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 520,
+    "title": "Motor Neurone Disease: Recognition, MDT Care and Prognostic Discussion",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 521,
+    "title": "Peripheral Neuropathy: Systematic Investigation in Secondary Care",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 522,
+    "title": "Behavioural and Psychological Symptoms of Dementia: Non-Pharmacological and Drug Management",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 523,
+    "title": "Capacity Assessment in Dementia: Fluctuating Capacity and Best Interests",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 524,
+    "title": "Young-Onset Dementia: Investigation and Differential Diagnosis",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 525,
+    "title": "Emotionally Unstable Personality Disorder: Recognition, Crisis Management and Referral \u2605 NEW SUBTOPIC",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 526,
+    "title": "Post-Traumatic Stress Disorder: Diagnostic Criteria, Trauma-Focused CBT and EMDR \u2605 NEW SUBTOPIC",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 527,
+    "title": "Complex PTSD: Recognition and Differentiation from Simple PTSD \u2605 NEW SUBTOPIC",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 528,
+    "title": "Self-Harm: Compassionate Risk Assessment and Safety Planning (NICE NG225) \u2605 NEW SUBTOPIC",
+    "section": "PSYCHIATRY / NEUROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 156,
+    "title": "Rheumatoid Arthritis: Diagnosis, DMARDs and Biologic Therapy",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 157,
+    "title": "Gout: Acute Attack Management and Urate-Lowering Therapy",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 158,
+    "title": "Pseudogout (CPPD): Recognition and Joint Aspiration",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 159,
+    "title": "Crystal Arthropathy: Synovial Fluid Analysis",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 160,
+    "title": "Reactive Arthritis and Psoriatic Arthritis",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 161,
+    "title": "Ankylosing Spondylitis: Features, HLA-B27 and Imaging",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 162,
+    "title": "Osteoarthritis: Clinical Diagnosis, X-Ray Features and Management",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 163,
+    "title": "Back Pain Red Flags and Cauda Equina Syndrome",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 164,
+    "title": "Spinal Stenosis vs Disc Prolapse",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 165,
+    "title": "Osteoporosis: FRAX Scoring, DEXA T-Scores and Treatment Thresholds",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 166,
+    "title": "Bisphosphonates: Prescribing, Side Effects and Drug Holidays",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 167,
+    "title": "Falls Risk Assessment in Elderly Patients",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 168,
+    "title": "Systemic Lupus Erythematosus: Presentation, ANA/dsDNA and Management",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 169,
+    "title": "Polymyalgia Rheumatica: Diagnosis, Prednisolone and GCA Association",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 170,
+    "title": "Giant Cell Arteritis: Emergency Management and Temporal Artery Biopsy",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 171,
+    "title": "ANCA-Associated Vasculitis: Types and Urgent Referral",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 172,
+    "title": "Scleroderma and Raynaud Phenomenon",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 173,
+    "title": "Septic Arthritis: Urgent Joint Aspiration and IV Antibiotics",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 174,
+    "title": "Compartment Syndrome: Recognition and Fasciotomy",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 175,
+    "title": "Carpal Tunnel Syndrome: Diagnosis and Management",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 176,
+    "title": "Inflammatory Markers: ESR and CRP Interpretation",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 177,
+    "title": "Autoantibody Testing: ANA, ANCA, RF and Anti-CCP",
+    "section": "MUSCULOSKELETAL",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 529,
+    "title": "Treat-to-Target in Rheumatoid Arthritis: DAS28 and Escalation Strategy",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 530,
+    "title": "Axial Spondyloarthropathy: Inflammatory Back Pain Criteria and MRI Findings",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 531,
+    "title": "Cervical Myelopathy: Recognition and Urgent Referral",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 532,
+    "title": "Knee Examination: Systematic Approach and Common Pathology",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 533,
+    "title": "Shoulder Examination: Rotator Cuff Disease and Frozen Shoulder",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 534,
+    "title": "Denosumab and Teriparatide: Indications and Monitoring",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 535,
+    "title": "Steroid-Induced Osteoporosis: Prevention and Treatment Strategy",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 536,
+    "title": "Vertebral Fracture: Recognition, Pain Management and Secondary Prevention",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 537,
+    "title": "Antiphospholipid Syndrome: Thrombosis, Pregnancy Complications and Anticoagulation",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 538,
+    "title": "Dermatomyositis and Polymyositis: CK, Anti-Jo-1 and Malignancy Screening",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 539,
+    "title": "Necrotising Fasciitis: LRINEC Score, Recognition and Urgent Surgical Referral",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 540,
+    "title": "Tendinopathy: Common Sites, Conservative Management and Injection Therapy",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 541,
+    "title": "X-Ray Interpretation of Joint Pathology: OA, RA, Gout and Chondrocalcinosis",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 542,
+    "title": "MRI and Ultrasound in Musculoskeletal Disease: Indications and Interpretation",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 543,
+    "title": "Fibromyalgia: Diagnosis, Widespread Pain Index and ACR Criteria \u2605 NEW SUBTOPIC",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 544,
+    "title": "Chronic Primary Pain: NICE NG193 Guideline \u2014 No Opioids, Exercise and Psychological Therapy \u2605 NEW SUBTOPIC",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 545,
+    "title": "Biopsychosocial Model of Chronic Pain: Assessment and MDT Approach \u2605 NEW SUBTOPIC",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 546,
+    "title": "Pain Management Programmes: Structure, Referral and Evidence \u2605 NEW SUBTOPIC",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 547,
+    "title": "Neuropathic Pain Pharmacotherapy: Amitriptyline, Gabapentin, Pregabalin and Duloxetine \u2605 NEW SUBTOPIC",
+    "section": "MUSCULOSKELETAL",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 178,
+    "title": "Urinary Tract Infection: Diagnosis, Empirical Antibiotics and Complicated vs Uncomplicated",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 179,
+    "title": "Cellulitis: Diagnosis, Severity and Management",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 180,
+    "title": "Sepsis: Recognition with NEWS2, Sepsis Six and Empirical Antibiotics",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 181,
+    "title": "Clostridioides difficile: Diagnosis, Fidaxomicin and Vancomycin",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 182,
+    "title": "MRSA: Screening, Decolonisation and Treatment",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 183,
+    "title": "Antibiotic Prescribing Principles: Narrow Spectrum and De-Escalation",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 184,
+    "title": "Common Antibiotic Side Effects and Drug Interactions",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 185,
+    "title": "Penicillin Allergy: Assessment and Cross-Reactivity",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 186,
+    "title": "HIV: Testing, Antiretroviral Therapy and Monitoring",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 187,
+    "title": "Post-Exposure Prophylaxis: PEP and PrEP",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 188,
+    "title": "Malaria: Prophylaxis, Diagnosis and Treatment",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 189,
+    "title": "Returning Traveller: Clinical Assessment",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 190,
+    "title": "Iron Deficiency Anaemia: Investigation and Iron Replacement",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 191,
+    "title": "B12 and Folate Deficiency: Causes, Neurological Features and Replacement",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 192,
+    "title": "Anaemia of Chronic Disease",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 193,
+    "title": "Haemolytic Anaemia: Direct Coombs Test and Causes",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 194,
+    "title": "Sickle Cell Disease: Crisis Management and Hydroxyurea",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 195,
+    "title": "Thalassaemia: Carrier Screening and Management",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 196,
+    "title": "Leukaemia: Presentation, Blood Film and Urgent Referral",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 197,
+    "title": "Lymphoma: B Symptoms, Staging and 2-Week Wait Referral",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 198,
+    "title": "Myeloma: Presentation, Serum Electrophoresis and Bence Jones Protein",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 199,
+    "title": "Neutropenic Sepsis: Emergency Management Protocol",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 200,
+    "title": "Disseminated Intravascular Coagulation: Recognition and Management",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 201,
+    "title": "Anticoagulation: Warfarin INR Monitoring, DOACs and Reversal Agents",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 202,
+    "title": "VTE Prophylaxis in Hospitalised Patients",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 203,
+    "title": "Heparin-Induced Thrombocytopenia",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 204,
+    "title": "Bleeding Disorders: Haemophilia and von Willebrand Disease",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 205,
+    "title": "Anaphylaxis: Recognition, IM Adrenaline and Post-Event Management",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 206,
+    "title": "Drug Allergy: Assessment and Documentation",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 207,
+    "title": "Allergic Rhinitis and Urticaria Management",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 208,
+    "title": "Immunosuppressive Therapy: Monitoring and Complications",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 209,
+    "title": "Common Genetic Conditions: Down, Turner and Klinefelter Syndromes",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 210,
+    "title": "Inheritance Patterns: Autosomal Dominant/Recessive and X-Linked",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 211,
+    "title": "Prenatal Screening and Diagnostic Tests",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 548,
+    "title": "Infective Endocarditis: Duke Criteria, Organisms and Empirical Therapy",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 549,
+    "title": "Osteomyelitis: Acute vs Chronic, MRI Diagnosis and Prolonged Antibiotics",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 550,
+    "title": "Prosthetic Joint Infection: Diagnosis and Management",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 551,
+    "title": "COVID-19: Current Guidance, Antivirals and Post-COVID Syndrome",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 552,
+    "title": "Gentamicin Dosing and Therapeutic Drug Monitoring",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 553,
+    "title": "Antibiotic Resistance: ESBL, CPE and Clinical Implications",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 554,
+    "title": "HIV Indicator Conditions: When to Offer Testing in Hospital",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 555,
+    "title": "Opportunistic Infections in HIV: PCP, Toxoplasma, CMV and Cryptococcal Meningitis",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 556,
+    "title": "Pancytopenia: Differential Diagnosis, Investigation and Urgent Referral",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 557,
+    "title": "Haemolytic Uraemic Syndrome: E. coli O157, TMA and Supportive Care",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 558,
+    "title": "Myelodysplastic Syndromes: Cytopenias, Dysplasia and AML Transformation Risk",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 559,
+    "title": "Polycythaemia: Primary (PV with JAK2) vs Secondary, Investigation and Phlebotomy",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 560,
+    "title": "Thrombotic Thrombocytopenic Purpura: ADAMTS13, Pentad and Plasma Exchange",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 561,
+    "title": "Massive Transfusion Protocol: Ratios, Calcium and Warming",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 562,
+    "title": "Hereditary Angioedema: C1 Esterase Inhibitor Deficiency and Emergency Management",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 563,
+    "title": "Primary Immunodeficiency: Red Flags for Recognition and Referral",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 564,
+    "title": "Pharmacogenomics Basics: TPMT, HLA-B*5701 and Clinical Relevance",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 565,
+    "title": "UK Adult Immunisation Schedule: Influenza, Pneumococcal, Shingles and COVID-19 \u2605 NEW SUBTOPIC",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 566,
+    "title": "Travel Vaccination Advice: Risk Assessment and Common Vaccines \u2605 NEW SUBTOPIC",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 567,
+    "title": "Live vs Inactivated Vaccines in Immunosuppressed Patients \u2605 NEW SUBTOPIC",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 568,
+    "title": "Vaccination in Pregnancy: Pertussis, Influenza and RSV \u2605 NEW SUBTOPIC",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 569,
+    "title": "Blood Products: Packed Red Cells, FFP, Platelets and Cryoprecipitate \u2605 NEW SUBTOPIC",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 570,
+    "title": "Transfusion Reactions: Febrile, Allergic, Haemolytic, TRALI and TACO \u2605 NEW SUBTOPIC",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 571,
+    "title": "Consent for Blood Transfusion and Jehovah\u2019s Witness Refusal \u2605 NEW SUBTOPIC",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 572,
+    "title": "Iron Deficiency: When to Transfuse vs When to Give IV Iron \u2605 NEW SUBTOPIC",
+    "section": "INFECTIOUS DISEASE / HAEMATOLOGY / IMMUNOLOGY / GENETICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 212,
+    "title": "Acute Kidney Injury: KDIGO Staging, Causes and Recognition",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 213,
+    "title": "AKI Management: Fluid Resuscitation, Nephrotoxin Cessation and Dialysis Indications",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 214,
+    "title": "Chronic Kidney Disease: eGFR Staging and Albumin:Creatinine Ratio",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 215,
+    "title": "CKD: Cardiovascular Risk, Renal Anaemia and Mineral Bone Disease",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 216,
+    "title": "Drug Dose Adjustment in Renal Impairment",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 217,
+    "title": "Hyperkalaemia: ECG Features and Emergency Management",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 218,
+    "title": "Hypokalaemia: Causes and Safe Potassium Replacement",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 219,
+    "title": "Hyponatraemia: Volume Status Assessment and Management",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 220,
+    "title": "Hypernatraemia and Metabolic Acidosis with Anion Gap Interpretation",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 221,
+    "title": "Urinary Tract Infections: Lower vs Upper, Recurrent UTI",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 222,
+    "title": "Acute Urinary Retention: Catheterisation and Post-Obstructive Diuresis",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 223,
+    "title": "Benign Prostatic Hyperplasia: Alpha-Blockers and 5-Alpha Reductase Inhibitors",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 224,
+    "title": "Prostate Cancer: PSA Testing and Referral Criteria",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 225,
+    "title": "Renal and Ureteric Calculi: CT KUB, Analgesia and Intervention",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 226,
+    "title": "Haematuria: Investigation Pathway (Visible vs Non-Visible)",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 227,
+    "title": "Nephrotic Syndrome: Features, Causes and Investigation",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 228,
+    "title": "Nephritic Syndrome: Features, Causes and Urgency",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 229,
+    "title": "Polycystic Kidney Disease: Screening and Management",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 230,
+    "title": "Renal Replacement Therapy: Haemodialysis vs Peritoneal Dialysis",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 231,
+    "title": "IV Fluid Prescribing: 0.9% Saline, Hartmann's and Dextrose",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 232,
+    "title": "Maintenance Fluid Requirements and Fluid Balance Assessment",
+    "section": "RENAL / UROLOGY",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 573,
+    "title": "AKI in Sepsis: Pathophysiology and Fluid Management",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 574,
+    "title": "Contrast-Induced AKI: Prevention and Hydration Strategy",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 575,
+    "title": "Rhabdomyolysis: CK, Aggressive Hydration and AKI Prevention",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 576,
+    "title": "AKI Drug Dose Adjustments: Key Nephrotoxic Medications",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 577,
+    "title": "SGLT2 Inhibitors in CKD: Kidney Protection Evidence (NICE TA775)",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 578,
+    "title": "CKD and Pregnancy: Pre-Conception Counselling and Risks",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 579,
+    "title": "Hypernatraemia: Free Water Deficit, Causes and Cautious Correction",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 580,
+    "title": "Metabolic Alkalosis: Chloride-Responsive vs Chloride-Resistant Causes",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 581,
+    "title": "Bladder Cancer: Visible Haematuria, Cystoscopy and Referral",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 582,
+    "title": "Catheter Complications: CAUTI, Blockage, Bypassing and Management",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 583,
+    "title": "Post-Obstructive Diuresis: Recognition and Fluid Replacement",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 584,
+    "title": "IgA Nephropathy: Post-URTI Haematuria and Prognosis",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 585,
+    "title": "Lupus Nephritis: Classification and Immunosuppressive Management",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 586,
+    "title": "Minimal Change Disease: Podocyte Pathology and Steroid Response",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 587,
+    "title": "Electrolyte Content of Common IV Fluids: 0.9% Saline, Hartmann\u2019s and Dextrose",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 588,
+    "title": "Fluid Management in Heart Failure and CKD: Balancing Risks",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 589,
+    "title": "Haemodialysis vs Peritoneal Dialysis: Indications, Access and Patient Choice \u2605 NEW SUBTOPIC",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 590,
+    "title": "Dialysis Access: AV Fistula, Tunnelled Line and Tenckhoff Catheter \u2605 NEW SUBTOPIC",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 591,
+    "title": "Common Dialysis Complications: Hypotension, Access Infection and Disequilibrium \u2605 NEW SUBTOPIC",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 592,
+    "title": "Renal Transplantation: Basic Immunosuppression and Common Complications \u2605 NEW SUBTOPIC",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 593,
+    "title": "Post-Transplant Infection Risk: Timeline and Prophylaxis \u2605 NEW SUBTOPIC",
+    "section": "RENAL / UROLOGY",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 233,
+    "title": "Eczema (Atopic Dermatitis): Emollients, Topical Steroids and Steroid Ladder",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 234,
+    "title": "Psoriasis: Types, Topical Therapy and Systemic Treatment",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 235,
+    "title": "Acne Vulgaris: Stepwise Management and Isotretinoin Referral",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 236,
+    "title": "Fungal Skin Infections: Dermatophytes, Candida and Treatment",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 237,
+    "title": "Skin Cancer: Melanoma ABCDE Criteria, BCC, SCC and 2-Week Wait",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 238,
+    "title": "Drug Eruptions: Recognition and Causative Agents",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 239,
+    "title": "Stevens-Johnson Syndrome and Toxic Epidermal Necrolysis",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 240,
+    "title": "Herpes Zoster: Antiviral Treatment and Post-Herpetic Neuralgia",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 241,
+    "title": "Urticaria and Angioedema Management",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 242,
+    "title": "Otitis Media and Otitis Externa: Diagnosis and Management",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 243,
+    "title": "Hearing Loss: Conductive vs Sensorineural and Audiometry",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 244,
+    "title": "Sore Throat: Centor Criteria, FeverPAIN and Antibiotic Use",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 245,
+    "title": "Peritonsillar Abscess (Quinsy): Diagnosis and Drainage",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 246,
+    "title": "Sinusitis: Acute vs Chronic and Management",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 247,
+    "title": "Epistaxis: First Aid, Anterior/Posterior Packing and Cautery",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 248,
+    "title": "Hoarseness: Red Flags and 2-Week Wait Laryngoscopy Referral",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 249,
+    "title": "Vertigo: BPPV (Epley Manoeuvre), Vestibular Neuritis and Meni\u00e8re Disease",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 250,
+    "title": "Red Eye Differential: Conjunctivitis, Anterior Uveitis, Glaucoma and Keratitis",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 251,
+    "title": "Acute Angle-Closure Glaucoma: Emergency Management",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 252,
+    "title": "Diabetic Retinopathy: Screening, Stages and Referral",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 253,
+    "title": "Age-Related Macular Degeneration: Wet vs Dry",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 254,
+    "title": "Sudden Visual Loss: Causes and Urgent Referral",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 255,
+    "title": "Burns Assessment: Wallace Rule of Nines and Depth Classification",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 256,
+    "title": "Pressure Ulcers: Prevention and Grading",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 257,
+    "title": "Leg Ulcers: Venous vs Arterial Differentiation and Management",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 594,
+    "title": "Lichen Planus: Oral, Cutaneous and Genital Manifestations",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 595,
+    "title": "Rosacea: Subtypes, Triggers and Stepwise Management",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 596,
+    "title": "Pemphigus and Bullous Pemphigoid: Recognition and Emergency Referral",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 597,
+    "title": "Erythema Multiforme: Target Lesions, HSV Association and Management",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 598,
+    "title": "Sudden Sensorineural Hearing Loss: Emergency Steroid Treatment and Referral",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 599,
+    "title": "Obstructive Sleep Apnoea: ENT Assessment, Tonsillectomy and CPAP",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 600,
+    "title": "Giant Cell Arteritis and Acute Visual Loss: Emergency Steroids and Biopsy",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 601,
+    "title": "Open-Angle Glaucoma: Diagnosis, Prostaglandin Eye Drops and Monitoring",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 602,
+    "title": "Retinal Detachment: Floaters, Flashes and Urgent Ophthalmology Referral",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 603,
+    "title": "Common Eye Medications: Drops, Ointments, Dilators and Their Uses",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 604,
+    "title": "Wound Assessment and Closure Techniques: Sutures, Staples, Glue",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 605,
+    "title": "Skin Biopsy: Indications, Techniques and When to Refer",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 606,
+    "title": "Skin Lesion Excision Margins: Melanoma, BCC and SCC",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 607,
+    "title": "Dental Abscess: Presentation, Antibiotics and Drainage in Hospital \u2605 NEW SUBTOPIC",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 608,
+    "title": "Ludwig Angina: Airway Emergency Recognition and Management \u2605 NEW SUBTOPIC",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 609,
+    "title": "Oral Candidiasis: Types, Predisposing Factors and Treatment \u2605 NEW SUBTOPIC",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 610,
+    "title": "Oral Ulceration: Differential Diagnosis from Aphthous to Malignancy \u2605 NEW SUBTOPIC",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 611,
+    "title": "Post-Extraction Bleeding: First Aid and Management in A&E \u2605 NEW SUBTOPIC",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 612,
+    "title": "Dental Trauma: Avulsed Tooth First Aid and Reimplantation \u2605 NEW SUBTOPIC",
+    "section": "DERMATOLOGY / ENT / EYES",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 258,
+    "title": "Pre-Eclampsia: Diagnosis, Magnesium Sulphate and Delivery Planning",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 259,
+    "title": "Eclampsia: Emergency Management",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 260,
+    "title": "Ectopic Pregnancy: Risk Factors, Diagnosis and Management",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 261,
+    "title": "Miscarriage: Classification and Management Options",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 262,
+    "title": "Antepartum Haemorrhage: Placenta Praevia vs Abruption",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 263,
+    "title": "Postpartum Haemorrhage: Causes and Stepwise Management",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 264,
+    "title": "VTE in Pregnancy: LMWH and Risk Assessment",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 265,
+    "title": "Routine Antenatal Screening Schedule",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 266,
+    "title": "Gestational Diabetes: OGTT Diagnosis and Management",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 267,
+    "title": "Medications in Pregnancy: Teratogenicity and Safe Prescribing",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 268,
+    "title": "Rhesus Disease and Anti-D Prophylaxis",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 269,
+    "title": "Group B Streptococcus: Screening and Intrapartum Prophylaxis",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 270,
+    "title": "Menorrhagia: Investigation and Management",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 271,
+    "title": "Endometriosis: Diagnosis and Medical/Surgical Management",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 272,
+    "title": "Polycystic Ovary Syndrome: Rotterdam Criteria and Management",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 273,
+    "title": "Cervical Screening Programme and HPV Vaccination",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 274,
+    "title": "Ovarian Cysts and Ovarian Cancer: RMI Scoring and Referral",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 275,
+    "title": "Pelvic Inflammatory Disease: Diagnosis and Antibiotics",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 276,
+    "title": "Post-Menopausal Bleeding: Investigation Pathway",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 277,
+    "title": "Contraception: LARC, Combined Pill, POP and Barrier Methods",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 278,
+    "title": "Emergency Contraception: Timing, Levonorgestrel, Ulipristal and Copper IUD",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 279,
+    "title": "STI Screening: Chlamydia, Gonorrhoea, Syphilis and HIV",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 280,
+    "title": "Combined Oral Contraceptive: UKMEC Criteria and Contraindications",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 281,
+    "title": "Breast Lump: Triple Assessment and 2-Week Wait Referral",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 282,
+    "title": "Postnatal Depression: Screening and Management",
+    "section": "REPRODUCTIVE",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 613,
+    "title": "Cord Prolapse: Emergency Recognition and Management",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 614,
+    "title": "Shoulder Dystocia: McRoberts Manoeuvre and Emergency Drill",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 615,
+    "title": "Obstetric Cholestasis: Bile Acids, Ursodeoxycholic Acid and Delivery Timing",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 616,
+    "title": "Anaemia in Pregnancy: Iron Supplementation and IV Iron Indications",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 617,
+    "title": "Post-Menopausal Bleeding: Investigation Pathway and Endometrial Cancer Exclusion",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 618,
+    "title": "Uterine Fibroids: Types, Symptom Management and Surgical Options",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 619,
+    "title": "Vulval Conditions: Lichen Sclerosus and Vulval Cancer Red Flags",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 620,
+    "title": "Subfertility: Initial Investigations for Male and Female Partners",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 621,
+    "title": "Contraception After Pregnancy and During Breastfeeding: UKMEC Guidance",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 622,
+    "title": "Male Contraception and Vasectomy: Counselling and Complications",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 623,
+    "title": "Mastitis and Breast Abscess: Diagnosis and Management in Breastfeeding Women",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 624,
+    "title": "Secondary PPH and Puerperal Sepsis: Recognition and Emergency Management",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 625,
+    "title": "Breast Cancer: Risk Factors, NHS Screening Programme and 2WW Referral",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 626,
+    "title": "Menopause: Clinical Diagnosis in Women Over 45 (NICE NG23) \u2605 NEW SUBTOPIC",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 627,
+    "title": "HRT: Types, Preparations, Indications and Contraindications \u2605 NEW SUBTOPIC",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 628,
+    "title": "HRT and Risk: Breast Cancer, VTE and Cardiovascular \u2014 Balanced Discussion \u2605 NEW SUBTOPIC",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 629,
+    "title": "Non-Hormonal Alternatives for Vasomotor Symptoms: CBT, SSRIs and Gabapentin \u2605 NEW SUBTOPIC",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 630,
+    "title": "Premature Ovarian Insufficiency: Diagnosis and Long-Term HRT \u2605 NEW SUBTOPIC",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 631,
+    "title": "Genitourinary Syndrome of Menopause: Vaginal Oestrogen Prescribing \u2605 NEW SUBTOPIC",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 632,
+    "title": "Bone Health in Menopause: Osteoporosis Prevention and Monitoring \u2605 NEW SUBTOPIC",
+    "section": "REPRODUCTIVE",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 283,
+    "title": "Paediatric Sepsis: Recognition, Fluid Bolus and Antibiotics",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 284,
+    "title": "Meningitis in Children: Lumbar Puncture and Empirical Antibiotics",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 285,
+    "title": "Bronchiolitis: RSV, Supportive Management and Admission Criteria",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 286,
+    "title": "Croup: Stridor Assessment, Dexamethasone and Nebulised Adrenaline",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 287,
+    "title": "Status Epilepticus in Children: Buccal Midazolam and IV Lorazepam",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 288,
+    "title": "Paediatric DKA: Fluid Protocol Differences from Adults",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 289,
+    "title": "Non-Accidental Injury: Recognition and Safeguarding Referral",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 290,
+    "title": "Childhood Asthma: Diagnosis and Management",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 291,
+    "title": "Paediatric UTI: Investigation and NICE Imaging Guidelines",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 292,
+    "title": "Gastroenteritis and Dehydration Assessment in Children",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 293,
+    "title": "Fever in Children: NICE Traffic Light System",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 294,
+    "title": "Febrile Seizures: Simple vs Complex, Management and Parental Advice",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 295,
+    "title": "Common Childhood Rashes: Measles, Chickenpox, Scarlet Fever and Hand Foot Mouth",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 296,
+    "title": "Kawasaki Disease: Diagnostic Criteria, Aspirin and IVIg",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 297,
+    "title": "Normal Developmental Milestones",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 298,
+    "title": "Faltering Growth (Failure to Thrive): Assessment and Management",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 299,
+    "title": "Newborn Screening: Blood Spot Test and Hearing Screening",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 300,
+    "title": "Childhood Immunisation Schedule",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 301,
+    "title": "Puberty: Normal, Precocious and Delayed",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 302,
+    "title": "Neonatal Jaundice: Physiological vs Pathological and Phototherapy",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 303,
+    "title": "Congenital Heart Disease: Recognition in Neonates",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 304,
+    "title": "Neonatal Sepsis: Risk Factors and Empirical Antibiotics",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 305,
+    "title": "Child Safeguarding: Recognition of Abuse Types",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 306,
+    "title": "Fabricated or Induced Illness: Recognition",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 307,
+    "title": "Cystic Fibrosis: Newborn Screening and Management Principles",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 308,
+    "title": "ADHD and Autism Spectrum Disorder: Recognition and Referral",
+    "section": "PAEDIATRICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 633,
+    "title": "Paediatric Anaphylaxis: Adrenaline Dosing by Age and Weight",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 634,
+    "title": "Paediatric Basic Life Support: Ratios and Key Differences from Adult BLS",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 635,
+    "title": "Kawasaki Disease: Full Diagnostic Criteria, Aspirin and IVIg Protocol",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 636,
+    "title": "Childhood Eczema: Emollient Strategy, Topical Steroid Potency and Wet Wraps",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 637,
+    "title": "Constipation in Children: Assessment, Movicol Regimen and Disimpaction",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 638,
+    "title": "Puberty: Normal Timing, Precocious and Delayed \u2014 When to Investigate",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 639,
+    "title": "Autism Spectrum Disorder: Recognition, Referral and Reasonable Adjustments",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 640,
+    "title": "Growth Charts: Interpretation, Short Stature and Tall Stature Referral",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 641,
+    "title": "Neonatal Hypoglycaemia: Risk Factors, Monitoring and Management",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 642,
+    "title": "Neonatal Resuscitation: ABC Approach and Key Differences from Adult Resus",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 643,
+    "title": "Feeding Difficulties in Neonates: Assessment and Support",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 644,
+    "title": "Looked-After Children: Health Assessments and Special Considerations",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 645,
+    "title": "Fabricated or Induced Illness: Recognition and Multi-Agency Response",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 646,
+    "title": "Domestic Abuse: Impact on Children and Safeguarding Responsibilities",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 647,
+    "title": "Juvenile Idiopathic Arthritis: Types, Uveitis Screening and Treatment",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 648,
+    "title": "Type 1 Diabetes in Children: MDI, Pump Therapy and School Management",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 649,
+    "title": "Transition from Paediatric to Adult Services: Planning and Handover",
+    "section": "PAEDIATRICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 650,
+    "title": "Adolescent Depression and Anxiety: Recognition and CAMHS Referral Criteria \u2605 NEW SUBTOPIC",
+    "section": "PAEDIATRICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 651,
+    "title": "Self-Harm in Young People: Risk Assessment, Safety Planning and Follow-Up \u2605 NEW SUBTOPIC",
+    "section": "PAEDIATRICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 652,
+    "title": "Eating Disorders in Adolescents: Medical Complications and MARSIPAN in Under-18s \u2605 NEW SUBTOPIC",
+    "section": "PAEDIATRICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 653,
+    "title": "School Refusal and Anxiety-Based School Avoidance: Assessment and Support \u2605 NEW SUBTOPIC",
+    "section": "PAEDIATRICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 654,
+    "title": "ADHD and Autism: Initial Assessment, Questionnaires and Referral Pathway \u2605 NEW SUBTOPIC",
+    "section": "PAEDIATRICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 655,
+    "title": "Consent and Confidentiality in Adolescents: Gillick Competence in Practice \u2605 NEW SUBTOPIC",
+    "section": "PAEDIATRICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 309,
+    "title": "Safe Prescribing Principles: Dose, Route, Frequency and Duration",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 310,
+    "title": "Drug Interactions: Warfarin, Statins, Antiepileptics and Antibiotics",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 311,
+    "title": "Renal and Hepatic Drug Dose Adjustments",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 312,
+    "title": "Prescribing in Pregnancy and Breastfeeding",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 313,
+    "title": "Prescribing in the Elderly: STOPP/START Criteria and Polypharmacy",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 314,
+    "title": "Adverse Drug Reactions: Recognition and Yellow Card Reporting",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 315,
+    "title": "High-Risk Medications: Insulin, Opioids, Anticoagulants and Methotrexate",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 316,
+    "title": "WHO Analgesic Ladder",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 317,
+    "title": "Paracetamol Overdose: Rumack-Matthew Nomogram and NAC Protocol",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 318,
+    "title": "Opioid Prescribing: Equianalgesic Dosing and Side Effects",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 319,
+    "title": "Neuropathic Pain: Amitriptyline, Gabapentin and Pregabalin",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 320,
+    "title": "NSAIDs: Indications, Contraindications and GI Protection",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 321,
+    "title": "Palliative Care Pain Management and Syringe Driver Drugs",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 322,
+    "title": "Warfarin: Initiation, INR Targets, Interactions and Reversal",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 323,
+    "title": "DOACs: Dosing, Renal Considerations and Reversal Agents",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 324,
+    "title": "Heparin: LMWH vs Unfractionated and HIT Monitoring",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 325,
+    "title": "Antiplatelet Therapy: Aspirin, Clopidogrel and Dual Therapy Duration",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 326,
+    "title": "Antibiotic Classes: Mechanisms, Spectrums and Side Effects",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 327,
+    "title": "Aminoglycoside Monitoring: Gentamicin Levels",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 328,
+    "title": "Antibiotic Prophylaxis: Indications",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 329,
+    "title": "Emergency Drugs: Adrenaline, Naloxone, Atropine, Amiodarone and Glucose",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 330,
+    "title": "Therapeutic Drug Monitoring: Digoxin, Lithium, Phenytoin and Aminoglycosides",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 331,
+    "title": "Common Poisoning Presentations and Antidotes",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 332,
+    "title": "Serotonin Syndrome and Neuroleptic Malignant Syndrome",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 333,
+    "title": "Drug Withdrawal Syndromes",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v1.0",
+    "type": "CPS"
+  },
+  {
+    "number": 656,
+    "title": "Medication Reconciliation on Admission and Discharge",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 657,
+    "title": "Deprescribing: Principles, Approach and Common Candidates for Stopping",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 658,
+    "title": "Opioid Conversion Calculations: Oral Morphine Equivalence Table",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 659,
+    "title": "Chronic Pain and Opioid Avoidance: NICE NG193 Recommendations",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 660,
+    "title": "Perioperative Anticoagulation Management: Bridging and Timing",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 661,
+    "title": "Anticoagulation in AF: When to Start, Switch and Stop",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 662,
+    "title": "Antibiotic Prophylaxis: Surgical, Endocarditis and Splenectomy Indications",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 663,
+    "title": "Tuberculosis Treatment: RIPE Regimen, Hepatotoxicity Monitoring and DOT",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 664,
+    "title": "Alteplase for Stroke and PE Thrombolysis: Dosing, Timing and Contraindications",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 665,
+    "title": "Activated Charcoal and Whole Bowel Irrigation: Indications and Timing",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 666,
+    "title": "Drug Withdrawal Syndromes: Alcohol, Opioids, Benzodiazepines and SSRIs",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0",
+    "type": "CPS"
+  },
+  {
+    "number": 667,
+    "title": "Drug Calculations: Dose by Weight, Infusion Rate and Dilution \u2605 NEW SUBTOPIC",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 668,
+    "title": "Insulin Dose Adjustment and Variable Rate Insulin Infusion (Sliding Scale) \u2605 NEW SUBTOPIC",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 669,
+    "title": "IV Fluid Rate Calculations and Daily Fluid Requirements \u2605 NEW SUBTOPIC",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 670,
+    "title": "Unit Conversions in Prescribing: mg to mmol, mcg to mg, mL/hr to drops/min \u2605 NEW SUBTOPIC",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 671,
+    "title": "Prescription Writing Standards: FP10 Requirements and Common Errors \u2605 NEW SUBTOPIC",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 672,
+    "title": "Controlled Drug Prescribing Regulations: Schedule 2\u20135 and Safe Storage \u2605 NEW SUBTOPIC",
+    "section": "PHARMACOLOGY & THERAPEUTICS",
+    "source": "v2.0 \u2605",
+    "type": "CPS"
+  },
+  {
+    "number": 334,
+    "title": "Duty of Candour: When and How to Disclose Errors to Patients",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 335,
+    "title": "Honesty with Patients About Diagnosis, Prognosis and Uncertainty",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 336,
+    "title": "Medical Records: Accurate and Honest Documentation",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 337,
+    "title": "Conflicts of Interest: Declaring and Managing Them",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 338,
+    "title": "Whistleblowing: Raising Concerns About Patient Safety",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 339,
+    "title": "Escalation Pathways for Patient Safety Concerns",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 340,
+    "title": "Recognising and Acting on Colleague Impairment",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 341,
+    "title": "Never Events and Serious Incident Reporting",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 342,
+    "title": "Caldicott Principles and Information Governance",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 343,
+    "title": "Breaching Confidentiality: Public Interest and Statutory Duty",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 344,
+    "title": "Social Media and Patient Confidentiality",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 345,
+    "title": "Access to Medical Records: Patient Requests and Third Parties",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 346,
+    "title": "Scope of Practice: Working Within Your Competence as an F2",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 347,
+    "title": "Recognising Limitations and Seeking Senior Help",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 348,
+    "title": "Appropriate Delegation and Refusal of Tasks Beyond Competence",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 349,
+    "title": "Handover of Care and Ensuring Continuity",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 350,
+    "title": "Valid Consent: Informed, Voluntary and Capacity",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 351,
+    "title": "Mental Capacity Act: Two-Stage Test in Practice",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 352,
+    "title": "Best Interests Decisions for Patients Lacking Capacity",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 353,
+    "title": "Gillick Competence and Fraser Guidelines for Under-16s",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 354,
+    "title": "Advance Decisions and Lasting Power of Attorney",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 355,
+    "title": "Four Pillars of Medical Ethics: Autonomy, Beneficence, Non-Maleficence, Justice",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 356,
+    "title": "End-of-Life Decisions: DNACPR and Treatment Withdrawal",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 357,
+    "title": "Jehovah's Witness Blood Refusal: Legal and Ethical Framework",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 358,
+    "title": "GMC Good Medical Practice: Core Principles",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 359,
+    "title": "Maintaining Professional Boundaries with Patients",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 360,
+    "title": "Social Media Conduct for Doctors",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 361,
+    "title": "Fitness to Practise: Understanding GMC Investigations",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 362,
+    "title": "Appraisal and Revalidation",
+    "section": "PAPER 1: PROFESSIONAL INTEGRITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 363,
+    "title": "Prioritising Tasks When Multiple Clinical Demands Exist",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 364,
+    "title": "Appropriate Escalation When Overwhelmed",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 365,
+    "title": "Time Management in Acute Clinical Settings",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 366,
+    "title": "Recognising Unsafe Workload and Exception Reporting",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 367,
+    "title": "Making Clinical Decisions with Incomplete Information",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 368,
+    "title": "Managing Uncertainty While Maintaining Patient Safety",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 369,
+    "title": "Communicating Uncertainty to Patients and Families",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 370,
+    "title": "When to Seek a Second Opinion",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 371,
+    "title": "Recognising Burnout, Stress and Fatigue in Yourself",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 372,
+    "title": "Work-Life Balance Strategies for Junior Doctors",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 373,
+    "title": "Occupational Health Support and Accessing Help",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 374,
+    "title": "Impact of Personal Health on Patient Care",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 375,
+    "title": "Duty of Candour After Clinical Errors",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 376,
+    "title": "Datix/Incident Reporting and Learning from Mistakes",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 377,
+    "title": "Responding to Patient Complaints Professionally",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 378,
+    "title": "Supporting Colleagues Involved in Adverse Incidents",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 379,
+    "title": "Clinical Prioritisation of the Acutely Unwell: NEWS2 and Escalation",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 380,
+    "title": "SBAR Framework for Handover and Prioritisation",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 381,
+    "title": "Managing Competing Clinical Demands On-Call",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 382,
+    "title": "Resilience: Adapting to Changing Clinical Situations",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 383,
+    "title": "Coping with Emotionally Challenging Situations: Death and Poor Outcomes",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 384,
+    "title": "Learning from Feedback and Criticism Constructively",
+    "section": "PAPER 1: COPING WITH PRESSURE",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 385,
+    "title": "Breaking Bad News: SPIKES Framework",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 386,
+    "title": "Explaining Diagnosis and Treatment in Plain Language",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 387,
+    "title": "Active Listening and Responding to Patient Concerns",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 388,
+    "title": "Shared Decision Making with Patients",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 389,
+    "title": "Communicating with Patients with Language or Cognitive Barriers",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 390,
+    "title": "Effective Teamwork in Multidisciplinary Teams",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 391,
+    "title": "Handling Disagreements with Colleagues Professionally",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 392,
+    "title": "Supporting Junior Colleagues and Medical Students",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 393,
+    "title": "Interprofessional Communication and Structured Handover",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 394,
+    "title": "Cultural and Religious Beliefs Affecting Healthcare",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 395,
+    "title": "Providing Equitable Care: Understanding Health Inequalities",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 396,
+    "title": "Using Interpreters: When and How (Avoiding Family Interpreters)",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 397,
+    "title": "Reasonable Adjustments for Patients with Disabilities",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 398,
+    "title": "Managing Angry or Distressed Patients and Relatives",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 399,
+    "title": "Discussing Sensitive Topics: Sexual Health, Substance Use, Mental Health",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 400,
+    "title": "Addressing Non-Adherence to Treatment Empathetically",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 401,
+    "title": "Discussing Prognosis and End-of-Life Care with Patients",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 402,
+    "title": "Responding to Patients Who Wish to Self-Discharge",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 403,
+    "title": "Holistic Care: Social, Psychological and Emotional Factors",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 404,
+    "title": "Recognising the Impact of Illness on Families and Carers",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 405,
+    "title": "Discharge Planning and Continuity of Care",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 406,
+    "title": "Adult Safeguarding: Recognising Abuse and Neglect",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 407,
+    "title": "Domestic Violence: DASH Risk Assessment and Signposting",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 408,
+    "title": "Modern Slavery and Human Trafficking: Clinician Awareness",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 409,
+    "title": "Recognising Dying Patients and Initiating Palliative Care Conversations",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 410,
+    "title": "Advance Care Planning and Preferred Place of Death",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 411,
+    "title": "Bereavement Support for Families",
+    "section": "PAPER 1: EMPATHY & SENSITIVITY",
+    "source": "v1.0",
+    "type": "PD"
+  },
+  {
+    "number": 673,
+    "title": "Clinical Audit: The Audit Cycle, Standards, Data Collection and Re-Audit \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 674,
+    "title": "Quality Improvement Projects: PDSA Cycles and Sustainability \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 675,
+    "title": "Evidence-Based Medicine in Practice: Appraising and Applying Guidelines \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 676,
+    "title": "Guideline Adherence vs Clinical Judgement: When to Deviate \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 677,
+    "title": "Morbidity and Mortality Meetings: Structure, Purpose and Learning \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 678,
+    "title": "Patient Safety Incident Investigation: Root Cause Analysis and PSIRF \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 679,
+    "title": "F2 as Educator: Teaching Medical Students and Junior Staff on the Ward \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 680,
+    "title": "Giving Constructive Feedback: Pendleton Model and Structured Approaches \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 681,
+    "title": "Recognising When a Student or Junior Colleague Is Struggling \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 682,
+    "title": "Workplace-Based Assessments: Mini-CEX, DOPS, CBD and MSF \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 683,
+    "title": "Supporting Learning in Busy Clinical Environments: Opportunistic Teaching \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 684,
+    "title": "Balancing Teaching Responsibilities with Clinical Duties \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 685,
+    "title": "WhatsApp and Messaging Groups: Patient Data, Photography and Clinical Communication \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 686,
+    "title": "Telemedicine Consultations: Maintaining Standards of Care Remotely \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 687,
+    "title": "Digital Photography of Clinical Findings: Consent, Storage and Governance \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 688,
+    "title": "Online Presence for Doctors: GMC Guidance on Social Media and Professional Identity \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 689,
+    "title": "NHS Complaints Process: Stages, Timelines and PALS \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 690,
+    "title": "Coroner\u2019s Inquests: When to Refer a Death and Giving Evidence \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 691,
+    "title": "Medical Negligence Basics: Duty, Breach, Causation and Damage \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 692,
+    "title": "Supporting a Colleague Facing a GMC Investigation or Fitness to Practise Hearing \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 693,
+    "title": "Record Keeping for Medico-Legal Protection: Contemporaneous, Accurate and Complete \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 694,
+    "title": "De-Escalation Techniques for Aggressive Patients: Verbal and Non-Verbal \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 695,
+    "title": "When to Involve Security: Thresholds and Duty of Care \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 696,
+    "title": "Post-Incident Support for Staff: Debriefing and Reporting \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 697,
+    "title": "Understanding Causes of Aggression in Hospital: Pain, Delirium, Fear and Frustration \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  },
+  {
+    "number": 698,
+    "title": "Lone Worker Safety: Risk Assessment for Home Visits and Out-of-Hours \u2605 NEW SUBTOPIC",
+    "section": "PAPER 1: PROFESSIONAL DILEMMAS \u2014 NEW SUBTOPICS",
+    "source": "v2.0 \u2605",
+    "type": "PD"
+  }
+]

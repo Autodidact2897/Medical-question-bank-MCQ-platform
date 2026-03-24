@@ -6,55 +6,13 @@ const api = axios.create({
   withCredentials: true,
 })
 
-// Auth error handler — set by AuthContext to clear user state on 401
-let onAuthError = null
-export function setAuthErrorHandler(handler) {
-  onAuthError = handler
-}
-
-// Track when login/register last succeeded so we don't kick users out
-// immediately after they log in (cross-origin cookie may not be ready yet)
-let lastAuthSuccessAt = 0
-export function markAuthSuccess() {
-  lastAuthSuccessAt = Date.now()
-}
-
-// Debounce: only one verification in flight at a time
-let verifying = false
-
-api.interceptors.response.use(
-  (response) => response,
-  async (error) => {
-    if (error.response?.status === 401) {
-      const url = error.config?.url || ''
-      const isAuthCall = url.includes('/auth/login') || url.includes('/auth/register') || url.includes('/auth/me')
-      const isQuizCall = url.includes('/quiz/') && (url.includes('/answer') || url.includes('/complete'))
-
-      if (!isAuthCall && !isQuizCall && onAuthError) {
-        // If we logged in within the last 5 seconds, don't clear — cookie might not be ready yet
-        const timeSinceAuth = Date.now() - lastAuthSuccessAt
-        if (timeSinceAuth < 5000) {
-          // Skip clearing — the login just happened
-          return Promise.reject(error)
-        }
-
-        // Verify the session is truly dead before clearing
-        if (!verifying) {
-          verifying = true
-          try {
-            await api.get('/auth/me')
-            // /auth/me succeeded — session is fine, don't clear
-          } catch {
-            // /auth/me also failed — session is truly expired
-            onAuthError()
-          } finally {
-            verifying = false
-          }
-        }
-      }
-    }
-    return Promise.reject(error)
-  }
-)
+// Auth state is managed ONLY by AuthContext:
+//   - On page load: /auth/me determines if user is logged in
+//   - On login/register: setUser is called with the response
+//   - On logout: setUser(null) is called
+//
+// The 401 interceptor DOES NOT clear auth state.
+// This prevents cross-origin cookie timing issues from logging users out
+// mid-session. Individual pages handle 401 errors in their own catch blocks.
 
 export default api

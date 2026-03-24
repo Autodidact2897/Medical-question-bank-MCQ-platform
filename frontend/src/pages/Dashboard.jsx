@@ -35,6 +35,7 @@ export default function Dashboard() {
   const [email, setEmail] = useState(user?.email || '')
   const [briefsEnabled, setBriefsEnabled] = useState(false)
   const [memberMenuOpen, setMemberMenuOpen] = useState(false)
+  const [aboutOpen, setAboutOpen] = useState(false)
 
   const [progressData, setProgressData] = useState(null)
   const [studyHistory, setStudyHistory] = useState(null)
@@ -175,14 +176,14 @@ export default function Dashboard() {
           {/* Dropdown menu */}
           {memberMenuOpen && (
             <>
-              <div className="fixed inset-0 z-40" onClick={() => setMemberMenuOpen(false)} />
-              <div className="absolute right-0 top-full mt-2 w-56 bg-white rounded-card border border-border-default shadow-lg z-50 py-1">
+              <div className="fixed inset-0 z-40" onClick={() => { setMemberMenuOpen(false); setAboutOpen(false) }} />
+              <div className={`absolute right-0 top-full mt-2 bg-white rounded-card border border-border-default shadow-lg z-50 py-1 ${aboutOpen ? 'w-80' : 'w-56'}`} style={{ transition: 'width 0.2s ease' }}>
                 <div className="px-4 py-3 border-b border-border-default">
                   <div className="text-sm font-semibold text-heading truncate">{user?.email}</div>
                   <div className="text-xs text-body-dark mt-0.5">Free Plan</div>
                 </div>
                 <button
-                  onClick={() => { setMemberMenuOpen(false); navigate('/account') }}
+                  onClick={() => { setMemberMenuOpen(false); setAboutOpen(false); navigate('/account') }}
                   className="w-full text-left px-4 py-2.5 text-sm text-heading hover:bg-bg-light transition-colors flex items-center gap-2"
                 >
                   <svg className="w-4 h-4 text-body-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -190,8 +191,52 @@ export default function Dashboard() {
                   </svg>
                   My Account
                 </button>
+
+                {/* About the founder — expandable */}
                 <button
-                  onClick={() => { setMemberMenuOpen(false); navigate('/privacy') }}
+                  onClick={() => setAboutOpen(!aboutOpen)}
+                  className="w-full text-left px-4 py-2.5 text-sm text-heading hover:bg-bg-light transition-colors flex items-center gap-2"
+                >
+                  <svg className="w-4 h-4 text-body-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  About DiscoLabs
+                  <svg className={`w-3 h-3 text-body-dark ml-auto transition-transform ${aboutOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+                {aboutOpen && (
+                  <div className="px-4 py-3 border-t border-border-default bg-bg-light">
+                    <div className="flex items-start gap-3">
+                      <img
+                        src="/images/founder.jpg"
+                        alt="Ben Popham"
+                        className="w-12 h-12 rounded-full object-cover flex-shrink-0"
+                        onError={(e) => {
+                          e.target.style.display = 'none'
+                          e.target.nextSibling.style.display = 'flex'
+                        }}
+                      />
+                      <div
+                        className="w-12 h-12 rounded-full items-center justify-center text-white text-sm font-bold flex-shrink-0 hidden"
+                        style={{ backgroundColor: '#0c3a5c' }}
+                      >
+                        BP
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs text-heading leading-relaxed mb-2">
+                          Hi, I'm Ben, founder of DiscoLabs. Preparing for the MSRA, I found the biggest challenge wasn't effort — it was uncertainty. DiscoLabs is built to fix that, giving you a clear, personalised breakdown of your weakest areas so you can focus your revision where it actually matters. The goal is simple: help you cover the right topics, close your gaps, and walk into the exam with confidence.
+                        </p>
+                        <span className="inline-block text-[10px] font-medium text-marine bg-blue-50 px-2 py-0.5 rounded-full">
+                          MSRA Score: 591 — February 2024 Cohort
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <button
+                  onClick={() => { setMemberMenuOpen(false); setAboutOpen(false); navigate('/privacy') }}
                   className="w-full text-left px-4 py-2.5 text-sm text-heading hover:bg-bg-light transition-colors flex items-center gap-2"
                 >
                   <svg className="w-4 h-4 text-body-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -200,7 +245,7 @@ export default function Dashboard() {
                   Privacy Policy
                 </button>
                 <button
-                  onClick={() => { setMemberMenuOpen(false); navigate('/terms') }}
+                  onClick={() => { setMemberMenuOpen(false); setAboutOpen(false); navigate('/terms') }}
                   className="w-full text-left px-4 py-2.5 text-sm text-heading hover:bg-bg-light transition-colors flex items-center gap-2"
                 >
                   <svg className="w-4 h-4 text-body-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -210,7 +255,7 @@ export default function Dashboard() {
                 </button>
                 <div className="border-t border-border-default mt-1 pt-1">
                   <button
-                    onClick={() => { setMemberMenuOpen(false); handleLogout() }}
+                    onClick={() => { setMemberMenuOpen(false); setAboutOpen(false); handleLogout() }}
                     className="w-full text-left px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors flex items-center gap-2"
                   >
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -677,22 +722,6 @@ export default function Dashboard() {
           )}
         </div>
 
-        {/* Founder About Section */}
-        <div className="card mt-8 flex flex-col sm:flex-row items-start gap-5">
-          <div className="flex-shrink-0">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-bold" style={{ backgroundColor: '#0c3a5c' }}>
-              BP
-            </div>
-          </div>
-          <div className="flex-1">
-            <p className="text-sm text-heading leading-relaxed mb-3">
-              Hi, I'm Ben, founder of DiscoLabs. Preparing for the MSRA, I found the biggest challenge wasn't effort — it was uncertainty. DiscoLabs is built to fix that, giving you a clear, personalised breakdown of your weakest areas so you can focus your revision where it actually matters. The goal is simple: help you cover the right topics, close your gaps, and walk into the exam with confidence.
-            </p>
-            <span className="inline-block text-xs font-medium text-marine bg-blue-50 px-3 py-1 rounded-full">
-              MSRA Score: 591 — February 2024 Cohort
-            </span>
-          </div>
-        </div>
 
       </div>
     </div>

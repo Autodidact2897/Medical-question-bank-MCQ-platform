@@ -18,7 +18,7 @@ export default function About() {
       <div className="max-w-2xl mx-auto px-6 py-10">
         <div className="flex flex-col items-center text-center mb-8">
           <img
-            src="/images/founder.jpg"
+            src="/images/3BF488F0-5446-421A-9E46-059E06BE732D.jpg"
             alt="Ben Popham"
             className="w-28 h-28 rounded-full object-cover mb-4 shadow-md"
             onError={(e) => {
@@ -41,13 +41,16 @@ export default function About() {
 
         <div className="card">
           <p className="text-sm text-heading leading-relaxed mb-4">
-            Hi, I'm Ben. Preparing for the MSRA, I found the biggest challenge wasn't effort — it was uncertainty. I had no way of knowing which topics I was weakest in, or whether my revision was actually covering the gaps that mattered most.
+            Hi, I'm Ben. When I prepared for the MSRA, I realised the biggest challenge wasn't effort — it was uncertainty. I had no clear way of knowing which topics I was weakest in, or whether my revision was actually addressing the gaps that mattered most.
           </p>
           <p className="text-sm text-heading leading-relaxed mb-4">
-            DiscoLabs is built to fix that. It gives you a clear, personalised breakdown of your weakest areas so you can focus your revision where it actually matters — no guesswork, no wasted hours on topics you already know.
+            DiscoLabs is built to fix that. It gives you a personalised breakdown of your weakest areas, so you can focus your revision where it will make the biggest difference — without guesswork or wasting hours on topics you already know.
+          </p>
+          <p className="text-sm text-heading leading-relaxed mb-4">
+            DiscoLabs starts with a curriculum-wide assessment to identify your weakest areas, so your revision is targeted rather than random.
           </p>
           <p className="text-sm text-heading leading-relaxed">
-            The goal is simple: help you cover the right topics, close your gaps, and walk into the exam with confidence.
+            The goal is simple: help you target the right topics, close your gaps, and walk into the exam with confidence.
           </p>
         </div>
       </div>

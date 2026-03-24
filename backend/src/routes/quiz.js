@@ -10,25 +10,42 @@ router.use(authMiddleware);
 // POST /api/quiz/start
 router.post('/start', async (req, res) => {
   console.log('Quiz start request');
-  let { subject, topic, questionCount } = req.body;
+  let { subject, topic, subtopics, difficulty, questionCount } = req.body;
 
   questionCount = parseInt(questionCount) || 10;
-  if (questionCount > 50) questionCount = 50;
+  if (questionCount > 100) questionCount = 100;
 
   try {
-    // Build WHERE clause based on subject and/or topic
+    // Build WHERE clause based on filters
     const conditions = [];
     const values = [];
     let paramIndex = 1;
 
-    if (topic) {
+    // subtopics array takes priority over single topic
+    if (Array.isArray(subtopics) && subtopics.length > 0) {
+      conditions.push(`topic = ANY($${paramIndex})`);
+      values.push(subtopics);
+      paramIndex++;
+    } else if (topic) {
       conditions.push(`topic = $${paramIndex}`);
       values.push(topic);
       paramIndex++;
-    } else if (subject) {
+    }
+
+    if (subject && !(Array.isArray(subtopics) && subtopics.length > 0)) {
       conditions.push(`subject = $${paramIndex}`);
       values.push(subject);
       paramIndex++;
+    }
+
+    // difficulty can be a single string or array
+    if (difficulty) {
+      const diffs = Array.isArray(difficulty) ? difficulty : [difficulty];
+      if (diffs.length > 0) {
+        conditions.push(`difficulty = ANY($${paramIndex})`);
+        values.push(diffs);
+        paramIndex++;
+      }
     }
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
@@ -46,7 +63,7 @@ router.post('/start', async (req, res) => {
     `, values);
 
     const questions = questionsResult.rows;
-    const label = topic || subject || 'all';
+    const label = (Array.isArray(subtopics) && subtopics.length > 0) ? subtopics.join(', ') : (topic || subject || 'all');
     console.log(`Fetched ${questions.length} questions for: ${label}`);
 
     // Create quiz session
@@ -148,9 +165,16 @@ router.post('/:sessionId/complete', async (req, res) => {
       return res.status(403).json({ success: false, error: 'Not authorised', data: null });
     }
 
-    await pool.query(
-      'UPDATE quiz_sessions SET completed = true, completed_at = NOW() WHERE id = $1',
+    // Count how many questions were actually answered
+    const answeredResult = await pool.query(
+      'SELECT COUNT(*)::int AS answered FROM user_answers WHERE session_id = $1',
       [sessionId]
+    );
+    const answeredCount = answeredResult.rows[0].answered;
+
+    await pool.query(
+      'UPDATE quiz_sessions SET completed = true, completed_at = NOW(), answered_count = $1 WHERE id = $2',
+      [answeredCount, sessionId]
     );
 
     return res.json({ success: true, data: { message: 'Session completed' }, error: null });
@@ -215,16 +239,101 @@ router.get('/:sessionId/results', async (req, res) => {
       [score, sessionId]
     );
 
+    // Get flagged question IDs for this session
+    const flaggedResult = await pool.query(
+      'SELECT question_id FROM flagged_questions WHERE session_id = $1 AND user_id = $2',
+      [sessionId, req.user.id]
+    );
+    const flaggedIds = flaggedResult.rows.map(r => r.question_id);
+
     console.log(`Results: ${correctAnswers}/${totalQuestions} correct (${score}%)`);
 
     return res.json({
       success: true,
-      data: { score, totalQuestions, correctAnswers, results },
+      data: { score, totalQuestions, correctAnswers, results, flaggedIds },
       error: null,
     });
   } catch (err) {
     console.error('Error fetching results:', err.message);
     return res.status(500).json({ success: false, error: 'Failed to fetch results', data: null });
+  }
+});
+
+// POST /api/quiz/:sessionId/flag — toggle flag on/off for a question in a session
+router.post('/:sessionId/flag', async (req, res) => {
+  const { sessionId } = req.params;
+  const { questionId } = req.body;
+
+  if (!questionId) {
+    return res.status(400).json({ success: false, error: 'questionId is required', data: null });
+  }
+
+  try {
+    // Validate session belongs to user
+    const sessionResult = await pool.query(
+      'SELECT id, user_id FROM quiz_sessions WHERE id = $1',
+      [sessionId]
+    );
+    if (sessionResult.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'Session not found', data: null });
+    }
+    if (sessionResult.rows[0].user_id !== req.user.id) {
+      return res.status(403).json({ success: false, error: 'Not authorised', data: null });
+    }
+
+    // Check if already flagged
+    const existing = await pool.query(
+      'SELECT id FROM flagged_questions WHERE user_id = $1 AND question_id = $2 AND session_id = $3',
+      [req.user.id, questionId, sessionId]
+    );
+
+    let flagged;
+    if (existing.rows.length > 0) {
+      // Unflag
+      await pool.query('DELETE FROM flagged_questions WHERE id = $1', [existing.rows[0].id]);
+      flagged = false;
+    } else {
+      // Flag
+      await pool.query(
+        'INSERT INTO flagged_questions (user_id, question_id, session_id) VALUES ($1, $2, $3) ON CONFLICT DO NOTHING',
+        [req.user.id, questionId, sessionId]
+      );
+      flagged = true;
+    }
+
+    return res.json({ success: true, data: { flagged }, error: null });
+  } catch (err) {
+    console.error('Error toggling flag:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to toggle flag', data: null });
+  }
+});
+
+// GET /api/quiz/:sessionId/flagged — get all flagged question IDs for a session
+router.get('/:sessionId/flagged', async (req, res) => {
+  const { sessionId } = req.params;
+
+  try {
+    const sessionResult = await pool.query(
+      'SELECT id, user_id FROM quiz_sessions WHERE id = $1',
+      [sessionId]
+    );
+    if (sessionResult.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'Session not found', data: null });
+    }
+    if (sessionResult.rows[0].user_id !== req.user.id) {
+      return res.status(403).json({ success: false, error: 'Not authorised', data: null });
+    }
+
+    const result = await pool.query(
+      'SELECT question_id FROM flagged_questions WHERE session_id = $1 AND user_id = $2',
+      [sessionId, req.user.id]
+    );
+
+    const flaggedIds = result.rows.map(r => r.question_id);
+    return res.json({ success: true, data: { flaggedIds }, error: null });
+  } catch (err) {
+    console.error('Error fetching flags:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to fetch flags', data: null });
   }
 });
 

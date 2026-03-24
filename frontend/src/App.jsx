@@ -21,6 +21,9 @@ import AdminDashboard from './pages/AdminDashboard'
 import AdminEmails from './pages/AdminEmails'
 import Account from './pages/Account'
 import NotFound from './pages/NotFound'
+import LnaResultsPage from './pages/LnaResultsPage'
+import StudyByDifficultyPage from './pages/StudyByDifficultyPage'
+import LnaAnalyticsPage from './pages/LnaAnalyticsPage'
 
 export default function App() {
   return (
@@ -65,6 +68,15 @@ export default function App() {
           } />
           <Route path="/account" element={
             <ProtectedRoute><Account /></ProtectedRoute>
+          } />
+          <Route path="/study/difficulty" element={
+            <ProtectedRoute><StudyByDifficultyPage /></ProtectedRoute>
+          } />
+          <Route path="/lna/results" element={
+            <ProtectedRoute><LnaResultsPage /></ProtectedRoute>
+          } />
+          <Route path="/lna/analytics" element={
+            <ProtectedRoute><LnaAnalyticsPage /></ProtectedRoute>
           } />
 
           {/* 404 catch-all */}

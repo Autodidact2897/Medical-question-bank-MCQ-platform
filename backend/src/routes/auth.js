@@ -151,4 +151,36 @@ router.delete('/account', authMiddleware, async (req, res) => {
   }
 });
 
+// DELETE /api/auth/reset-progress (protected) — reset all quiz history except LNA sessions
+router.delete('/reset-progress', authMiddleware, async (req, res) => {
+  const userId = req.user.id;
+  console.log('Progress reset requested');
+
+  try {
+    // Delete user_answers for non-LNA sessions, then delete those sessions
+    // Also delete flagged_questions and question_comments for those sessions
+    await pool.query(`
+      DELETE FROM flagged_questions WHERE user_id = $1 AND session_id IN (
+        SELECT id FROM quiz_sessions WHERE user_id = $1 AND COALESCE(is_lna_session, false) = false
+      )
+    `, [userId]);
+
+    await pool.query(`
+      DELETE FROM user_answers WHERE session_id IN (
+        SELECT id FROM quiz_sessions WHERE user_id = $1 AND COALESCE(is_lna_session, false) = false
+      )
+    `, [userId]);
+
+    await pool.query(`
+      DELETE FROM quiz_sessions WHERE user_id = $1 AND COALESCE(is_lna_session, false) = false
+    `, [userId]);
+
+    console.log('Progress reset completed');
+    return res.json({ success: true, data: { message: 'Progress reset' }, error: null });
+  } catch (err) {
+    console.error('Progress reset error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to reset progress', data: null });
+  }
+});
+
 module.exports = router;

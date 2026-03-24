@@ -101,7 +101,7 @@ export default function LandingPage() {
             {[
               {
                 step: '1',
-                title: 'Take the Learning Needs Assessment',
+                title: 'Take the Diagnostic Assessment',
                 body: 'A focused diagnostic that samples the entire MSRA curriculum. Identifies your weak areas rapidly, without requiring hours of your time.',
               },
               {
@@ -159,41 +159,88 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ── Section 5: Differentiation ── */}
+      {/* ── Section 5: Feature Comparison ── */}
       <section className="bg-white px-6 py-16">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-10">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-3">
             How this is different
           </h2>
-          <div className="card p-0 overflow-hidden mb-6">
-            <table className="w-full text-sm">
-              <thead>
-                <tr>
-                  <th className="bg-grey-light px-5 py-3 text-left font-semibold text-heading border-b border-border-default">
-                    Typical revision approach
-                  </th>
-                  <th className="bg-marine px-5 py-3 text-left font-semibold text-white border-b border-marine-dark">
-                    DiscoLabs
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {[
-                  ['Random question practice', 'Structured diagnostic first'],
-                  ['Focus on question volume', 'Focus on curriculum coverage'],
-                  ['No clarity on weaknesses', 'Precise gap identification'],
-                  ['Passive, undirected revision', 'Active, targeted preparation'],
-                  ['Generic content', 'Clinician-validated, guideline-referenced'],
-                ].map(([trad, disco], i) => (
-                  <tr key={i} className="border-b border-border-default last:border-0">
-                    <td className="px-5 py-3 text-body-dark">{trad}</td>
-                    <td className="px-5 py-3 text-body-dark font-medium">{disco}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <p className="text-body-dark text-center mb-10">See how DiscoLabs compares to other MSRA preparation platforms.</p>
+
+          {/* Mobile: stacked cards */}
+          <div className="block md:hidden">
+            {[
+              { feature: 'Personalised Diagnostic Assessment', disco: true, pass: false, bmj: false },
+              { feature: 'MSRA-specific content', disco: true, pass: 'partial', bmj: false },
+              { feature: 'UK guidelines only', disco: true, pass: true, bmj: true },
+              { feature: 'Community question discussion', disco: true, pass: false, bmj: false },
+              { feature: 'Performance comparison analytics', disco: true, pass: false, bmj: 'partial' },
+              { feature: 'Adaptive revision based on weak areas', disco: true, pass: false, bmj: false },
+              { feature: 'Price', disco: 'Free', pass: '£35/mo', bmj: '£60/yr' },
+            ].map((row, i) => (
+              <div key={i} className="border-b border-border-default py-3 last:border-0">
+                <p className="text-sm font-semibold text-heading mb-2">{row.feature}</p>
+                <div className="flex gap-4 text-sm">
+                  <span className="flex items-center gap-1"><span className="font-semibold text-marine">DiscoLabs:</span> {typeof row.disco === 'string' ? row.disco : row.disco ? <span className="text-green-600">&#x2713;</span> : <span className="text-red-400">&#x2717;</span>}</span>
+                  <span className="flex items-center gap-1"><span className="text-body-dark">PM:</span> {typeof row.pass === 'string' ? row.pass : row.pass === 'partial' ? <span className="text-amber-500">~</span> : row.pass ? <span className="text-green-600">&#x2713;</span> : <span className="text-red-400">&#x2717;</span>}</span>
+                  <span className="flex items-center gap-1"><span className="text-body-dark">BMJ:</span> {typeof row.bmj === 'string' ? row.bmj : row.bmj === 'partial' ? <span className="text-amber-500">~</span> : row.bmj ? <span className="text-green-600">&#x2713;</span> : <span className="text-red-400">&#x2717;</span>}</span>
+                </div>
+              </div>
+            ))}
           </div>
-          <p className="text-center text-heading font-semibold">
+
+          {/* Desktop: comparison table */}
+          <div className="hidden md:block">
+            <div className="grid grid-cols-4 gap-0 rounded-card overflow-hidden border border-border-default">
+              {/* Header row */}
+              <div className="bg-grey-light px-5 py-4 border-b border-border-default">
+                <span className="text-sm font-semibold text-body-dark">Feature</span>
+              </div>
+              <div className="bg-marine px-5 py-4 border-b border-marine text-center">
+                <span className="text-sm font-bold text-white">DiscoLabs</span>
+              </div>
+              <div className="bg-grey-light px-5 py-4 border-b border-border-default text-center">
+                <span className="text-sm font-semibold text-heading">PassMedicine</span>
+              </div>
+              <div className="bg-grey-light px-5 py-4 border-b border-border-default text-center">
+                <span className="text-sm font-semibold text-heading">BMJ OnExamination</span>
+              </div>
+
+              {/* Feature rows */}
+              {[
+                { feature: 'Personalised Diagnostic Assessment', disco: true, pass: false, bmj: false },
+                { feature: 'MSRA-specific content', disco: true, pass: 'partial', bmj: false },
+                { feature: 'UK guidelines only', disco: true, pass: true, bmj: true },
+                { feature: 'Community question discussion', disco: true, pass: false, bmj: false },
+                { feature: 'Performance comparison analytics', disco: true, pass: false, bmj: 'partial' },
+                { feature: 'Adaptive revision based on weak areas', disco: true, pass: false, bmj: false },
+                { feature: 'Price', disco: 'Free', pass: '£35/mo', bmj: '£60/yr' },
+              ].map((row, i) => {
+                const renderCell = (val) => {
+                  if (typeof val === 'string') return <span className="text-sm font-semibold text-heading">{val}</span>
+                  if (val === 'partial') return <span className="text-amber-500 text-lg">~</span>
+                  if (val === true) return <span className="text-green-600 text-lg">&#x2713;</span>
+                  return <span className="text-red-300 text-lg">&#x2717;</span>
+                }
+                return [
+                  <div key={`f-${i}`} className="px-5 py-3 border-b border-border-default flex items-center">
+                    <span className="text-sm text-heading font-medium">{row.feature}</span>
+                  </div>,
+                  <div key={`d-${i}`} className="px-5 py-3 border-b border-border-default text-center bg-blue-50/40 flex items-center justify-center">
+                    {renderCell(row.disco)}
+                  </div>,
+                  <div key={`p-${i}`} className="px-5 py-3 border-b border-border-default text-center flex items-center justify-center">
+                    {renderCell(row.pass)}
+                  </div>,
+                  <div key={`b-${i}`} className="px-5 py-3 border-b border-border-default text-center flex items-center justify-center">
+                    {renderCell(row.bmj)}
+                  </div>,
+                ]
+              })}
+            </div>
+          </div>
+
+          <p className="text-center mt-8 text-heading font-semibold">
             More questions &#x2260; better preparation. Better targeting = better results.
           </p>
         </div>

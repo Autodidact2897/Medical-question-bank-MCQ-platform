@@ -12,6 +12,9 @@ const progressRoutes = require('./src/routes/progress');
 const rapidDiagnosticRoutes = require('./src/routes/rapidDiagnostic');
 const adminRoutes = require('./src/routes/admin');
 const emailRoutes = require('./src/routes/email');
+const commentsRoutes = require('./src/routes/comments');
+const analyticsRoutes = require('./src/routes/analytics');
+const lnaRoutes = require('./src/routes/lna');
 
 // Initialise Sentry before anything else
 Sentry.init({
@@ -73,6 +76,9 @@ app.use('/api/progress', progressRoutes);
 app.use('/api/rapid-diagnostic', rapidDiagnosticRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/email', emailRoutes);
+app.use('/api/questions', commentsRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/lna', lnaRoutes);
 
 // Health check
 app.get('/health', (req, res) => {

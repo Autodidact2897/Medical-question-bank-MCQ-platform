@@ -129,12 +129,12 @@ export default function AdminEmails() {
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
           <span className="text-xs bg-marine text-white px-2 py-0.5 rounded-full ml-2 font-medium">ADMIN</span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-end">
           <button onClick={() => navigate('/admin')} className="text-body-dark text-sm hover:text-marine">
             Metrics
           </button>
           <button onClick={() => navigate('/dashboard')} className="text-body-dark text-sm hover:text-marine">
-            Dashboard
+            Clinical Dashboard
           </button>
           <button onClick={handleLogout} className="text-body-dark font-semibold text-sm hover:text-marine">
             Logout
@@ -299,7 +299,7 @@ export default function AdminEmails() {
                           <p className="text-xs text-body-dark mt-1 truncate">{brief.preview_text}</p>
                         )}
                       </div>
-                      <div className="flex items-center gap-2 flex-shrink-0">
+                      <div className="flex items-center gap-2 flex-shrink-0 flex-wrap">
                         <button
                           onClick={() => startEdit(brief)}
                           className="text-xs text-marine font-medium hover:underline"
@@ -372,7 +372,7 @@ export default function AdminEmails() {
               </table>
             </div>
           ) : (
-            <p className="text-sm text-body-dark">No subscribers yet. Users can subscribe from their dashboard.</p>
+            <p className="text-sm text-body-dark">No subscribers yet. Users can subscribe from their clinical dashboard.</p>
           )}
         </div>
 

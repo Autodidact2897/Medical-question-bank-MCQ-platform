@@ -53,6 +53,49 @@ router.get('/subjects-topics', async (req, res) => {
   }
 });
 
+// GET /api/questions/count — count questions matching filters
+router.get('/questions/count', async (req, res) => {
+  try {
+    const { difficulty, subjects, subtopics } = req.query;
+    const conditions = [];
+    const values = [];
+    let paramIndex = 1;
+
+    if (difficulty) {
+      const diffs = difficulty.split(',').map(d => d.trim()).filter(Boolean);
+      if (diffs.length > 0) {
+        conditions.push(`difficulty = ANY($${paramIndex})`);
+        values.push(diffs);
+        paramIndex++;
+      }
+    }
+
+    if (subtopics) {
+      const tops = subtopics.split(',').map(t => t.trim()).filter(Boolean);
+      if (tops.length > 0) {
+        conditions.push(`topic = ANY($${paramIndex})`);
+        values.push(tops);
+        paramIndex++;
+      }
+    } else if (subjects) {
+      const subs = subjects.split(',').map(s => s.trim()).filter(Boolean);
+      if (subs.length > 0) {
+        conditions.push(`subject = ANY($${paramIndex})`);
+        values.push(subs);
+        paramIndex++;
+      }
+    }
+
+    const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
+    const result = await pool.query(`SELECT COUNT(*)::int AS count FROM questions ${whereClause}`, values);
+
+    return res.json({ success: true, data: { count: result.rows[0].count }, error: null });
+  } catch (err) {
+    console.error('Error counting questions:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to count questions', data: null });
+  }
+});
+
 // GET /api/questions/lna/quiz (public — no auth required for free diagnostic)
 router.get('/questions/lna/quiz', async (req, res) => {
   console.log('LNA quiz request received');

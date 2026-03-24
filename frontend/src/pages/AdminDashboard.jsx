@@ -80,14 +80,27 @@ export default function AdminDashboard() {
         <div className="text-center">
           <p className="text-red-600 font-medium mb-4">{error}</p>
           <button onClick={() => navigate('/dashboard')} className="btn-primary text-sm">
-            Back to Dashboard
+            Back to Clinical Dashboard
           </button>
         </div>
       </div>
     )
   }
 
-  const m = metrics
+  // Null-safe access — API may return partial data
+  const m = {
+    users: metrics.users || {},
+    answers: metrics.answers || {},
+    quiz_sessions: metrics.quiz_sessions || {},
+    question_bank: metrics.question_bank || {},
+    rapid_diagnostic: metrics.rapid_diagnostic || {},
+    by_subject: metrics.by_subject || [],
+    by_difficulty: metrics.by_difficulty || [],
+    daily_activity: metrics.daily_activity || [],
+    top_topics: metrics.top_topics || [],
+    active_learners: metrics.active_learners || [],
+    recent_users: metrics.recent_users || [],
+  }
   const maxSubjectAttempts = m.by_subject.length > 0
     ? Math.max(...m.by_subject.map(s => s.attempted))
     : 1
@@ -107,14 +120,14 @@ export default function AdminDashboard() {
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
           <span className="text-xs bg-marine text-white px-2 py-0.5 rounded-full ml-2 font-medium">ADMIN</span>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4 flex-wrap justify-end">
           <button onClick={() => navigate('/admin/emails')} className="text-body-dark text-sm hover:text-marine">
             Email Briefs
           </button>
           <button onClick={() => navigate('/dashboard')} className="text-body-dark text-sm hover:text-marine">
-            User Dashboard
+            User Clinical Dashboard
           </button>
-          <span className="text-body-dark text-sm font-medium">{user?.email}</span>
+          <span className="text-body-dark text-sm font-medium hidden sm:inline">{user?.email}</span>
           <button onClick={handleLogout} className="text-body-dark font-semibold text-sm hover:text-marine">
             Logout
           </button>
@@ -123,7 +136,7 @@ export default function AdminDashboard() {
 
       <div className="max-w-6xl mx-auto px-6 py-8">
 
-        <h1 className="text-2xl font-semibold text-heading mb-2">Admin Dashboard</h1>
+        <h1 className="text-2xl font-semibold text-heading mb-2">Admin Clinical Dashboard</h1>
         <p className="text-body-dark text-sm mb-8">Site-wide metrics and user activity.</p>
 
         {/* ── Row 1: Key numbers ── */}
@@ -133,7 +146,7 @@ export default function AdminDashboard() {
           <StatCard label="New (30d)" value={m.users.new_30d} />
           <StatCard label="Questions Answered" value={m.answers.total} />
           <StatCard label="Overall Correct %" value={`${m.answers.overall_correct_pct}%`} />
-          <StatCard label="Quiz Sessions" value={m.quiz_sessions.total_sessions} sub={`${m.quiz_sessions.completed_sessions} completed`} />
+          <StatCard label="Assessment Sessions" value={m.quiz_sessions.total_sessions} sub={`${m.quiz_sessions.completed_sessions} completed`} />
         </div>
 
         {/* ── Row 2: Question Bank + Rapid Diagnostic ── */}
@@ -147,7 +160,7 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <div className="text-xl font-bold text-marine">{m.question_bank.lna_questions}</div>
-                <div className="text-xs text-body-dark">LNA Questions</div>
+                <div className="text-xs text-body-dark">Rapid Diagnostic Questions</div>
               </div>
               <div>
                 <div className="text-xl font-bold text-marine">{m.question_bank.total_subjects}</div>
@@ -173,7 +186,7 @@ export default function AdminDashboard() {
               </div>
               <div>
                 <div className="text-xl font-bold text-marine">{m.rapid_diagnostic.avg_score}%</div>
-                <div className="text-xs text-body-dark">Avg Score</div>
+                <div className="text-xs text-body-dark">Avg Performance Score</div>
               </div>
             </div>
             {m.rapid_diagnostic.total_started > 0 && (
@@ -280,7 +293,7 @@ export default function AdminDashboard() {
                     <tr className="border-b border-border-default">
                       <th className="text-left py-2 text-xs font-semibold text-heading">Topic</th>
                       <th className="text-right py-2 text-xs font-semibold text-heading">Attempts</th>
-                      <th className="text-right py-2 text-xs font-semibold text-heading">Score</th>
+                      <th className="text-right py-2 text-xs font-semibold text-heading">Performance Score</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -311,7 +324,7 @@ export default function AdminDashboard() {
                       <th className="text-left py-2 text-xs font-semibold text-heading">User</th>
                       <th className="text-right py-2 text-xs font-semibold text-heading">Answers</th>
                       <th className="text-right py-2 text-xs font-semibold text-heading">Sessions</th>
-                      <th className="text-right py-2 text-xs font-semibold text-heading">Score</th>
+                      <th className="text-right py-2 text-xs font-semibold text-heading">Performance Score</th>
                     </tr>
                   </thead>
                   <tbody>

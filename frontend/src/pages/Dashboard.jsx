@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect, useRef } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import api from '../lib/api'
 
@@ -15,7 +15,22 @@ function TrafficBadge({ level }) {
 
 export default function Dashboard() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { user, logout } = useAuth()
+  const [resetBanner, setResetBanner] = useState(location.state?.resetSuccess || false)
+  const scrollRestored = useRef(false)
+
+  // Restore scroll position on mount
+  useEffect(() => {
+    if (!scrollRestored.current) {
+      const saved = sessionStorage.getItem('dashboard_scroll')
+      if (saved) {
+        requestAnimationFrame(() => window.scrollTo(0, parseInt(saved)))
+        sessionStorage.removeItem('dashboard_scroll')
+      }
+      scrollRestored.current = true
+    }
+  }, [])
   const [lnaResults, setLnaResults] = useState([])
   const [email, setEmail] = useState(user?.email || '')
   const [briefsEnabled, setBriefsEnabled] = useState(false)
@@ -23,39 +38,49 @@ export default function Dashboard() {
 
   const [progressData, setProgressData] = useState(null)
   const [studyHistory, setStudyHistory] = useState(null)
+  const [comparison, setComparison] = useState(null)
+  const [loading, setLoading] = useState(true)
 
   // Load LNA results for the subtopic rankings
   useEffect(() => {
-    api.get('/progress/lna-results')
-      .then(res => {
-        const data = res.data.data
-        if (data && data.topic_scores) {
-          // Convert topic_scores to the format Dashboard expects
-          const areas = data.topic_scores
-            .filter(t => t.level !== 'green')
-            .map(t => ({ topic: t.topic, subject: t.subject, level: t.level, percentage: t.percentage }))
-          setLnaResults(areas.length > 0 ? areas : [])
-        } else {
-          setLnaResults([])
-        }
-      })
-      .catch(() => setLnaResults([]))
+    Promise.all([
+      api.get('/progress/lna-results')
+        .then(res => {
+          const data = res.data.data
+          if (data && data.topic_scores) {
+            const areas = data.topic_scores
+              .filter(t => t.level !== 'green')
+              .map(t => ({ topic: t.topic, subject: t.subject, level: t.level, percentage: t.percentage }))
+            setLnaResults(areas.length > 0 ? areas : [])
+          } else {
+            setLnaResults([])
+          }
+        })
+        .catch(() => setLnaResults([])),
 
-    // Load overall progress stats
-    api.get('/progress')
-      .then(res => setProgressData(res.data.data))
-      .catch(err => console.error('Progress load failed:', err.message))
+      api.get('/progress')
+        .then(res => setProgressData(res.data.data))
+        .catch(err => console.error('Progress load failed:', err.message)),
 
-    // Load study history
-    api.get('/progress/study-history')
-      .then(res => setStudyHistory(res.data.data))
-      .catch(err => console.error('Study history load failed:', err.message))
+      api.get('/progress/study-history')
+        .then(res => setStudyHistory(res.data.data))
+        .catch(err => console.error('Study history load failed:', err.message)),
 
-    // Load email subscription status
-    api.get('/email/status')
-      .then(res => setBriefsEnabled(res.data.data?.subscribed || false))
-      .catch(err => console.error('Email status load failed:', err.message))
+      api.get('/email/status')
+        .then(res => setBriefsEnabled(res.data.data?.subscribed || false))
+        .catch(err => console.error('Email status load failed:', err.message)),
+
+      api.get('/analytics/comparison')
+        .then(res => setComparison(res.data.data))
+        .catch(err => console.error('Comparison load failed:', err.message)),
+    ]).finally(() => setLoading(false))
   }, [])
+
+  // Save scroll position before navigating away
+  const navAway = (path) => {
+    sessionStorage.setItem('dashboard_scroll', String(window.scrollY))
+    navigate(path)
+  }
 
   const handleLogout = async () => {
     await logout()
@@ -66,10 +91,18 @@ export default function Dashboard() {
     const params = new URLSearchParams()
     params.set('topic', topicName)
     params.set('count', 10)
-    navigate(`/quiz/practice?${params.toString()}`)
+    navAway(`/quiz/practice?${params.toString()}`)
   }
 
   const firstName = user?.name?.split(' ')[0] || 'Doctor'
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-bg-light">
+        <p className="text-marine font-medium">Loading clinical dashboard...</p>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-bg-light">
@@ -160,6 +193,14 @@ export default function Dashboard() {
 
       <div className="max-w-6xl mx-auto px-6 py-8">
 
+        {/* Reset success banner */}
+        {resetBanner && (
+          <div className="mb-4 p-3 bg-green-50 border border-green-200 rounded-card flex items-center justify-between">
+            <p className="text-sm text-green-800">Your question bank has been reset. Your Diagnostic Assessment results have been preserved.</p>
+            <button onClick={() => setResetBanner(false)} className="text-green-600 hover:text-green-800 text-lg ml-3">&times;</button>
+          </div>
+        )}
+
         {/* Welcome */}
         <div className="mb-8">
           <h1 className="text-2xl font-semibold text-heading">Welcome back, {firstName}</h1>
@@ -169,8 +210,8 @@ export default function Dashboard() {
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           {[
-            { icon: '&#x1F4DA;', title: 'Study by Subject', desc: 'Pick a topic and practise', action: () => navigate('/subjects') },
-            { icon: '&#x1F3AF;', title: 'Quick 10', desc: '10 random questions', action: () => navigate('/quiz/practice?count=10') },
+            { icon: '&#x1F4DA;', title: 'Revise by Specialty', desc: 'Pick a topic and practise', action: () => navAway('/subjects') },
+            { icon: '&#x1F3AF;', title: 'Rapid Assessment', desc: '10 random questions', action: () => navAway('/quiz/practice?count=10') },
             { icon: '&#x1F393;', title: 'Clinical Briefs', desc: 'Deep learning resources', action: () => navigate('/briefs') },
           ].map((card, i) => (
             <button
@@ -203,7 +244,7 @@ export default function Dashboard() {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <div className="card text-center py-4">
                 <div className="text-2xl font-bold text-marine">{progressData.overall_percentage}%</div>
-                <div className="text-xs text-body-dark mt-1">Overall Score</div>
+                <div className="text-xs text-body-dark mt-1">Overall Performance Score</div>
               </div>
               <div className="card text-center py-4">
                 <div className="text-2xl font-bold text-marine">{progressData.total_attempted}</div>
@@ -304,13 +345,62 @@ export default function Dashboard() {
           </div>
         )}
 
+        {/* How Do I Compare? */}
+        {comparison && comparison.subjectComparison && comparison.subjectComparison.length > 0 && (
+          <div className="mb-8">
+            <h2 className="text-lg font-semibold text-heading mb-1">How Do I Compare?</h2>
+            <p className="text-sm text-body-dark mb-4">
+              You are performing better than <span className="font-semibold text-marine">{comparison.percentile}%</span> of users on the platform.
+            </p>
+
+            <div className="card mb-4">
+              <div className="flex items-center justify-between mb-3">
+                <span className="text-sm font-semibold text-heading">Overall</span>
+                <div className="flex items-center gap-4 text-xs">
+                  <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm inline-block" style={{ backgroundColor: '#0c3a5c' }}></span> You: {comparison.userPercentage}%</span>
+                  <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm inline-block bg-gray-300"></span> Platform avg: {comparison.platformPercentage}%</span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                {comparison.subjectComparison.map((s, i) => (
+                  <div key={i}>
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="text-xs font-medium text-heading">{s.subject}</span>
+                      <span className="text-xs text-body-dark">{s.attempted} Qs</span>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-body-dark w-8">You</span>
+                        <div className="flex-1 h-2 bg-grey-light rounded-full overflow-hidden">
+                          <div className="h-full rounded-full" style={{ width: `${s.userPercentage}%`, backgroundColor: '#0c3a5c' }} />
+                        </div>
+                        <span className="text-[10px] font-semibold text-heading w-8 text-right">{s.userPercentage}%</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[10px] text-body-dark w-8">Avg</span>
+                        <div className="flex-1 h-2 bg-grey-light rounded-full overflow-hidden">
+                          <div className="h-full rounded-full bg-gray-300" style={{ width: `${s.platformPercentage}%` }} />
+                        </div>
+                        <span className="text-[10px] font-semibold text-body-dark w-8 text-right">{s.platformPercentage}%</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* LNA Results — clickable to start quizzes */}
         {lnaResults.length > 0 && (
           <div className="mb-8">
             <h2 className="text-lg font-semibold text-heading mb-1">
               Your Weak Areas
             </h2>
-            <p className="text-sm text-body-dark mb-4">Click any topic to practise questions on it.</p>
+            <p className="text-sm text-body-dark mb-4">
+              Click any topic to practise questions on it.
+              <button onClick={() => navAway('/lna/results')} className="text-marine underline ml-2 text-sm">View full Diagnostic Report</button>
+            </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {lnaResults.slice(0, 8).map((area, i) => (
                 <button
@@ -334,15 +424,15 @@ export default function Dashboard() {
         {/* No LNA yet — prompt to take the assessment */}
         {lnaResults.length === 0 && !progressData && (
           <div className="mb-8 card border-2 border-dashed border-marine">
-            <h2 className="text-lg font-semibold text-heading mb-1">Take the LNA Assessment</h2>
+            <h2 className="text-lg font-semibold text-heading mb-1">Take the Diagnostic Assessment</h2>
             <p className="text-body-dark text-sm mb-4">
-              Complete the Learning Needs Assessment to identify your weak areas and get a personalised study plan.
+              Complete the Diagnostic Assessment to identify your weak areas and get a personalised study plan.
             </p>
             <button
-              onClick={() => navigate('/lna-quiz')}
+              onClick={() => navAway('/lna-quiz')}
               className="btn-primary text-sm"
             >
-              Start LNA Assessment
+              Start Diagnostic Assessment
             </button>
           </div>
         )}
@@ -352,15 +442,15 @@ export default function Dashboard() {
           <h2 className="text-lg font-semibold text-heading mb-4">Ways to study</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
             {[
-              { icon: '&#x1F4DA;', title: 'Study by Subtopic', desc: 'Master one topic in isolation', link: '/subjects' },
-              { icon: '&#x26A1;', title: 'Quick 10', desc: '10 random questions', link: '/quiz/practice?count=10' },
-              { icon: '&#x1F4CA;', title: 'By Difficulty', desc: 'Easy, Medium, Hard', link: '/subjects' },
+              { icon: '&#x1F4DA;', title: 'Revise by Subtopic', desc: 'Master one topic in isolation', link: '/subjects' },
+              { icon: '&#x26A1;', title: 'Rapid Assessment', desc: '10 random questions', link: '/quiz/practice?count=10' },
+              { icon: '&#x1F4CA;', title: 'By Difficulty', desc: 'Easy, Medium, Hard', link: '/study/difficulty' },
               { icon: '&#x1F3E5;', title: 'Full Subject', desc: 'All questions in a subject', link: '/subjects' },
               { icon: '&#x1F393;', title: 'Clinical Briefs', desc: 'Deep learning resources', link: '/briefs' },
             ].map((mode, i) => (
               <button
                 key={i}
-                onClick={() => navigate(mode.link)}
+                onClick={() => navAway(mode.link)}
                 className="card text-left hover:border-marine transition-colors duration-150"
               >
                 <div className="text-xl mb-2" dangerouslySetInnerHTML={{ __html: mode.icon }} />
@@ -385,7 +475,7 @@ export default function Dashboard() {
                   <tr className="bg-grey-light border-b border-border-default">
                     <th className="px-4 py-2 text-left font-semibold text-heading">Topic</th>
                     <th className="px-4 py-2 text-left font-semibold text-heading hidden md:table-cell">Subject</th>
-                    <th className="px-4 py-2 text-center font-semibold text-heading">Score</th>
+                    <th className="px-4 py-2 text-center font-semibold text-heading">Performance Score</th>
                     <th className="px-4 py-2 text-center font-semibold text-heading hidden sm:table-cell">Coverage</th>
                     <th className="px-4 py-2 text-right font-semibold text-heading">Action</th>
                   </tr>
@@ -458,6 +548,23 @@ export default function Dashboard() {
           {briefsEnabled && (
             <p className="text-xs text-green-600 mt-2">You're subscribed to clinical briefs.</p>
           )}
+        </div>
+
+        {/* Founder About Section */}
+        <div className="card mt-8 flex flex-col sm:flex-row items-start gap-5">
+          <div className="flex-shrink-0">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center text-white text-xl font-bold" style={{ backgroundColor: '#0c3a5c' }}>
+              BP
+            </div>
+          </div>
+          <div className="flex-1">
+            <p className="text-sm text-heading leading-relaxed mb-3">
+              Hi, I'm Ben, founder of DiscoLabs. Preparing for the MSRA, I found the biggest challenge wasn't effort — it was uncertainty. DiscoLabs is built to fix that, giving you a clear, personalised breakdown of your weakest areas so you can focus your revision where it actually matters. The goal is simple: help you cover the right topics, close your gaps, and walk into the exam with confidence.
+            </p>
+            <span className="inline-block text-xs font-medium text-marine bg-blue-50 px-3 py-1 rounded-full">
+              MSRA Score: 591 — February 2024 Cohort
+            </span>
+          </div>
         </div>
 
       </div>

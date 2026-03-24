@@ -33,8 +33,8 @@ export default function Privacy() {
             <h2 className="text-base font-semibold text-heading mb-2">2. What data we collect</h2>
             <ul className="list-disc ml-5 flex flex-col gap-1">
               <li><strong>Account data:</strong> email address and a securely hashed password when you register.</li>
-              <li><strong>Quiz data:</strong> your answers, scores, and session history so we can track your progress.</li>
-              <li><strong>Diagnostic data:</strong> your Learning Needs Assessment results and identified weak areas.</li>
+              <li><strong>Assessment data:</strong> your answers, performance scores, and session history so we can track your progress.</li>
+              <li><strong>Diagnostic data:</strong> your Diagnostic Assessment results and identified weak areas.</li>
               <li><strong>Usage data:</strong> pages visited, feature usage, and basic analytics (via cookies or similar technologies).</li>
             </ul>
           </section>
@@ -43,7 +43,7 @@ export default function Privacy() {
             <h2 className="text-base font-semibold text-heading mb-2">3. How we use your data</h2>
             <ul className="list-disc ml-5 flex flex-col gap-1">
               <li>To provide and personalise the revision platform and your study plan.</li>
-              <li>To track your quiz performance and progress over time.</li>
+              <li>To track your assessment performance and progress over time.</li>
               <li>To send you clinical briefs by email (only if you opt in).</li>
               <li>To improve our question bank and platform based on aggregate, anonymised usage patterns.</li>
             </ul>
@@ -104,7 +104,7 @@ export default function Privacy() {
           <section>
             <h2 className="text-base font-semibold text-heading mb-2">9. Data retention</h2>
             <p>
-              We retain your account and quiz data for as long as your account is active.
+              We retain your account and assessment data for as long as your account is active.
               If you delete your account, all personal data will be removed within 30 days.
             </p>
           </section>

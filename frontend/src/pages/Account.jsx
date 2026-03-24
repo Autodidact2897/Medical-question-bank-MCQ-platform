@@ -10,6 +10,8 @@ export default function Account() {
   const [loading, setLoading] = useState(true)
   const [deleteConfirm, setDeleteConfirm] = useState(false)
   const [deleting, setDeleting] = useState(false)
+  const [resetConfirm, setResetConfirm] = useState(false)
+  const [resetting, setResetting] = useState(false)
 
   useEffect(() => {
     api.get('/progress')
@@ -53,7 +55,7 @@ export default function Account() {
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
         </div>
         <button onClick={() => navigate('/dashboard')} className="text-marine text-sm font-medium hover:underline">
-          &larr; Dashboard
+          &larr; Clinical Dashboard
         </button>
       </header>
 
@@ -125,7 +127,7 @@ export default function Account() {
               </div>
             </div>
           ) : (
-            <p className="text-sm text-body-dark">No study data yet. Start a quiz to see your stats here.</p>
+            <p className="text-sm text-body-dark">No study data yet. Start an assessment to see your stats here.</p>
           )}
         </div>
 
@@ -133,7 +135,7 @@ export default function Account() {
         <div className="bg-white rounded-card border border-border-default p-6 mb-6">
           <h2 className="font-semibold text-heading text-sm mb-3">Data &amp; Privacy</h2>
           <p className="text-sm text-body-dark mb-4">
-            We store your email, quiz answers, and progress data to provide a personalised experience.
+            We store your email, assessment answers, and progress data to provide a personalised experience.
             Your password is hashed and never stored in plain text.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -163,9 +165,53 @@ export default function Account() {
             >
               Sign Out
             </button>
+
+            {/* Reset Question Bank */}
             <div className="border-t border-border-default pt-4 mt-1">
               <p className="text-xs text-body-dark mb-3">
-                Deleting your account will permanently remove all your data, including quiz history and progress.
+                This will permanently delete all your assessment history and answer data.
+                Your Diagnostic Assessment results will be preserved. This cannot be undone.
+              </p>
+              {!resetConfirm ? (
+                <button
+                  onClick={() => setResetConfirm(true)}
+                  className="text-sm font-medium px-4 py-2 rounded-btn border text-amber-600 border-amber-300 hover:bg-amber-50 transition-colors w-full"
+                >
+                  Reset Question Bank
+                </button>
+              ) : (
+                <div>
+                  <button
+                    onClick={async () => {
+                      setResetting(true)
+                      try {
+                        await api.delete('/auth/reset-progress')
+                        navigate('/dashboard', { state: { resetSuccess: true } })
+                      } catch (err) {
+                        console.error('Reset failed:', err)
+                        setResetting(false)
+                        setResetConfirm(false)
+                      }
+                    }}
+                    disabled={resetting}
+                    className="text-sm font-medium px-4 py-2 rounded-btn border bg-amber-600 text-white border-amber-600 hover:bg-amber-700 transition-colors w-full disabled:opacity-50"
+                  >
+                    {resetting ? 'Resetting...' : 'Click again to confirm reset'}
+                  </button>
+                  {!resetting && (
+                    <button
+                      onClick={() => setResetConfirm(false)}
+                      className="text-xs text-body-dark mt-2 hover:underline w-full text-center"
+                    >
+                      Cancel
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+            <div className="border-t border-border-default pt-4 mt-1">
+              <p className="text-xs text-body-dark mb-3">
+                Deleting your account will permanently remove all your data, including assessment history and progress.
                 This cannot be undone.
               </p>
               <button

@@ -16,7 +16,7 @@ export default function NotFound() {
             Home
           </button>
           <button onClick={() => navigate('/dashboard')} className="btn-primary text-sm">
-            Dashboard
+            Clinical Dashboard
           </button>
         </div>
       </div>

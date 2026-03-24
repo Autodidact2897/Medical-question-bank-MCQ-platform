@@ -32,7 +32,7 @@ export default function ClinicalBriefs() {
           <span className="text-marine font-semibold text-lg">DiscoLabs</span>
         </div>
         <button onClick={() => navigate('/dashboard')} className="btn-secondary text-sm">
-          ← Dashboard
+          ← Clinical Dashboard
         </button>
       </header>
 
@@ -64,7 +64,7 @@ export default function ClinicalBriefs() {
             <p className="text-heading font-semibold mb-1">Clinical Briefs coming soon</p>
             <p className="text-body-dark text-sm mb-4">We're building deep-dive learning resources for every MSRA topic. Check back soon.</p>
             <button onClick={() => navigate('/dashboard')} className="btn-primary text-sm">
-              Back to Dashboard
+              Back to Clinical Dashboard
             </button>
           </div>
         ) : (

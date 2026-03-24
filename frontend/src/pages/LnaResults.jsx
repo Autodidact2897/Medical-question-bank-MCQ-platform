@@ -88,7 +88,7 @@ export default function LnaResults() {
       <div className="max-w-3xl mx-auto px-6 py-10">
 
         {/* ── Results Header ── */}
-        <h1 className="text-3xl font-semibold text-heading mb-2">Your Results</h1>
+        <h1 className="text-3xl font-semibold text-heading mb-2">Assessment Outcomes</h1>
         <p className="text-body-dark mb-8">Here's what the diagnostic identified as your top weak areas.</p>
 
         {/* ── Top 3 Weak Areas ── */}
@@ -122,7 +122,7 @@ export default function LnaResults() {
                   FREE ASSESSMENT
                 </th>
                 <th className="bg-marine px-5 py-3 text-left font-semibold text-white border-b border-marine-dark">
-                  FULL ASSESSMENT
+                  COMPREHENSIVE DIAGNOSTIC ASSESSMENT
                 </th>
               </tr>
             </thead>
@@ -181,7 +181,7 @@ export default function LnaResults() {
           onClick={handleUpgrade}
           className="w-full btn-primary text-base py-4 text-center"
         >
-          Sign Up & Unlock Full LNA
+          Sign Up & Unlock Comprehensive Diagnostic Assessment
         </button>
 
         <p className="text-center text-xs text-body-dark mt-3">

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import api from '../lib/api'
+import { groupArrayByDomain } from '../lib/domains'
 
 function TrafficBadge({ level }) {
   const classes = {
@@ -310,33 +311,43 @@ export default function Dashboard() {
               </div>
             </div>
 
-            {/* Subject performance bars */}
-            {progressData.by_subject && progressData.by_subject.length > 0 && (
-              <div className="card mt-4">
-                <h3 className="font-semibold text-heading text-sm mb-3">Performance by Subject</h3>
-                <div className="flex flex-col gap-3">
-                  {progressData.by_subject.map((s, i) => (
-                    <div key={i}>
-                      <div className="flex items-center justify-between mb-1">
-                        <span className={`text-xs font-medium ${s.percentage < 60 ? 'text-red-600' : 'text-heading'}`}>
-                          {s.subject}{s.percentage < 60 ? ' — needs work' : ''}
-                        </span>
-                        <span className="text-xs text-body-dark">{s.correct}/{s.attempted} ({s.percentage}%)</span>
-                      </div>
-                      <div className="h-2.5 bg-grey-light rounded-full overflow-hidden">
-                        <div
-                          className="h-full rounded-full transition-all duration-500"
-                          style={{
-                            width: `${s.percentage}%`,
-                            backgroundColor: s.percentage >= 60 ? '#059669' : '#ef4444'
-                          }}
-                        />
-                      </div>
-                    </div>
-                  ))}
+            {/* Subject performance bars — grouped by domain */}
+            {progressData.by_subject && progressData.by_subject.length > 0 && (() => {
+              const { clinical, professional, other } = groupArrayByDomain(progressData.by_subject, s => s.subject)
+              const renderBars = (items) => items.map((s, i) => (
+                <div key={i}>
+                  <div className="flex items-center justify-between mb-1">
+                    <span className={`text-xs font-medium ${s.percentage < 60 ? 'text-red-600' : 'text-heading'}`}>
+                      {s.subject}{s.percentage < 60 ? ' — needs work' : ''}
+                    </span>
+                    <span className="text-xs text-body-dark">{s.correct}/{s.attempted} ({s.percentage}%)</span>
+                  </div>
+                  <div className="h-2.5 bg-grey-light rounded-full overflow-hidden">
+                    <div className="h-full rounded-full transition-all duration-500" style={{ width: `${s.percentage}%`, backgroundColor: s.percentage >= 60 ? '#059669' : '#ef4444' }} />
+                  </div>
                 </div>
-              </div>
-            )}
+              ))
+              return (
+                <div className="card mt-4">
+                  <h3 className="font-semibold text-heading text-sm mb-3">Performance by Subject</h3>
+                  {clinical.length > 0 && (
+                    <div className="mb-4">
+                      <p className="text-[10px] font-semibold text-marine uppercase tracking-wide mb-2">Clinical Domains</p>
+                      <div className="flex flex-col gap-3">{renderBars(clinical)}</div>
+                    </div>
+                  )}
+                  {professional.length > 0 && (
+                    <div className="mb-2">
+                      <p className="text-[10px] font-semibold text-marine uppercase tracking-wide mb-2">Professional Domains</p>
+                      <div className="flex flex-col gap-3">{renderBars(professional)}</div>
+                    </div>
+                  )}
+                  {other.length > 0 && (
+                    <div className="flex flex-col gap-3">{renderBars(other)}</div>
+                  )}
+                </div>
+              )
+            })()}
 
             {/* Difficulty breakdown */}
             {progressData.by_difficulty && progressData.by_difficulty.length > 0 && (
@@ -407,8 +418,9 @@ export default function Dashboard() {
                   <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm inline-block bg-gray-300"></span> Platform avg: {comparison.platformPercentage}%</span>
                 </div>
               </div>
-              <div className="flex flex-col gap-3">
-                {comparison.subjectComparison.map((s, i) => (
+              {(() => {
+                const { clinical, professional, other } = groupArrayByDomain(comparison.subjectComparison, s => s.subject)
+                const renderCompBars = (items) => items.map((s, i) => (
                   <div key={i}>
                     <div className="flex items-center justify-between mb-1">
                       <span className="text-xs font-medium text-heading">{s.subject}</span>
@@ -431,8 +443,25 @@ export default function Dashboard() {
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                ))
+                return (
+                  <div className="flex flex-col gap-3">
+                    {clinical.length > 0 && (
+                      <>
+                        <p className="text-[10px] font-semibold text-marine uppercase tracking-wide">Clinical Domains</p>
+                        {renderCompBars(clinical)}
+                      </>
+                    )}
+                    {professional.length > 0 && (
+                      <>
+                        <p className="text-[10px] font-semibold text-marine uppercase tracking-wide mt-2">Professional Domains</p>
+                        {renderCompBars(professional)}
+                      </>
+                    )}
+                    {other.length > 0 && renderCompBars(other)}
+                  </div>
+                )
+              })()}
             </div>
           </div>
         )}

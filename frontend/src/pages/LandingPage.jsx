@@ -32,12 +32,11 @@ export default function LandingPage() {
 
       {/* ── Section 1: Above the Fold ── */}
       <section className="bg-white px-6 py-20 text-center max-w-3xl mx-auto">
-        <h1 className="text-4xl md:text-5xl font-semibold text-heading leading-tight mb-6">
-          Stop guessing what to revise for the MSRA.
+        <h1 className="text-4xl md:text-5xl font-semibold text-heading leading-tight mb-4">
+          Master the MSRA
         </h1>
         <p className="text-body-dark text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-          Take a free 15-minute diagnostic assessment. Get a personalised, curriculum-mapped report
-          showing your weakest areas — and a targeted plan to fix them.
+          Built from the ground up as a dedicated MSRA preparation platform — not a generic question bank repurposed for the exam. Every question, diagnostic, and revision pathway is designed specifically around the MSRA curriculum.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
           <button
@@ -132,6 +131,129 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ── Section 3b: Product Mockup Panels ── */}
+      <section className="px-6 py-16 max-w-5xl mx-auto">
+        <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-12">
+          See what's inside
+        </h2>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+          {/* Panel 1 — Quiz View Mockup */}
+          <div>
+            <div className="bg-white border border-border-default rounded-card overflow-hidden shadow-sm">
+              {/* Progress bar */}
+              <div className="px-4 pt-4 pb-2">
+                <div className="flex items-center justify-between text-[10px] text-body-dark mb-1">
+                  <span>Question 7 of 20</span>
+                  <span>35%</span>
+                </div>
+                <div className="w-full h-1.5 bg-grey-light rounded-full overflow-hidden">
+                  <div className="h-full bg-marine rounded-full" style={{ width: '35%' }} />
+                </div>
+              </div>
+              {/* Score tracker */}
+              <div className="px-4 pb-2 flex items-center gap-3 text-[10px]">
+                <span className="flex items-center gap-1 text-green-600 font-semibold">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  4
+                </span>
+                <span className="flex items-center gap-1 text-red-500 font-semibold">
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                  2
+                </span>
+                <span className="text-marine font-bold ml-auto">67%</span>
+              </div>
+              {/* Question */}
+              <div className="px-4 pb-3">
+                <p className="text-xs font-semibold text-heading leading-snug">
+                  A 58-year-old male presents with central crushing chest pain radiating to the left arm. ECG shows ST elevation in leads II, III, and aVF. What is the most appropriate initial management?
+                </p>
+              </div>
+              {/* Options */}
+              <div className="px-4 pb-4 flex flex-col gap-1.5">
+                {['A. Oral aspirin 300mg', 'B. IV amiodarone', 'C. Sublingual GTN', 'D. IV morphine', 'E. Thrombolysis'].map((opt, i) => (
+                  <div key={i} className={`px-3 py-2 rounded border text-[11px] font-medium ${
+                    i === 0 ? 'border-marine bg-marine/10 text-marine' : 'border-border-default text-heading'
+                  }`}>
+                    {opt}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p className="text-xs text-body-dark text-center mt-3 font-medium">Quiz Assessment View</p>
+          </div>
+
+          {/* Panel 2 — Dashboard Diagnostic Mockup */}
+          <div>
+            <div className="bg-white border border-border-default rounded-card overflow-hidden shadow-sm">
+              <div className="px-4 py-3 border-b border-border-default">
+                <p className="text-xs font-semibold text-heading">Diagnostic Breakdown</p>
+              </div>
+              {/* Subject tabs */}
+              <div className="px-4 pt-3 flex gap-1 overflow-x-auto pb-2">
+                {['Cardio', 'Resp', 'GI', 'Endo'].map((tab, i) => (
+                  <span key={i} className={`px-2.5 py-1 rounded-full text-[10px] font-medium whitespace-nowrap ${
+                    i === 0 ? 'bg-marine text-white' : 'bg-grey-light text-body-dark'
+                  }`}>{tab}</span>
+                ))}
+              </div>
+              {/* Subject rows with traffic lights */}
+              <div className="px-4 pb-4 flex flex-col gap-2 mt-2">
+                {[
+                  { name: 'Ischaemic Heart Disease', pct: 85, color: 'bg-green-500' },
+                  { name: 'Heart Failure', pct: 62, color: 'bg-amber-500' },
+                  { name: 'Arrhythmias', pct: 45, color: 'bg-red-500' },
+                  { name: 'Valvular Disease', pct: 78, color: 'bg-green-500' },
+                  { name: 'Hypertension', pct: 55, color: 'bg-amber-500' },
+                  { name: 'Acute Coronary Syndromes', pct: 38, color: 'bg-red-500' },
+                ].map((row, i) => (
+                  <div key={i} className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className={`w-2 h-2 rounded-full ${row.color}`} />
+                      <span className="text-[11px] text-heading">{row.name}</span>
+                    </div>
+                    <span className="text-[11px] font-semibold text-body-dark">{row.pct}%</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <p className="text-xs text-body-dark text-center mt-3 font-medium">Diagnostic Dashboard</p>
+          </div>
+
+          {/* Panel 3 — Clinical Brief Mockup */}
+          <div>
+            <div className="bg-white border border-border-default rounded-card overflow-hidden shadow-sm">
+              <div className="px-4 py-3 border-b border-border-default flex items-center justify-between">
+                <span className="text-[10px] font-semibold text-marine bg-blue-50 px-2 py-0.5 rounded">Cardiovascular</span>
+                <span className="text-[10px] text-body-dark">CB_042</span>
+              </div>
+              <div className="px-4 py-3">
+                <h3 className="text-xs font-semibold text-heading mb-2">Acute Coronary Syndromes</h3>
+                <p className="text-[11px] text-body-dark leading-relaxed mb-3">
+                  Acute coronary syndromes encompass a spectrum of presentations from unstable angina to STEMI, unified by the common pathology of coronary plaque rupture and thrombosis.
+                </p>
+                <div className="flex flex-col gap-1.5">
+                  {[
+                    'NICE TA236: Dual antiplatelet therapy post-ACS',
+                    'Troponin rises within 3–6 hours of onset',
+                    'STEMI: primary PCI within 120 minutes',
+                    'GRACE score stratifies risk in NSTEMI',
+                  ].map((point, i) => (
+                    <div key={i} className="flex items-start gap-2">
+                      <span className="text-marine text-[10px] mt-0.5">&#x2022;</span>
+                      <span className="text-[11px] text-body-dark leading-snug">{point}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <p className="text-xs text-body-dark text-center mt-3 font-medium">Clinical Brief Library</p>
+          </div>
+
+        </div>
+      </section>
+
       {/* ── Section 4: Product Proof ── */}
       <section className="px-6 py-16 max-w-4xl mx-auto">
         <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-10">
@@ -142,7 +264,7 @@ export default function LandingPage() {
             'Fully mapped to the official MSRA curriculum blueprint',
             'All explanations referenced to NICE, BNF, SIGN, and GMC guidance',
             'Clinically realistic question style reflecting actual exam format',
-            'Content validated by practising UK clinicians',
+            'Clinician validated content by practising UK doctors',
             '2,000 curriculum-mapped questions across CPS and Professional Dilemmas',
             'Continuous content review and updates',
           ].map((item, i) => (
@@ -165,78 +287,63 @@ export default function LandingPage() {
           <h2 className="text-2xl md:text-3xl font-semibold text-heading text-center mb-3">
             How this is different
           </h2>
-          <p className="text-body-dark text-center mb-10">See how DiscoLabs compares to other MSRA preparation platforms.</p>
+          <p className="text-body-dark text-center mb-10">See how DiscoLabs compares to typical question banks.</p>
 
           {/* Mobile: stacked cards */}
-          <div className="block md:hidden">
+          <div className="block md:hidden flex flex-col gap-3">
             {[
-              { feature: 'Personalised Diagnostic Assessment', disco: true, pass: false, bmj: false },
-              { feature: 'MSRA-specific content', disco: true, pass: 'partial', bmj: false },
-              { feature: 'UK guidelines only', disco: true, pass: true, bmj: true },
-              { feature: 'Community question discussion', disco: true, pass: false, bmj: false },
-              { feature: 'Performance comparison analytics', disco: true, pass: false, bmj: 'partial' },
-              { feature: 'Adaptive revision based on weak areas', disco: true, pass: false, bmj: false },
-              { feature: 'Price', disco: 'Free', pass: '£35/mo', bmj: '£60/yr' },
+              { typical: 'Start with random questions', disco: 'Start with a curriculum-wide diagnostic' },
+              { typical: 'Rely on you choosing topics', disco: 'Identify your weakest areas automatically' },
+              { typical: 'Focus on quantity of questions', disco: 'Focus on high-yield knowledge gaps' },
+              { typical: 'Easy to miss entire topics', disco: 'Structured coverage of the full curriculum' },
+              { typical: 'Progress feels uncertain', disco: 'Clear, data-driven revision plan' },
+              { typical: 'Questions often added ad hoc over time', disco: 'Built systematically from the full MSRA curriculum' },
             ].map((row, i) => (
-              <div key={i} className="border-b border-border-default py-3 last:border-0">
-                <p className="text-sm font-semibold text-heading mb-2">{row.feature}</p>
-                <div className="flex gap-4 text-sm">
-                  <span className="flex items-center gap-1"><span className="font-semibold text-marine">DiscoLabs:</span> {typeof row.disco === 'string' ? row.disco : row.disco ? <span className="text-green-600">&#x2713;</span> : <span className="text-red-400">&#x2717;</span>}</span>
-                  <span className="flex items-center gap-1"><span className="text-body-dark">PM:</span> {typeof row.pass === 'string' ? row.pass : row.pass === 'partial' ? <span className="text-amber-500">~</span> : row.pass ? <span className="text-green-600">&#x2713;</span> : <span className="text-red-400">&#x2717;</span>}</span>
-                  <span className="flex items-center gap-1"><span className="text-body-dark">BMJ:</span> {typeof row.bmj === 'string' ? row.bmj : row.bmj === 'partial' ? <span className="text-amber-500">~</span> : row.bmj ? <span className="text-green-600">&#x2713;</span> : <span className="text-red-400">&#x2717;</span>}</span>
+              <div key={i} className="bg-white border border-border-default rounded-card p-4">
+                <div className="flex items-start gap-2 mb-2">
+                  <svg className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                  <span className="text-sm text-body-dark">{row.typical}</span>
+                </div>
+                <div className="flex items-start gap-2">
+                  <svg className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                  <span className="text-sm text-heading font-medium">{row.disco}</span>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Desktop: comparison table */}
+          {/* Desktop: two-column comparison table */}
           <div className="hidden md:block">
-            <div className="grid grid-cols-4 gap-0 rounded-card overflow-hidden border border-border-default">
+            <div className="rounded-card overflow-hidden border border-border-default">
               {/* Header row */}
-              <div className="bg-grey-light px-5 py-4 border-b border-border-default">
-                <span className="text-sm font-semibold text-body-dark">Feature</span>
+              <div className="grid grid-cols-2">
+                <div className="bg-grey-light px-6 py-4 border-b border-r border-border-default">
+                  <span className="text-sm font-semibold text-body-dark">Typical Question Banks</span>
+                </div>
+                <div className="bg-marine px-6 py-4 border-b border-marine">
+                  <span className="text-sm font-bold text-white">DiscoLabs</span>
+                </div>
               </div>
-              <div className="bg-marine px-5 py-4 border-b border-marine text-center">
-                <span className="text-sm font-bold text-white">DiscoLabs</span>
-              </div>
-              <div className="bg-grey-light px-5 py-4 border-b border-border-default text-center">
-                <span className="text-sm font-semibold text-heading">PassMedicine</span>
-              </div>
-              <div className="bg-grey-light px-5 py-4 border-b border-border-default text-center">
-                <span className="text-sm font-semibold text-heading">BMJ OnExamination</span>
-              </div>
-
-              {/* Feature rows */}
+              {/* Body rows */}
               {[
-                { feature: 'Personalised Diagnostic Assessment', disco: true, pass: false, bmj: false },
-                { feature: 'MSRA-specific content', disco: true, pass: 'partial', bmj: false },
-                { feature: 'UK guidelines only', disco: true, pass: true, bmj: true },
-                { feature: 'Community question discussion', disco: true, pass: false, bmj: false },
-                { feature: 'Performance comparison analytics', disco: true, pass: false, bmj: 'partial' },
-                { feature: 'Adaptive revision based on weak areas', disco: true, pass: false, bmj: false },
-                { feature: 'Price', disco: 'Free', pass: '£35/mo', bmj: '£60/yr' },
-              ].map((row, i) => {
-                const renderCell = (val) => {
-                  if (typeof val === 'string') return <span className="text-sm font-semibold text-heading">{val}</span>
-                  if (val === 'partial') return <span className="text-amber-500 text-lg">~</span>
-                  if (val === true) return <span className="text-green-600 text-lg">&#x2713;</span>
-                  return <span className="text-red-300 text-lg">&#x2717;</span>
-                }
-                return [
-                  <div key={`f-${i}`} className="px-5 py-3 border-b border-border-default flex items-center">
-                    <span className="text-sm text-heading font-medium">{row.feature}</span>
-                  </div>,
-                  <div key={`d-${i}`} className="px-5 py-3 border-b border-border-default text-center bg-blue-50/40 flex items-center justify-center">
-                    {renderCell(row.disco)}
-                  </div>,
-                  <div key={`p-${i}`} className="px-5 py-3 border-b border-border-default text-center flex items-center justify-center">
-                    {renderCell(row.pass)}
-                  </div>,
-                  <div key={`b-${i}`} className="px-5 py-3 border-b border-border-default text-center flex items-center justify-center">
-                    {renderCell(row.bmj)}
-                  </div>,
-                ]
-              })}
+                { typical: 'Start with random questions', disco: 'Start with a curriculum-wide diagnostic' },
+                { typical: 'Rely on you choosing topics', disco: 'Identify your weakest areas automatically' },
+                { typical: 'Focus on quantity of questions', disco: 'Focus on high-yield knowledge gaps' },
+                { typical: 'Easy to miss entire topics', disco: 'Structured coverage of the full curriculum' },
+                { typical: 'Progress feels uncertain', disco: 'Clear, data-driven revision plan' },
+                { typical: 'Questions often added ad hoc over time', disco: 'Built systematically from the full MSRA curriculum' },
+              ].map((row, i) => (
+                <div key={i} className="grid grid-cols-2">
+                  <div className="px-6 py-4 border-b border-r border-border-default flex items-center gap-3">
+                    <svg className="w-4 h-4 text-red-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                    <span className="text-sm text-body-dark">{row.typical}</span>
+                  </div>
+                  <div className="px-6 py-4 border-b border-border-default bg-blue-50/40 flex items-center gap-3">
+                    <svg className="w-4 h-4 text-green-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+                    <span className="text-sm text-heading font-medium">{row.disco}</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -255,11 +362,11 @@ export default function LandingPage() {
           {[
             {
               q: 'Is this content accurate?',
-              a: 'All content is written within strict clinical and guideline-based frameworks, referenced to NICE, BNF, SIGN, and GMC guidance, and validated by practising UK clinicians before publication.',
+              a: 'All content is written within strict clinical and guideline-based frameworks, referenced to NICE, BNF, SIGN, and GMC guidance, and clinician validated before publication.',
             },
             {
               q: 'How is the content produced?',
-              a: 'Every question follows a rigorous clinical framework mapped to the official MSRA curriculum. Content is reviewed and validated by real clinicians to ensure accuracy, clinical relevance, and alignment with current UK practice.',
+              a: 'Every question follows a rigorous clinical framework mapped to the official MSRA curriculum. Content is clinician reviewed and validated to ensure accuracy, clinical relevance, and alignment with current UK practice.',
             },
             {
               q: 'What makes this better than just doing random questions?',

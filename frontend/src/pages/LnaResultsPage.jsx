@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import api from '../lib/api'
+import { groupByDomain } from '../lib/domains'
 
 const STATUS_COLORS = {
   GREEN: { bg: 'bg-green-100', text: 'text-green-800', dot: 'bg-green-500', label: 'Strong' },
@@ -84,30 +85,48 @@ export default function LnaResultsPage() {
           </div>
         </div>
 
-        {/* Traffic light breakdown by subject */}
+        {/* Traffic light breakdown by subject — grouped by domain */}
         <div className="mb-8">
           <h2 className="text-lg font-semibold text-heading mb-4">Performance by Specialty</h2>
-          {Object.entries(bySubject).map(([subject, topics]) => (
-            <div key={subject} className="card mb-4">
-              <h3 className="text-base font-semibold text-heading mb-3">{subject}</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {topics.map((t, i) => {
-                  const style = STATUS_COLORS[t.status] || STATUS_COLORS.AMBER
-                  return (
-                    <div key={i} className={`flex items-center justify-between px-3 py-2 rounded-card ${style.bg}`}>
-                      <div className="flex items-center gap-2">
-                        <span className={`w-2.5 h-2.5 rounded-full ${style.dot}`} />
-                        <span className={`text-sm font-medium ${style.text}`}>{t.topic}</span>
+          {(() => {
+            const { clinical, professional, other } = groupByDomain(bySubject)
+            const renderSubjectCards = (group) => Object.entries(group).map(([subject, topics]) => (
+              <div key={subject} className="card mb-4">
+                <h3 className="text-base font-semibold text-heading mb-3">{subject}</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                  {topics.map((t, i) => {
+                    const style = STATUS_COLORS[t.status] || STATUS_COLORS.AMBER
+                    return (
+                      <div key={i} className={`flex items-center justify-between px-3 py-2 rounded-card ${style.bg}`}>
+                        <div className="flex items-center gap-2">
+                          <span className={`w-2.5 h-2.5 rounded-full ${style.dot}`} />
+                          <span className={`text-sm font-medium ${style.text}`}>{t.topic}</span>
+                        </div>
+                        <span className={`text-xs font-semibold ${style.text}`}>{t.percentage !== null ? `${t.percentage}%` : style.label}</span>
                       </div>
-                      <span className={`text-xs font-semibold ${style.text}`}>
-                        {t.percentage !== null ? `${t.percentage}%` : style.label}
-                      </span>
-                    </div>
-                  )
-                })}
+                    )
+                  })}
+                </div>
               </div>
-            </div>
-          ))}
+            ))
+            return (
+              <>
+                {Object.keys(clinical).length > 0 && (
+                  <>
+                    <p className="text-xs font-semibold text-marine uppercase tracking-wide mb-3">Clinical Domains (Paper 2)</p>
+                    {renderSubjectCards(clinical)}
+                  </>
+                )}
+                {Object.keys(professional).length > 0 && (
+                  <>
+                    <p className="text-xs font-semibold text-marine uppercase tracking-wide mb-3 mt-6">Professional Domains (Paper 1)</p>
+                    {renderSubjectCards(professional)}
+                  </>
+                )}
+                {Object.keys(other).length > 0 && renderSubjectCards(other)}
+              </>
+            )
+          })()}
         </div>
 
         {/* Focus areas */}

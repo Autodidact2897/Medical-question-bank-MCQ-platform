@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
+import ReactMarkdown from 'react-markdown'
 import api from '../lib/api'
 
 export default function SingleBrief() {
@@ -64,8 +65,8 @@ export default function SingleBrief() {
 
         <div className="card">
           {brief.content ? (
-            <div className="prose max-w-none text-body-dark text-sm leading-relaxed whitespace-pre-wrap">
-              {brief.content}
+            <div className="max-w-none text-body-dark text-sm leading-relaxed [&_h1]:text-xl [&_h1]:font-semibold [&_h1]:text-heading [&_h1]:mt-6 [&_h1]:mb-3 [&_h2]:text-lg [&_h2]:font-semibold [&_h2]:text-heading [&_h2]:mt-5 [&_h2]:mb-2 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-heading [&_h3]:mt-4 [&_h3]:mb-2 [&_p]:mb-3 [&_ul]:list-disc [&_ul]:pl-5 [&_ul]:mb-3 [&_ol]:list-decimal [&_ol]:pl-5 [&_ol]:mb-3 [&_li]:mb-1 [&_strong]:text-heading [&_strong]:font-semibold [&_hr]:my-4 [&_hr]:border-border-default">
+              <ReactMarkdown>{brief.content}</ReactMarkdown>
             </div>
           ) : (
             <p className="text-body-dark text-sm">No content available for this brief.</p>
@@ -90,7 +91,13 @@ export default function SingleBrief() {
         {/* Related questions link */}
         <div className="mt-6">
           <button
-            onClick={() => navigate(`/quiz/brief-${id}`)}
+            onClick={() => {
+              const params = new URLSearchParams()
+              if (brief.topic) params.set('topic', brief.topic)
+              if (brief.subject) params.set('subject', brief.subject)
+              params.set('count', '10')
+              navigate(`/quiz/brief-${id}?${params.toString()}`)
+            }}
             className="btn-primary text-sm"
           >
             Practice Questions on This Topic →

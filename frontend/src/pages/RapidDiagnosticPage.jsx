@@ -138,7 +138,7 @@ export default function RapidDiagnosticPage() {
             Find out where you really stand — in under 15 minutes.
           </h1>
           <p className="text-body-dark text-lg mb-8">
-            20 questions. Instant results. No sign-up required.
+            20 questions. Instant results.
           </p>
           <button onClick={startAssessment} className="btn-primary text-base px-8 py-4">
             Start Free Assessment

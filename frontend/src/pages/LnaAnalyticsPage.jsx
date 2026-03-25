@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import api from '../lib/api'
+import { groupByDomain, groupArrayByDomain } from '../lib/domains'
 
 export default function LnaAnalyticsPage() {
   const navigate = useNavigate()
@@ -70,101 +71,125 @@ export default function LnaAnalyticsPage() {
           &middot; Overall: <span className="font-semibold text-marine">{overallPercentage}%</span>
         </p>
 
-        {/* Subject comparison chart */}
-        {subjectComparison.length > 0 && (
-          <div className="card mb-8">
-            <h2 className="text-base font-semibold text-heading mb-4">Your Performance vs Platform Average</h2>
-            <div className="flex flex-col gap-3">
-              {subjectComparison.map((s, i) => (
-                <div key={i}>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="text-xs font-medium text-heading">{s.subject}</span>
-                  </div>
-                  <div className="flex flex-col gap-1">
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] text-body-dark w-8">You</span>
-                      <div className="flex-1 h-2.5 bg-grey-light rounded-full overflow-hidden">
-                        <div className="h-full rounded-full" style={{ width: `${s.userPercentage}%`, backgroundColor: '#0c3a5c' }} />
-                      </div>
-                      <span className="text-[10px] font-semibold text-heading w-8 text-right">{s.userPercentage}%</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-[10px] text-body-dark w-8">Avg</span>
-                      <div className="flex-1 h-2.5 bg-grey-light rounded-full overflow-hidden">
-                        <div className="h-full rounded-full bg-gray-300" style={{ width: `${s.platformPercentage}%` }} />
-                      </div>
-                      <span className="text-[10px] font-semibold text-body-dark w-8 text-right">{s.platformPercentage}%</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="flex items-center gap-4 mt-4 text-xs text-body-dark">
-              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm inline-block" style={{ backgroundColor: '#0c3a5c' }}></span> Your score</span>
-              <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm inline-block bg-gray-300"></span> Platform average</span>
-            </div>
-          </div>
-        )}
-
-        {/* Full question breakdown by subject */}
-        {Object.entries(bySubject).map(([subject, qs]) => {
-          const correct = qs.filter(q => q.is_correct).length
-          const pct = Math.round((correct / qs.length) * 100)
-          return (
-            <div key={subject} className="mb-8">
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="text-lg font-semibold text-heading">{subject}</h2>
-                <span className={`text-sm font-semibold ${pct >= 70 ? 'text-green-600' : pct >= 50 ? 'text-amber-600' : 'text-red-600'}`}>
-                  {correct}/{qs.length} ({pct}%)
-                </span>
+        {/* Subject comparison chart — grouped by domain */}
+        {subjectComparison.length > 0 && (() => {
+          const { clinical, professional, other } = groupArrayByDomain(subjectComparison, s => s.subject)
+          const renderBars = (items) => items.map((s, i) => (
+            <div key={i}>
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-xs font-medium text-heading">{s.subject}</span>
               </div>
-              <div className="flex flex-col gap-3">
-                {qs.map((q, i) => (
-                  <div key={i} className={`card border-l-4 ${q.is_correct ? 'border-l-green-500' : 'border-l-red-500'}`}>
-                    <div className="flex items-start justify-between gap-3 mb-2">
-                      <p className="text-sm font-medium text-heading flex-1">{q.question_text}</p>
-                      <span className={`text-xs font-semibold px-2 py-0.5 rounded flex-shrink-0 ${
-                        q.is_correct ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'
-                      }`}>
-                        {q.is_correct ? 'Correct' : 'Incorrect'}
-                      </span>
-                    </div>
-
-                    {/* Answer options */}
-                    <div className="flex flex-col gap-1 mb-3">
-                      {['A', 'B', 'C', 'D', 'E'].map(letter => {
-                        const optionText = q[`option_${letter.toLowerCase()}`]
-                        if (!optionText) return null
-                        const isCorrect = letter === q.correct_answer?.toUpperCase()
-                        const isUserAnswer = letter === q.user_answer?.toUpperCase()
-                        const isWrong = isUserAnswer && !isCorrect
-                        return (
-                          <div key={letter} className={`px-3 py-1.5 rounded text-xs ${
-                            isCorrect ? 'bg-green-50 text-green-700 font-semibold' :
-                            isWrong ? 'bg-red-50 text-red-700 font-semibold' :
-                            'text-body-dark'
-                          }`}>
-                            <span className="font-bold mr-2">{letter}</span>{optionText}
-                            {isCorrect && ' ✓'}
-                            {isWrong && ' ✗'}
-                          </div>
-                        )
-                      })}
-                    </div>
-
-                    {q.explanation && (
-                      <div className="bg-blue-50 border border-blue-200 rounded px-3 py-2">
-                        <p className="text-xs text-heading">{q.explanation}</p>
-                      </div>
-                    )}
-
-                    <p className="text-[10px] text-body-dark mt-2">{q.topic} &middot; {q.difficulty}</p>
+              <div className="flex flex-col gap-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] text-body-dark w-8">You</span>
+                  <div className="flex-1 h-2.5 bg-grey-light rounded-full overflow-hidden">
+                    <div className="h-full rounded-full" style={{ width: `${s.userPercentage}%`, backgroundColor: '#0c3a5c' }} />
                   </div>
-                ))}
+                  <span className="text-[10px] font-semibold text-heading w-8 text-right">{s.userPercentage}%</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] text-body-dark w-8">Avg</span>
+                  <div className="flex-1 h-2.5 bg-grey-light rounded-full overflow-hidden">
+                    <div className="h-full rounded-full bg-gray-300" style={{ width: `${s.platformPercentage}%` }} />
+                  </div>
+                  <span className="text-[10px] font-semibold text-body-dark w-8 text-right">{s.platformPercentage}%</span>
+                </div>
+              </div>
+            </div>
+          ))
+          return (
+            <div className="card mb-8">
+              <h2 className="text-base font-semibold text-heading mb-4">Your Performance vs Platform Average</h2>
+              {clinical.length > 0 && (
+                <div className="mb-4">
+                  <p className="text-[10px] font-semibold text-marine uppercase tracking-wide mb-2">Clinical Domains</p>
+                  <div className="flex flex-col gap-3">{renderBars(clinical)}</div>
+                </div>
+              )}
+              {professional.length > 0 && (
+                <div className="mb-4">
+                  <p className="text-[10px] font-semibold text-marine uppercase tracking-wide mb-2">Professional Domains</p>
+                  <div className="flex flex-col gap-3">{renderBars(professional)}</div>
+                </div>
+              )}
+              {other.length > 0 && <div className="flex flex-col gap-3">{renderBars(other)}</div>}
+              <div className="flex items-center gap-4 mt-4 text-xs text-body-dark">
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm inline-block" style={{ backgroundColor: '#0c3a5c' }}></span> Your score</span>
+                <span className="flex items-center gap-1"><span className="w-3 h-3 rounded-sm inline-block bg-gray-300"></span> Platform average</span>
               </div>
             </div>
           )
-        })}
+        })()}
+
+        {/* Full question breakdown by subject — grouped by domain */}
+        {(() => {
+          const { clinical, professional, other } = groupByDomain(bySubject)
+          const renderSubjectBlock = ([subject, qs]) => {
+            const correct = qs.filter(q => q.is_correct).length
+            const pct = Math.round((correct / qs.length) * 100)
+            return (
+              <div key={subject} className="mb-8">
+                <div className="flex items-center justify-between mb-3">
+                  <h2 className="text-lg font-semibold text-heading">{subject}</h2>
+                  <span className={`text-sm font-semibold ${pct >= 70 ? 'text-green-600' : pct >= 50 ? 'text-amber-600' : 'text-red-600'}`}>
+                    {correct}/{qs.length} ({pct}%)
+                  </span>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {qs.map((q, i) => (
+                    <div key={i} className={`card border-l-4 ${q.is_correct ? 'border-l-green-500' : 'border-l-red-500'}`}>
+                      <div className="flex items-start justify-between gap-3 mb-2">
+                        <p className="text-sm font-medium text-heading flex-1">{q.question_text}</p>
+                        <span className={`text-xs font-semibold px-2 py-0.5 rounded flex-shrink-0 ${q.is_correct ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700'}`}>
+                          {q.is_correct ? 'Correct' : 'Incorrect'}
+                        </span>
+                      </div>
+                      <div className="flex flex-col gap-1 mb-3">
+                        {['A', 'B', 'C', 'D', 'E'].map(letter => {
+                          const optionText = q[`option_${letter.toLowerCase()}`]
+                          if (!optionText) return null
+                          const isCorrect = letter === q.correct_answer?.toUpperCase()
+                          const isUserAnswer = letter === q.user_answer?.toUpperCase()
+                          const isWrong = isUserAnswer && !isCorrect
+                          return (
+                            <div key={letter} className={`px-3 py-1.5 rounded text-xs ${isCorrect ? 'bg-green-50 text-green-700 font-semibold' : isWrong ? 'bg-red-50 text-red-700 font-semibold' : 'text-body-dark'}`}>
+                              <span className="font-bold mr-2">{letter}</span>{optionText}
+                              {isCorrect && ' ✓'}
+                              {isWrong && ' ✗'}
+                            </div>
+                          )
+                        })}
+                      </div>
+                      {q.explanation && (
+                        <div className="bg-blue-50 border border-blue-200 rounded px-3 py-2">
+                          <p className="text-xs text-heading">{q.explanation}</p>
+                        </div>
+                      )}
+                      <p className="text-[10px] text-body-dark mt-2">{q.topic} &middot; {q.difficulty}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )
+          }
+          return (
+            <>
+              {Object.keys(clinical).length > 0 && (
+                <>
+                  <p className="text-xs font-semibold text-marine uppercase tracking-wide mb-4">Clinical Domains (Paper 2)</p>
+                  {Object.entries(clinical).map(renderSubjectBlock)}
+                </>
+              )}
+              {Object.keys(professional).length > 0 && (
+                <>
+                  <p className="text-xs font-semibold text-marine uppercase tracking-wide mb-4">Professional Domains (Paper 1)</p>
+                  {Object.entries(professional).map(renderSubjectBlock)}
+                </>
+              )}
+              {Object.keys(other).length > 0 && Object.entries(other).map(renderSubjectBlock)}
+            </>
+          )
+        })()}
 
         <div className="flex gap-3">
           <Link to="/lna/results" className="btn-secondary">Diagnostic Report</Link>

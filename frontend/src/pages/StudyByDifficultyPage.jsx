@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../lib/api'
+import { groupByDomain } from '../lib/domains'
 
 const DIFFICULTIES = [
   { value: 'Easy', label: 'Foundation', desc: 'Core knowledge questions', color: 'border-green-400 bg-green-50 text-green-800' },
@@ -140,27 +141,38 @@ export default function StudyByDifficultyPage() {
             <h2 className="text-sm font-semibold text-heading mb-1">Step 2 — Refine by Specialty (optional)</h2>
             <p className="text-xs text-body-dark mb-3">Leave empty to include all specialties.</p>
 
-            <div className="flex flex-wrap gap-2 mb-3">
-              {Object.keys(subjects).map(subject => {
+            {(() => {
+              const { clinical, professional, other } = groupByDomain(subjects)
+              const renderPills = (group) => Object.keys(group).map(subject => {
                 const isSelected = selectedSubjects.includes(subject)
                 return (
-                  <button
-                    key={subject}
-                    onClick={() => {
-                      toggleSubject(subject)
-                      setExpandedSubject(isSelected ? null : subject)
-                    }}
-                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${
-                      isSelected
-                        ? 'bg-marine text-white border-marine'
-                        : 'bg-white text-heading border-border-default hover:border-marine'
-                    }`}
-                  >
-                    {subject}
-                  </button>
+                  <button key={subject} onClick={() => { toggleSubject(subject); setExpandedSubject(isSelected ? null : subject) }}
+                    className={`px-3 py-1.5 rounded-full text-xs font-medium transition-colors border ${isSelected ? 'bg-marine text-white border-marine' : 'bg-white text-heading border-border-default hover:border-marine'}`}
+                  >{subject}</button>
                 )
-              })}
-            </div>
+              })
+              return (
+                <div className="mb-3">
+                  {Object.keys(clinical).length > 0 && (
+                    <div className="mb-3">
+                      <p className="text-[10px] font-semibold text-body-dark uppercase tracking-wide mb-1.5">Clinical Domains</p>
+                      <div className="flex flex-wrap gap-2">{renderPills(clinical)}</div>
+                    </div>
+                  )}
+                  {Object.keys(professional).length > 0 && (
+                    <div className="mb-3">
+                      <p className="text-[10px] font-semibold text-body-dark uppercase tracking-wide mb-1.5">Professional Domains</p>
+                      <div className="flex flex-wrap gap-2">{renderPills(professional)}</div>
+                    </div>
+                  )}
+                  {Object.keys(other).length > 0 && (
+                    <div className="mb-3">
+                      <div className="flex flex-wrap gap-2">{renderPills(other)}</div>
+                    </div>
+                  )}
+                </div>
+              )
+            })()}
 
             {/* Subtopics for expanded subject */}
             {expandedSubject && selectedSubjects.includes(expandedSubject) && subjects[expandedSubject] && (

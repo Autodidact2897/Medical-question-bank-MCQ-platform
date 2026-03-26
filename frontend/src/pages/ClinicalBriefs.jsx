@@ -130,14 +130,13 @@ export default function ClinicalBriefs() {
                       className="card text-left hover:border-marine transition-colors duration-150 py-3 px-4"
                     >
                       <div className="flex items-start justify-between gap-2 mb-1">
-                        <span className="text-xs text-body-dark font-mono">#{brief.brief_number}</span>
-                        <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded ${typeBadge(brief.brief_type)}`}>
+                        <h3 className="font-semibold text-heading text-sm leading-snug flex-1">
+                          {brief.title}
+                        </h3>
+                        <span className={`text-[10px] font-semibold px-1.5 py-0.5 rounded flex-shrink-0 ${typeBadge(brief.brief_type)}`}>
                           {brief.brief_type}
                         </span>
                       </div>
-                      <h3 className="font-semibold text-heading text-sm leading-snug mb-2">
-                        {brief.title}
-                      </h3>
                       <div className="flex items-center justify-between">
                         <span className={`text-[10px] px-1.5 py-0.5 rounded ${
                           brief.source === 'v2.0' ? 'bg-orange-50 text-orange-700' : 'bg-gray-100 text-body-dark'

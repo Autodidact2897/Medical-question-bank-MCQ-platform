@@ -1,5 +1,6 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const pool = require('../db/connection');
 const authMiddleware = require('../middleware/auth');
 
@@ -445,5 +446,189 @@ function wrapHtmlEmail(title, bodyHtml, previewText) {
 </body>
 </html>`;
 }
+
+// ──────────────────────────────────────────────
+// Reported Issues (Question Feedback)
+// ──────────────────────────────────────────────
+
+// GET /api/admin/feedback — all feedback with user + question info
+router.get('/feedback', async (req, res) => {
+  try {
+    const result = await pool.query(`
+      SELECT
+        qf.id, qf.feedback_type, qf.feedback_text, qf.created_at, qf.replied_at,
+        u.email AS user_email,
+        q.id AS question_db_id, q.question_id, q.question_text, q.subject, q.topic
+      FROM question_feedback qf
+      JOIN users u ON qf.user_id = u.id
+      JOIN questions q ON qf.question_id = q.id
+      ORDER BY qf.created_at DESC
+    `);
+    return res.json({ success: true, data: result.rows, error: null });
+  } catch (err) {
+    console.error('Feedback list error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to load feedback', data: null });
+  }
+});
+
+// POST /api/admin/feedback/:id/reply — send email reply via Resend and mark replied
+router.post('/feedback/:id/reply', async (req, res) => {
+  const { id } = req.params;
+  const { subject, message } = req.body;
+
+  if (!subject || !message) {
+    return res.status(400).json({ success: false, error: 'Subject and message are required', data: null });
+  }
+
+  try {
+    // Get the feedback + user email
+    const fbResult = await pool.query(`
+      SELECT qf.*, u.email AS user_email
+      FROM question_feedback qf
+      JOIN users u ON qf.user_id = u.id
+      WHERE qf.id = $1
+    `, [id]);
+
+    if (fbResult.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'Feedback not found', data: null });
+    }
+
+    const fb = fbResult.rows[0];
+
+    // Try Resend first, fall back to SMTP
+    const resendKey = process.env.RESEND_API_KEY;
+    const fromEmail = process.env.RESEND_FROM_EMAIL || process.env.EMAIL_FROM || 'hello@discolabs.co.uk';
+
+    if (resendKey) {
+      const resend = new Resend(resendKey);
+      await resend.emails.send({
+        from: `DiscoLabs <${fromEmail}>`,
+        to: fb.user_email,
+        subject,
+        html: `<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto;">
+          <div style="background: #0c3a5c; padding: 16px 24px; color: #fff; font-weight: 600;">&#x2695; DiscoLabs</div>
+          <div style="padding: 24px; color: #1f2937; line-height: 1.6;">${message.replace(/\n/g, '<br>')}</div>
+          <div style="padding: 16px 24px; background: #f4f5f7; color: #6b7280; font-size: 12px; text-align: center;">DiscoLabs — MSRA Revision, Targeted.</div>
+        </div>`,
+      });
+    } else {
+      const { transporter, fromAddress } = getMailTransport();
+      if (!transporter) {
+        return res.status(500).json({ success: false, error: 'Email not configured. Set RESEND_API_KEY or SMTP credentials.', data: null });
+      }
+      await transporter.sendMail({
+        from: fromAddress,
+        to: fb.user_email,
+        subject,
+        html: message.replace(/\n/g, '<br>'),
+      });
+    }
+
+    // Mark as replied
+    await pool.query('UPDATE question_feedback SET replied_at = NOW() WHERE id = $1', [id]);
+
+    console.log(`Feedback ${id} replied to ${fb.user_email}`);
+    return res.json({ success: true, data: { sent_to: fb.user_email }, error: null });
+  } catch (err) {
+    console.error('Feedback reply error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to send reply', data: null });
+  }
+});
+
+// ──────────────────────────────────────────────
+// Question Editor
+// ──────────────────────────────────────────────
+
+// GET /api/admin/questions — paginated, filterable question list
+router.get('/questions', async (req, res) => {
+  const page = Math.max(1, parseInt(req.query.page) || 1);
+  const limit = Math.min(100, Math.max(1, parseInt(req.query.limit) || 20));
+  const offset = (page - 1) * limit;
+  const { subject, topic, difficulty, search } = req.query;
+
+  try {
+    let where = [];
+    let params = [];
+    let idx = 1;
+
+    if (subject) { where.push(`q.subject = $${idx++}`); params.push(subject); }
+    if (topic) { where.push(`q.topic = $${idx++}`); params.push(topic); }
+    if (difficulty) { where.push(`q.difficulty = $${idx++}`); params.push(difficulty); }
+    if (search) {
+      where.push(`(q.question_text ILIKE $${idx} OR q.question_id ILIKE $${idx})`);
+      params.push(`%${search}%`);
+      idx++;
+    }
+
+    const whereClause = where.length > 0 ? `WHERE ${where.join(' AND ')}` : '';
+
+    const countResult = await pool.query(
+      `SELECT COUNT(*)::int AS total FROM questions q ${whereClause}`,
+      params
+    );
+
+    const result = await pool.query(
+      `SELECT q.* FROM questions q ${whereClause} ORDER BY q.id DESC LIMIT $${idx++} OFFSET $${idx++}`,
+      [...params, limit, offset]
+    );
+
+    return res.json({
+      success: true,
+      data: {
+        questions: result.rows,
+        total: countResult.rows[0].total,
+        page,
+        limit,
+        totalPages: Math.ceil(countResult.rows[0].total / limit),
+      },
+      error: null,
+    });
+  } catch (err) {
+    console.error('Questions list error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to load questions', data: null });
+  }
+});
+
+// PUT /api/admin/questions/:id — partial update of a question
+router.put('/questions/:id', async (req, res) => {
+  const { id } = req.params;
+  const allowed = [
+    'question_text', 'option_a', 'option_b', 'option_c', 'option_d', 'option_e',
+    'option_f', 'option_g', 'option_h', 'correct_answer', 'explanation',
+    'difficulty', 'subject', 'topic', 'question_id', 'lna',
+  ];
+
+  const updates = [];
+  const values = [];
+  let idx = 1;
+
+  for (const field of allowed) {
+    if (req.body[field] !== undefined) {
+      updates.push(`${field} = $${idx++}`);
+      values.push(req.body[field]);
+    }
+  }
+
+  if (updates.length === 0) {
+    return res.status(400).json({ success: false, error: 'No valid fields to update', data: null });
+  }
+
+  values.push(id);
+
+  try {
+    const result = await pool.query(
+      `UPDATE questions SET ${updates.join(', ')} WHERE id = $${idx} RETURNING *`,
+      values
+    );
+    if (result.rows.length === 0) {
+      return res.status(404).json({ success: false, error: 'Question not found', data: null });
+    }
+    console.log(`Question ${id} updated`);
+    return res.json({ success: true, data: result.rows[0], error: null });
+  } catch (err) {
+    console.error('Question update error:', err.message);
+    return res.status(500).json({ success: false, error: 'Failed to update question', data: null });
+  }
+});
 
 module.exports = router;

@@ -8,8 +8,6 @@ function formatTime(seconds) {
   return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`
 }
 
-const TOTAL_SECONDS = 30 * 60
-
 export default function QuizPage() {
   const { id } = useParams()
   const [searchParams] = useSearchParams()
@@ -18,7 +16,7 @@ export default function QuizPage() {
   const [questions, setQuestions] = useState([])
   const [currentIndex, setCurrentIndex] = useState(0)
   const [answers, setAnswers] = useState({})
-  const [timeLeft, setTimeLeft] = useState(TOTAL_SECONDS)
+  const [timeLeft, setTimeLeft] = useState(0)
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState(null)
@@ -47,8 +45,10 @@ export default function QuizPage() {
       .then(res => {
         const data = res.data.data || res.data
         setSessionId(data.sessionId)
-        setQuestions(data.questions || [])
-        if (!data.questions || data.questions.length === 0) {
+        const qs = data.questions || []
+        setQuestions(qs)
+        setTimeLeft(qs.length * 90) // 90 seconds per question
+        if (qs.length === 0) {
           setError('No questions found for this topic.')
         }
         setLoading(false)

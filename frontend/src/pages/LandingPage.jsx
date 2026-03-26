@@ -12,20 +12,20 @@ export default function LandingPage() {
     <div className="min-h-screen bg-bg-light font-sans">
 
       {/* ── Header ── */}
-      <header className="bg-white border-b border-border-default px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <span className="text-xl">&#x2695;</span>
-          <span className="text-marine font-semibold text-lg">DiscoLabs</span>
+      <header className="bg-white border-b border-border-default px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <span className="text-lg sm:text-xl">&#x2695;</span>
+          <span className="text-marine font-semibold text-base sm:text-lg">DiscoLabs</span>
         </div>
-        <div className="flex items-center gap-4">
-          <Link to="/login" className="text-sm text-marine font-medium hover:underline hidden sm:inline">
+        <div className="flex items-center gap-2 sm:gap-4">
+          <Link to="/login" className="text-xs sm:text-sm text-marine font-medium hover:underline">
             Sign In
           </Link>
           <button
             onClick={() => navigate('/rapid-diagnostic')}
-            className="btn-primary text-sm"
+            className="btn-primary text-xs sm:text-sm px-3 sm:px-4 py-2"
           >
-            Start Free Assessment
+            Free Assessment
           </button>
         </div>
       </header>
